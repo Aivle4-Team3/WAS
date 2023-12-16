@@ -16,8 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
+
+from allauth.socialaccount import views as socialaccount_views
+from allauth.account.views import LoginView, LogoutView
+
 
 urlpatterns = [
-    path('', include('home.urls')),
+    path('', views.login, name='login'),
+
+    path('home/', include('home.urls')),
+
+    path('accounts/login/', LoginView.as_view(), name='account_login'),
+    path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
+    path('accounts/', include('allauth.urls')),
+    path('accounts/signup/', socialaccount_views.SignupView.as_view(), name='account_signup'),
+
     path('admin/', admin.site.urls),
 ]

@@ -10,17 +10,25 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os, environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(
+    DEBUG = (bool, False)
+)
+environ.Env.read_env(
+    env_file = os.path.join(BASE_DIR, 'key.config')
+)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nvj*g^v0*y+&e3kbv3j00)x731xnpf7-4bo00w=9!zpu!g^$2h'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.kakao',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +62,53 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+AUTHENTICATION_CLASSES = (
+    # ...
+    'allauth.socialaccount.providers.oauth2.client.OAuth2',
+    # ...
+)
+
+# 소셜 로그인 관련 설정
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'APP': {
+            'client_id': env('GOOGLE_OAUTH_CLIENT_ID'),
+            'secret': env('GOOGLE_OAUTH_SECRET'),
+            'key': ''
+        }
+    },
+    'naver': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'APP': {
+            'client_id': env('NAVER_OAUTH_CLIENT_ID'),
+            'secret': env('NAVER_OAUTH_SECRET'),
+            'key': ''
+        }
+    },
+}
+
+# allauth site_id
+SITE_ID = 1
+
+# 로그인 후 리디렉션할 페이지
+LOGIN_REDIRECT_URL = 'home'
+# 로그아웃 후 리디렉션할 페이지
+ACCOUNT_LOGOUT_REDIRECT_URL = 'login'
+# 로그아웃 버튼 클릭 시 자동 로그아웃
+ACCOUNT_LOGOUT_ON_GET = True
+
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -103,7 +164,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'UTC'
 
