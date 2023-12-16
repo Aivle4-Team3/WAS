@@ -19,7 +19,7 @@ from django.urls import path, include
 from . import views
 
 from allauth.socialaccount import views as socialaccount_views
-from allauth.account.views import LoginView, LogoutView
+from allauth.account.views import LoginView, LogoutView, PasswordResetView
 
 
 urlpatterns = [
@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
+    path('accounts/password/reset/', PasswordResetView.as_view(), name='account_reset_password'),
     path('accounts/', include('allauth.urls')),
     path('accounts/signup/', socialaccount_views.SignupView.as_view(), name='account_signup'),
 
