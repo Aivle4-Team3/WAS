@@ -27,6 +27,7 @@ urlpatterns = [
 
     path('home/', include('home.urls')),
     path('chat/', include('chat.urls')),
+    path('video/', include('video.urls')),
 
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
@@ -36,3 +37,8 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

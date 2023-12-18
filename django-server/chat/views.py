@@ -5,7 +5,7 @@ from django.shortcuts import render
 def chatpage(request):
 
     context = {
-        'chatbot': "https://d2503e5b12ffcb1865.gradio.live/",
+        'chatbot': "https://f55981e5b3327c9ca8.gradio.live/",
         }
 
     return render(request, './chat/index.html', context)
