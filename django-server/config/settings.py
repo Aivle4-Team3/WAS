@@ -110,7 +110,7 @@ LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'login'
 # 로그아웃 버튼 클릭 시 자동 로그아웃
 ACCOUNT_LOGOUT_ON_GET = True
-
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 
 
 ROOT_URLCONF = 'config.urls'
