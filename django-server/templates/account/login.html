@@ -89,6 +89,8 @@
                                         <a class="small" href="{% url 'account_signup' %}">Create an Account!</a>
                                     </div> {% endcomment %}
                                     {% comment %} <button onclick="openPopup()">회원가입</button> {% endcomment %}
+                                    {% block head_title %}{% endblock %}
+                                    {% block content %}{% endblock %}
                                     <button type="submit" class="btn btn-primary btn-user btn-block" onclick="openPopup()">Start</button>
                                         <div id="popup" class="popup-overlay">
                                             <div class="popup-content">
