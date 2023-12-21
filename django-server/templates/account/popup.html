@@ -57,7 +57,12 @@
 </div>
 
 <script>
-    function openPopup(event) {
+    document.addEventListener("DOMContentLoaded", function() {
+        // 페이지 로딩이 완료되면 팝업 창을 열도록 설정
+        openPopup();
+    });
+
+    function openPopup() {
         event.preventDefault(); // 이벤트 전파 막기
     
         var popup = document.getElementById("popup");
