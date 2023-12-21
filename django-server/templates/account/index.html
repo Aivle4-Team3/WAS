@@ -39,11 +39,6 @@
         </nav>
         <!-- Masthead-->
         <header class="masthead">
-            <div style="position: fixed; z-index: -99; width: 100%; height: 100%">
-                <iframe frameborder="0" height="100%" width="100%" allow="autoplay; encrypted-media"
-                        allowfullscreen="" src="{{ background_video }}?mute=1&amp;loop=1&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0">
-                </iframe>
-            </div>
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
@@ -52,84 +47,9 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-                        <a class="btn btn-primary btn-xl" onclick="openPopup()">START</a>
-                        <div id="popup" class="popup-overlay">
-                            <div id='popup2' class="popup-content">
-                                <span class="close-btn" onclick="closePopup()">&times;</span>
-                                <h2>로그인/회원가입</h2>
-                                <form class="user" method="post" action="{% url 'account_login' %}">
-                                    {% csrf_token %}
-
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                            id="exampleInputEmail" aria-describedby="emailHelp"
-                                            placeholder="Enter Email Address..."
-                                            name="login">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password"
-                                            name="password">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember
-                                                Me</label>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                    {% comment %} <script>
-                                        function openPopup() {     
-                                            window.open('/', 'ExampleWindow', 'width=1000,height=800'); 
-                                        } 
-                                    </script> {% endcomment %}
-                                </form>
-                                <hr>
-                                <form class="user" action="{% provider_login_url 'google' %}" method='post'>
-                                    {% csrf_token %}
-                                    <button class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i>Login with Google
-                                    </button>
-                                </form>
-                                <form class="user" action="{% provider_login_url 'naver' %}" method='post'>
-                                    {% csrf_token %}
-                                    <button class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i>Login with Naver
-                                    </button>
-                                </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="{% url 'account_reset_password' %}">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="{% url 'account_signup' %}">Create an Account!</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <script>
-                            function openPopup() {
-                                var popup = document.getElementById("popup");
-                                popup.style.visibility = "visible";
-                                popup.style.opacity = "1";
-                            }
-                        
-                            function closePopup() {
-                                var popup = document.getElementById("popup");
-                                popup.style.visibility = "hidden";
-                                popup.style.opacity = "0";
-                            }
-
-                            document.addEventListener("mouseup", function (e) {
-                                var popup = document.getElementById("popup2");
-                                var closeButton = document.querySelector(".close-btn");
-                                // 팝업 버튼을 클릭한 경우는 무시
-                                if (e.target !== closeButton && !popup.contains(e.target)) {
-                                    closePopup();
-                                }
-                            });
-                        </script>
+                        <a class="btn btn-primary btn-xl" onclick="openPopup(event)" href="{% url 'popup' %}">START</a>
+                        {% block popup %}
+                        {% endblock %} 
                     </div>
                 </div>
             </div>
