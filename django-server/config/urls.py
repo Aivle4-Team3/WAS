@@ -28,7 +28,7 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('chat/', include('chat.urls')),
     path('video/', include('video.urls')),
-
+    
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
     path('accounts/password/reset/', PasswordResetView.as_view(), name='account_reset_password'),

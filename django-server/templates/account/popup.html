@@ -4,6 +4,7 @@
     <div id='popup2' class="popup-content">
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2>로그인/회원가입</h2>
+
         <form class="user" method="post" action="{% url 'account_login' %}">
             {% csrf_token %}
 
@@ -26,29 +27,30 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-            {% comment %} <script>
-                function openPopup() {     
-                    window.open('/', 'ExampleWindow', 'width=1000,height=800'); 
-                } 
-            </script> {% endcomment %}
         </form>
+        
         <hr>
+        
         <form class="user" action="{% provider_login_url 'google' %}" method='post'>
             {% csrf_token %}
             <button class="btn btn-google btn-user btn-block">
                 <i class="fab fa-google fa-fw"></i>Login with Google
             </button>
         </form>
+        
         <form class="user" action="{% provider_login_url 'naver' %}" method='post'>
             {% csrf_token %}
             <button class="btn btn-facebook btn-user btn-block">
                 <i class="fab fa-facebook-f fa-fw"></i>Login with Naver
             </button>
         </form>
+        
         <hr>
+        
         <div class="text-center">
             <a class="small" href="{% url 'account_reset_password' %}">Forgot Password?</a>
         </div>
+        
         <div class="text-center">
             <a class="small" href="{% url 'account_signup' %}">Create an Account!</a>
         </div>

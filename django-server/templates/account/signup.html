@@ -1,21 +1,99 @@
-{% extends "account/login.html" %}
+{% comment %} {% extends "account/login.html" %} {% endcomment %}
 
 {% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
+{% load socialaccount %}
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<style>
+  /* 직접 CSS를 추가합니다 */
+  body {
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ensure the container takes full height of the viewport */
+    margin: 0;
+  }
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+  .signup-container {
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #333; /* Darker background color */
+    color: #fff; /* Text color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+  .signup-container h2 {
+    color: #4CAF50;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
 
+  .signup-container form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .signup-container label {
+    margin-bottom: 8px;
+    color: #fff; /* Text color */
+  }
+
+  .signup-container input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  .signup-container button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .signup-container button:hover {
+    background-color: #45a049;
+  }
+
+  .signup-container p {
+    margin-top: 10px;
+    color: #fff; /* Text color */
+  }
+
+  a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+</style>
+
+<div class="signup-container">
+  <h2>{% trans "Sign Up" %}</h2>
+
+  <form method="post" action="{% url 'account_signup' %}" class="signup">
+    {% csrf_token %}
+    
+    <!-- User-specific fields -->
+    {{ form.username }}
+    {{ form.password1 }}
+    {{ form.password2 }}
+
+    <!-- Other form fields can be added if needed -->
+
+    <button type="submit">{% trans "Sign Up" %}</button>
+  </form>
+
+  <p>{% trans "Already have an account?" %} <a href="{% url 'account_login' %}">{% trans "Log in" %}</a></p>
+</div>
 {% endblock %}
