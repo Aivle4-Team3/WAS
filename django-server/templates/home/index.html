@@ -241,11 +241,12 @@
                 </a>
               </li>
               <li>
-                <form action="/sneat-html-django-admin-template/demo-1/logout/" method="post">
-                  <input type="hidden" name="csrfmiddlewaretoken" value="lQzZReEEyWxc5c72IlXOBxxYlgwHQV6mH1hzxZbsf6riRIL6i52cKXpOiSPcSc3G">
+                <form action="{% url 'account_logout' %}" method="post">
+                  {% csrf_token %}
+                  {% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="lQzZReEEyWxc5c72IlXOBxxYlgwHQV6mH1hzxZbsf6riRIL6i52cKXpOiSPcSc3G"> {% endcomment %}
                   <button type="submit" class="dropdown-item">
                     <i class="bx bx-power-off me-2"></i>
-                    <span class="align-middle">Log Out</span>
+                    <span class="align-middle" >Sign out</span>
                   </button>
                 </form>
               </li>
