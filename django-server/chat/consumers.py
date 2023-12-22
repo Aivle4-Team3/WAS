@@ -53,5 +53,4 @@ class ChatConsumer(WebsocketConsumer):
         
         print(message, answer)
         
-        self.send(text_data=json.dumps({"message": message}))
         self.send(text_data=json.dumps({"message": answer}))

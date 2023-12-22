@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
+
         answer_html = `<li class="chat-message">
             <div class="d-flex overflow-hidden">
               <div class="user-avatar flex-shrink-0 me-3">
@@ -22,7 +23,6 @@ window.addEventListener("DOMContentLoaded", function () {
               </div>
             </div>
           </li>`;
-        console.log("answer", data.message);
         document.querySelector("#chat-log").innerHTML += answer_html;
     };
 
@@ -39,16 +39,16 @@ window.addEventListener("DOMContentLoaded", function () {
     };
 
     document.querySelector("#chat-message-submit").onclick = function (e) {
+        e.preventDefault();
         const messageInputDom = document.querySelector("#chat-message-input");
         const message = messageInputDom.value;
-        console.log(1);
+
         chatSocket.send(
             JSON.stringify({
                 message: message,
             })
         );
-
-        console.log("problem", message);
+        
 
         problem_html = `<li class="chat-message chat-message-right">
             <div class="d-flex overflow-hidden">
@@ -70,6 +70,10 @@ window.addEventListener("DOMContentLoaded", function () {
           </li>`;
         document.querySelector("#chat-log").innerHTML += problem_html;
 
-        //messageInputDom.value = '';
+        messageInputDom.value = '';
+        new PerfectScrollbar(document.querySelector(".chat-history-body"), {
+            wheelPropagation: !1,
+            suppressScrollX: !0,
+        })
     };
 });
