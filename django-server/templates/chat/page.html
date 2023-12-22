@@ -44,8 +44,8 @@
         <link rel="stylesheet" type="text/css" href="{% static '/chat/css/core.css' %}" class="template-customizer-core-css" />
         <link rel="stylesheet" type="text/css" href="{% static '/chat/css/theme-default.css' %}" class="template-customizer-theme-css" />
 
-        <!-- remove while creating package  -->
         <script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="{% static '/chat/js/perfect-scrollbar.js' %}"></script>
         <script src="{% static '/chat/js/chat.js' %}"></script>
     </head>
@@ -97,10 +97,10 @@
                                                 <li class="chat-contact-list-item active">
                                                     <a class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 avatar avatar-offline">
-                                                            <img src="" alt="Avatar" class="rounded-circle" />
+                                                            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Avatar" class="rounded-circle" />
                                                         </div>
                                                         <div class="chat-contact-info flex-grow-1 ms-3">
-                                                            <h6 class="chat-contact-name text-truncate m-0">Felecia Rower</h6>
+                                                            <h6 class="chat-contact-name text-truncate m-0">강의 제목</h6>
                                                             <p class="chat-contact-status text-truncate mb-0 text-muted">I will purchase it for sure. 👍</p>
                                                         </div>
                                                         <small class="text-muted mb-auto">30 Minutes</small>
@@ -125,11 +125,11 @@
                                                     <div class="d-flex overflow-hidden align-items-center">
                                                         <i class="bx bx-menu bx-sm cursor-pointer d-lg-none d-block me-2" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-contacts"></i>
                                                         <div class="flex-shrink-0 avatar">
-                                                            <img src="" alt="Avatar" class="rounded-circle" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-sidebar-right" />
+                                                            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Avatar" class="rounded-circle" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-sidebar-right" />
                                                         </div>
                                                         <div class="chat-contact-info flex-grow-1 ms-3">
-                                                            <h6 class="m-0">Felecia Rower</h6>
-                                                            <small class="user-status text-muted">NextJS developer</small>
+                                                            <h6 class="m-0">강의제목</h6>
+                                                            <small class="user-status text-muted">{{ user }}</small>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center">
@@ -152,7 +152,31 @@
                                                 </div>
                                             </div>
                                             <div class="chat-history-body ps ps--active-y">
-                                                <ul id="chat-log" class="list-unstyled chat-history mb-0"></ul>
+                                                <ul id="chat-log" class="list-unstyled chat-history mb-0">
+
+
+                                                    <li class="chat-message" v-bind:class="{'chat-message-right': statement.type == 'querry'}" v-for="statement in statements">
+                                                        <div class="d-flex overflow-hidden">
+                                                          <div class="user-avatar flex-shrink-0 me-3">
+                                                            <div class="avatar avatar-sm">
+                                                              <img title="{{ user }}" v-if="statement.type == 'querry'" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Avatar" class="rounded-circle">
+                                                              <img title="bot" v-if="statement.type == 'answer'" src="{% static '/chat/img/gpt_logo.svg' %}" alt="Avatar" class="rounded-circle">
+                                                            </div>
+                                                          </div>
+                                                          <div class="chat-message-wrapper flex-grow-1">
+                                                            <div class="chat-message-text">
+                                                              <p class="mb-0">[[ statement.message ]]</p>
+                                                            </div>
+                                                            <div class="text-end text-muted mt-1">
+                                                                <i class="bx bx-check-double text-success"></i>
+                                                                <small>[[ statement.time ]]</small>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </li>
+
+
+                                                </ul>
                                                 <div class="ps__rail-x" style="left: 0px; bottom: -258px">
                                                     <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
                                                 </div>

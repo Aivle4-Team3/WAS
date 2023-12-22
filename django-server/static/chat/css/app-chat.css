@@ -217,6 +217,14 @@
     .app-chat-history
     .chat-history-body
     .chat-history
+    .chat-message.chat-message-right >
+    div {
+    flex-direction: row-reverse;
+}
+.app-chat
+    .app-chat-history
+    .chat-history-body
+    .chat-history
     .chat-message.chat-message-right
     .chat-message-text {
     border-top-right-radius: 0;

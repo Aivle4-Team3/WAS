@@ -1,28 +1,24 @@
 window.addEventListener("DOMContentLoaded", function () {
+    var app = new Vue({
+        delimiters: ["[[", "]]"],
+        el: '#chat-log',
+        data: {
+            statements: [],
+        },
+    })
+
     const roomName = "basic";
     const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + roomName + "/");
 
     chatSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
 
-        answer_html = `<li class="chat-message">
-            <div class="d-flex overflow-hidden">
-              <div class="user-avatar flex-shrink-0 me-3">
-                <div class="avatar avatar-sm">
-                  <img src="" alt="Avatar" class="rounded-circle">
-                </div>
-              </div>
-              <div class="chat-message-wrapper flex-grow-1">
-                <div class="chat-message-text">
-                  <p class="mb-0">${data.message}</p>
-                </div>
-                <div class="text-muted mt-1">
-                  <small>10:02 AM</small>
-                </div>
-              </div>
-            </div>
-          </li>`;
-        document.querySelector("#chat-log").innerHTML += answer_html;
+        app.statements.push({
+            type: 'answer',
+            message: data.message,
+            avatar: 'gpt_logo.svg',
+            time: new Date(),
+        });
     };
 
     chatSocket.onclose = function (e) {
@@ -48,25 +44,11 @@ window.addEventListener("DOMContentLoaded", function () {
             })
         );
 
-        problem_html = `<li class="chat-message chat-message-right">
-            <div class="d-flex overflow-hidden">
-              <div class="chat-message-wrapper flex-grow-1">
-                <div class="chat-message-text">
-                  <p class="mb-0">${message}</p>
-                </div>
-                <div class="text-end text-muted mt-1">
-                  <i class="bx bx-check-double text-success"></i>
-                  <small>10:00 AM</small>
-                </div>
-              </div>
-              <div class="user-avatar flex-shrink-0 ms-3">
-                <div class="avatar avatar-sm">
-                  <img src="" alt="Avatar" class="rounded-circle">
-                </div>
-              </div>
-            </div>
-          </li>`;
-        document.querySelector("#chat-log").innerHTML += problem_html;
+        app.statements.push({
+            type: 'querry',
+            message,
+            time: new Date(),
+        });
 
         messageInputDom.value = "";
     };
