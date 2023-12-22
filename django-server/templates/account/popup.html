@@ -5,7 +5,7 @@
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2>로그인/회원가입</h2>
 
-        <form class="user" method="post" action="{% url 'account_login' %}">
+        <form class="user" method="post" onsubmit="return validateLoginForm()" action="{% url 'account_login' %}">
             {% csrf_token %}
 
             <div class="form-group">
@@ -79,5 +79,17 @@
             closePopup();
         }
     });
+
+    function validateLoginForm() {
+        var email = document.getElementById("exampleInputEmail").value;
+        var password = document.getElementById("exampleInputPassword").value;
+
+        if (email.trim() === '' || password.trim() === '') {
+            alert("Please enter both email and password.");
+            return false; // Prevent form submission
+        }
+
+        return true; // Continue with form submission
+    }
 </script>
 {% endblock %}
