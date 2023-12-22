@@ -1,6 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
-    const roomName = "robby";
-
+    const roomName = "basic";
     const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + roomName + "/");
 
     chatSocket.onmessage = function (e) {
@@ -10,7 +9,7 @@ window.addEventListener("DOMContentLoaded", function () {
             <div class="d-flex overflow-hidden">
               <div class="user-avatar flex-shrink-0 me-3">
                 <div class="avatar avatar-sm">
-                  <img src="./Chat - Apps _ Sneat - Django Admin Template_files/2.png" alt="Avatar" class="rounded-circle">
+                  <img src="" alt="Avatar" class="rounded-circle">
                 </div>
               </div>
               <div class="chat-message-wrapper flex-grow-1">
@@ -48,7 +47,6 @@ window.addEventListener("DOMContentLoaded", function () {
                 message: message,
             })
         );
-        
 
         problem_html = `<li class="chat-message chat-message-right">
             <div class="d-flex overflow-hidden">
@@ -63,17 +61,19 @@ window.addEventListener("DOMContentLoaded", function () {
               </div>
               <div class="user-avatar flex-shrink-0 ms-3">
                 <div class="avatar avatar-sm">
-                  <img src="./Chat - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/1.png" alt="Avatar" class="rounded-circle">
+                  <img src="" alt="Avatar" class="rounded-circle">
                 </div>
               </div>
             </div>
           </li>`;
         document.querySelector("#chat-log").innerHTML += problem_html;
 
-        messageInputDom.value = '';
-        new PerfectScrollbar(document.querySelector(".chat-history-body"), {
-            wheelPropagation: !1,
-            suppressScrollX: !0,
-        })
+        messageInputDom.value = "";
     };
+
+    /* chat-history 드래그로 리스트 확인 기능 */
+    new PerfectScrollbar(document.querySelector(".chat-history-body"), {
+        wheelPropagation: !1,
+        suppressScrollX: !0,
+    });
 });
