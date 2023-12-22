@@ -13,3 +13,6 @@ def index(request):
 def login(request):
     return render(request, './home/login.html')
 
+
+def mypage(request):
+    return render(request, './my/mypage.html')
