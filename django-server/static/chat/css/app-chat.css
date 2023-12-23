@@ -233,6 +233,14 @@
     .app-chat-history
     .chat-history-body
     .chat-history
+    .chat-message
+    .user-avatar {
+    padding-top: 5px;
+}
+.app-chat
+    .app-chat-history
+    .chat-history-body
+    .chat-history
     .chat-message.chat-message-right
     .user-avatar {
     margin-right: 0rem;

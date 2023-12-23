@@ -32,11 +32,12 @@
         <link rel="stylesheet" href="{% static '/home/css/boxicons.css' %}" />
         <link rel="stylesheet" href="{% static '/home/css/fontawesome.css' %}" />
         <link rel="stylesheet" href="{% static '/home/css/flag-icons.css' %}" />
+        <link rel="stylesheet" href="{% static '/chat/css/three-dots.css' %}" />
 
         <!--Page CSS-->
 
+        <link rel="stylesheet" href="{% static '/chat/css/perfect-scrollbar.css' %}" />
         <link rel="stylesheet" href="{% static '/chat/css/app-chat.css' %}" />
-        <link rel="stylesheet" href="{% static '/chat/css/three-dots.css' %}" />
 
         <!-- Include the scripts partial (required ) -->
 
@@ -159,7 +160,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="chat-history-body ps ps--active-y">
+                                            <div class="chat-history-body ps ps--active-y" ref="chatHistoryBody">
                                                 <ul class="list-unstyled chat-history mb-0">
                                                     <li class="chat-message" :class="{'chat-message-right': statement.type == 'querry'}" v-for="(statement, index) in statements">
                                                         <div class="d-flex overflow-hidden">
@@ -173,7 +174,7 @@
                                                                         class="rounded-circle"
                                                                     />
                                                                     <img
-                                                                        title="bot"
+                                                                        title="학생"
                                                                         v-if="statement.type == 'answer'"
                                                                         src="{% static '/chat/img/gpt_logo.svg' %}"
                                                                         alt="Avatar"
@@ -195,12 +196,6 @@
 
                                                     <div class="dot-pulse" v-show="waitting" style="margin-left: 20px"></div>
                                                 </ul>
-                                                <div class="ps__rail-x" style="left: 0px; bottom: -258px">
-                                                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
-                                                </div>
-                                                <div class="ps__rail-y" style="top: 258px; height: 817px; right: 0px">
-                                                    <div class="ps__thumb-y" tabindex="0" style="top: 196px; height: 620px"></div>
-                                                </div>
                                             </div>
                                             <!-- Chat message form -->
                                             <div class="chat-history-footer">

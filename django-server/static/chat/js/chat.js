@@ -3,8 +3,11 @@ window.addEventListener("DOMContentLoaded", function () {
         delimiters: ["[[", "]]"],
         el: "#app-history",
         data: {
+            // 메시지 내용 기록 { type, message, avatar, time }
             statements: [],
+            // 현재 입력 중인 메시지
             inputMessage: "",
+            // 서버의 답변을 기다리고 있는 메시지 수
             sentMessages: 0,
         },
         computed: {
@@ -31,11 +34,22 @@ window.addEventListener("DOMContentLoaded", function () {
                 this.statements.push({
                     type: "querry",
                     message,
-                    time: new Date(),
+                    time: new Date().toLocaleTimeString(),
                 });
 
                 this.sentMessages += 1;
             },
+        },
+        mounted() {
+            /* chat-history 드래그로 리스트 확인 기능 */
+            new PerfectScrollbar(this.$refs.chatHistoryBody, {
+                wheelPropagation: !1,
+                suppressScrollX: !0,
+            });
+        },
+        updated() {
+            i = this.$refs.chatHistoryBody;
+            i.scrollTo(0, i.scrollHeight);
         },
     });
 
@@ -51,7 +65,7 @@ window.addEventListener("DOMContentLoaded", function () {
             type: "answer",
             message: data.message,
             avatar: "gpt_logo.svg",
-            time: new Date(),
+            time: new Date().toLocaleTimeString(),
         });
 
         app.sentMessages -= 1;
@@ -60,10 +74,4 @@ window.addEventListener("DOMContentLoaded", function () {
     chatSocket.onclose = function (e) {
         console.error("Chat socket closed unexpectedly");
     };
-
-    /* chat-history 드래그로 리스트 확인 기능 */
-    new PerfectScrollbar(document.querySelector(".chat-history-body"), {
-        wheelPropagation: !1,
-        suppressScrollX: !0,
-    });
 });
