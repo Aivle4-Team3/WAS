@@ -5,6 +5,12 @@ window.addEventListener("DOMContentLoaded", function () {
         data: {
             statements: [],
             inputMessage: "",
+            sentMessages: 0,
+        },
+        computed: {
+            waitting: function () {
+                return this.sentMessages > 0;
+            },
         },
         methods: {
             submit: function (e) {
@@ -27,6 +33,8 @@ window.addEventListener("DOMContentLoaded", function () {
                     message,
                     time: new Date(),
                 });
+
+                this.sentMessages += 1;
             },
         },
     });
@@ -45,6 +53,8 @@ window.addEventListener("DOMContentLoaded", function () {
             avatar: "gpt_logo.svg",
             time: new Date(),
         });
+
+        app.sentMessages -= 1;
     };
 
     chatSocket.onclose = function (e) {

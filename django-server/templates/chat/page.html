@@ -36,6 +36,7 @@
         <!--Page CSS-->
 
         <link rel="stylesheet" href="{% static '/chat/css/app-chat.css' %}" />
+        <link rel="stylesheet" href="{% static '/chat/css/three-dots.css' %}" />
 
         <!-- Include the scripts partial (required ) -->
 
@@ -191,6 +192,8 @@
                                                             </div>
                                                         </div>
                                                     </li>
+
+                                                    <div class="dot-pulse" v-show="waitting" style="margin-left: 20px"></div>
                                                 </ul>
                                                 <div class="ps__rail-x" style="left: 0px; bottom: -258px">
                                                     <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
