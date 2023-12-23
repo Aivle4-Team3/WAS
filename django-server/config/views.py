@@ -7,7 +7,3 @@ def enterence(request):
     }
 
     return render(request, './enterence.html', context)
-
-
-def login_success(request):
-    return render(request, './account/login_success.html')

@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
-from django.shortcuts import render
+from accounts import views as accounts_view
 
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('mypage', views.mypage, name='mypage'),
+    path('mypage', accounts_view.mypage, name='mypage'),
 ]
