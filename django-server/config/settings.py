@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 
 
     'home.apps.HomeConfig',
-    'video.apps.VideoConfig',
+    'lecture.apps.LectureConfig',
 ]
 
 MIDDLEWARE = [
@@ -114,9 +114,10 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = 'home'
 # 로그아웃 후 리디렉션할 페이지
 ACCOUNT_LOGOUT_REDIRECT_URL = 'login'
+# 가입 후 리디렉션할 페이지
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 # 로그아웃 버튼 클릭 시 자동 로그아웃
 ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 
 ACCOUNT_SESSION_REMEMBER = False
 
