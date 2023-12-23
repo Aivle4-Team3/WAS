@@ -1,334 +1,152 @@
-{% load static %}
+{% extends "../base.html" %}
+{% block contents %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mb-4">
+        <div class="card-header d-flex flex-wrap justify-content-between gap-3">
+            <div class="card-title mb-0 me-1">
+                <h5 class="mb-1">All Courses</h5>
+                <p class="text-muted mb-0">오늘의 강의 목록을 확인해 보세요✍️</p>
+            </div>
+        </div>
 
-<!DOCTYPE html>
-
-<html lang="en" class="light-style layout-navbar-fixed  layout-menu-fixed    layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="/sneat-html-django-admin-template/demo-1/static/" data-base-url="" data-framework="django" data-template="vertical-menu--theme-default-light">
-
-  <head>
-    <base href="/sneat-html-django-admin-template/demo-1/">
-    <title>에이쁠 에듀｜홈</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta name="description" content="Sneat is a modern, clean and fully responsive admin template built with Bootstrap 5, Django, HTML, CSS, and JavaScript. It has a huge collection of reusable UI components. It can be used for all types of web applications like custom admin panel, project management system, admin dashboard, Backend application or CRM." />
-    <meta name="keywords" content="django, django admin, dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
-    <!-- Canonical SEO -->
-    <link rel="canonical" href="https://themeselection.com/item/sneat-bootstrap-django-admin-template/">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/sneat-html-django-admin-template/demo-1/static/img/favicon/favicon.ico" />
-
-    <!-- Include the styles partial -->
-    
-
-<!--Fonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
-<!-- Icons -->
-<link rel="stylesheet" href="{% static '/home/css/boxicons.css' %}" />
-<link rel="stylesheet" href="{% static '/home/css/fontawesome.css' %}" />
-<link rel="stylesheet" href="{% static '/home/css/flag-icons.css' %}" />
-
-<!--Core CSS -->
-
-<link rel="stylesheet" href="{% static '/home/css/core.css' %}" class="template-customizer-core-css" />
-<link rel="stylesheet" href="{% static '/home/css/theme-default.css' %}" class="template-customizer-theme-css" />
-
-
-
-<link rel="stylesheet" href="{% static '/home/css/home.css' %}" />
-
-<!--Vendor CSS-->
-<link rel="stylesheet" href="{% static '/home/css/perfect-scrollbar.css' %}" />
-<link rel="stylesheet" href="{% static '/home/css/typeahead.css' %}" />
-
-
-    
-
-<link rel="stylesheet" href="{% static '/home/css/select2.css' %}" />
-<link rel="stylesheet" href="{% static '/home/css/plyr.css' %}" />
-
-
-    <!--Page CSS-->
-    
-
-<link rel="stylesheet" href="{% static '/home/css/app-academy.css' %}" />
-
-
-
-
-    
-<!-- Layout wrapper: Start -->
-<div class="layout-wrapper layout-content-navbar ">
-  <div class="layout-container">
-
-    
-    <!-- Menu: Start -->
-    <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-  <!-- ! Hide app brand if navbar-full -->
-  
-  {% block sidebar %}
-      {% include 'home/sidebar.html' %}
-  {% endblock %}    
-  </aside>
-    <!-- Menu: End -->
-    
-
-    <!-- Layout page: Start -->
-    <div class="layout-page">
-
-
-      
-      <!-- Navbar: Start -->
-
-      {% block topbar %}
-          {% include 'home/topbar.html' %}
-      {% endblock %}  
-      
-      <!-- Navbar: End -->
-      
-
-
-      <!-- Content wrapper: Start -->
-      <div class="content-wrapper">
-        <!-- Content: Start -->
-        
-          <div class="container-xxl flex-grow-1 container-p-y">
-            
-            
-
-  <div class="card mb-4">
-    <div class="card-header d-flex flex-wrap justify-content-between gap-3">
-      <div class="card-title mb-0 me-1">
-        <h5 class="mb-1">All Courses</h5>
-        <p class="text-muted mb-0">오늘의 강의 목록을 확인해 보세요✍️</p>
-      </div>
-
-    </div>
-
-
-
-
-
-    <div class="card-body">
-      {% if lectures %}
-        <div class="row gy-4 mb-4">
-
-          {% for lecture in lectures %}
-            <div class="col-sm-6 col-lg-4">
-              <div class="card p-2 h-100 shadow-none border">
-                <div class="rounded-2 text-center mb-3">
-                  <a href="/lecture/{{ lecture.title }}">
-                    <img class="img-fluid" src="{{ lecture.thumbnail.url }}" alt="{{ lecture.title }}" title="{{ lecture.title }}"/>
-                  </a>
+        <div class="card-body">
+            {% if lectures %}
+            <div class="row gy-4 mb-4">
+                {% for lecture in lectures %}
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card p-2 h-100 shadow-none border">
+                        <div class="rounded-2 text-center mb-3">
+                            <a href="/lecture/{{ lecture.title }}">
+                                <img class="img-fluid" src="{{ lecture.thumbnail.url }}" alt="{{ lecture.title }}" title="{{ lecture.title }}" />
+                            </a>
+                        </div>
+                        <div class="card-body p-3 pt-2">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-label-primary">{{ lecture.chapter }}</span>
+                                <h6 class="d-flex align-items-center justify-content-center gap-1 mb-0">
+                                    {{ lecture.grade }} <span class="text-warning"><i class="bx bxs-star me-1"></i></span><span class="text-muted">({{ lecture.visited }})</span>
+                                </h6>
+                            </div>
+                            <a href="/lecture/{{ lecture.title }}" class="h5">{{ lecture.title }}</a>
+                            <p class="mt-2">{{ lecture.summary }}</p>
+                            <p class="d-flex align-items-center"><i class="bx bx-time-five me-2"></i>{{ lecture.remain_time }}</p>
+                            <div class="progress mb-4" style="height: 8px">
+                                <div class="progress-bar w-75" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex flex-column flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
+                                <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="/lecture/{{ lecture.title }}">
+                                    <i class="bx bx-sync align-middle me-2"></i><span>Start Over</span>
+                                </a>
+                                <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center" href="/lecture/{{ lecture.title }}">
+                                    <span class="me-2">Continue</span><i class="bx bx-chevron-right lh-1 scaleX-n1-rtl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body p-3 pt-2">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="badge bg-label-primary">{{ lecture.chapter }}</span>
-                    <h6 class="d-flex align-items-center justify-content-center gap-1 mb-0">
-                      {{ lecture.grade }} <span class="text-warning"><i class="bx bxs-star me-1"></i></span><span class="text-muted">({{ lecture.visited }})</span>
-                    </h6>
-                  </div>
-                  <a href="/lecture/{{ lecture.title }}" class="h5">{{ lecture.title }}</a>
-                  <p class="mt-2">{{ lecture.summary }}</p>
-                  <p class="d-flex align-items-center"><i class="bx bx-time-five me-2"></i>{{ lecture.remain_time }}</p>
-                  <div class="progress mb-4" style="height: 8px">
-                    <div class="progress-bar w-75" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="d-flex flex-column flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
-                    <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="/lecture/{{ lecture.title }}">
-                      <i class="bx bx-sync align-middle me-2 "></i><span>Start Over</span>
-                    </a>
-                    <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center" href="/lecture/{{ lecture.title }}">
-                      <span class="me-2">Continue</span><i class="bx bx-chevron-right lh-1 scaleX-n1-rtl"></i>
-                    </a>
-                  </div>
+                {% endfor %}
+                {% else %}
+                <p>빈 강의</p>
+                {% endif %}
+            </div>
+            <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item prev">
+                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="javascript:void(0);">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);">5</a>
+                    </li>
+                    <li class="page-item next">
+                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row gy-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card bg-label-primary h-100">
+                <div class="card-body d-flex justify-content-between flex-wrap-reverse">
+                    <div class="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
+                        <div class="card-title">
+                            <h4 class="text-primary mb-2">Earn a Certificate</h4>
+                            <p class="text-body w-sm-80 app-academy-xl-100">Get the right professional certificate program for you.</p>
+                        </div>
+                        <div class="mb-0"><button class="btn btn-primary">View Programs</button></div>
+                    </div>
+                    <div class="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-3 mb-sm-0">
+                        <img class="img-fluid scaleX-n1-rtl" src="/sneat-html-django-admin-template/demo-1/static/img/illustrations/boy-app-academy.png" alt="boy illustration" />
+                    </div>
                 </div>
-              </div>
             </div>
-          {% endfor %}
-      {% else %}
-        <p>빈 강의</p>
-      {% endif %}
-      </div>
-      <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
-        <ul class="pagination">
-          <li class="page-item prev">
-            <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-left"></i></a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link" href="javascript:void(0);">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="javascript:void(0);">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="javascript:void(0);">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="javascript:void(0);">4</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="javascript:void(0);">5</a>
-          </li>
-          <li class="page-item next">
-            <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-right"></i></a>
-          </li>
-        </ul>
-      </nav>
+        </div>
+        <div class="col-lg-6">
+            <div class="card bg-label-danger h-100">
+                <div class="card-body d-flex justify-content-between flex-wrap-reverse">
+                    <div class="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
+                        <div class="card-title">
+                            <h4 class="text-danger mb-2">Best Rated Courses</h4>
+                            <p class="text-body app-academy-sm-60 app-academy-xl-100">Enroll now in the most popular and best rated courses.</p>
+                        </div>
+                        <div class="mb-0"><button class="btn btn-danger">View Courses</button></div>
+                    </div>
+                    <div class="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-3 mb-sm-0">
+                        <img class="img-fluid scaleX-n1-rtl" src="/sneat-html-django-admin-template/demo-1/static/img/illustrations/girl-app-academy.png" alt="girl illustration" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row gy-4 mb-4">
-    <div class="col-lg-6">
-      <div class="card bg-label-primary h-100">
-        <div class="card-body d-flex justify-content-between flex-wrap-reverse">
-          <div class="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
-            <div class="card-title">
-              <h4 class="text-primary mb-2">Earn a Certificate</h4>
-              <p class="text-body w-sm-80 app-academy-xl-100">
-                Get the right professional certificate program for you.
-              </p>
+    <div class="card">
+        <div class="card-body row gy-4">
+            <div class="col-sm-12 col-lg-4 text-center pt-md-5 px-3">
+                <span class="badge bg-label-primary rounded-3 mb-3"><i class="bx bx-gift bx-md"></i></span>
+                <h3 class="card-title mb-4">Today's Free Courses</h3>
+                <p class="card-text mb-4">We offers 284 Free Online courses from top tutors and companies to help you start or advance your career skills. Learn online for free and fast today!</p>
+                <button class="btn btn-primary">Get premium courses</button>
             </div>
-            <div class="mb-0"><button class="btn btn-primary">View Programs</button></div>
-          </div>
-          <div class="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-3 mb-sm-0">
-            <img class="img-fluid scaleX-n1-rtl" src="/sneat-html-django-admin-template/demo-1/static/img/illustrations/boy-app-academy.png" alt="boy illustration" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="card bg-label-danger h-100">
-        <div class="card-body d-flex justify-content-between flex-wrap-reverse">
-          <div class="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
-            <div class="card-title">
-              <h4 class="text-danger mb-2">Best Rated Courses</h4>
-              <p class="text-body app-academy-sm-60 app-academy-xl-100">
-                Enroll now in the most popular and best rated courses.
-              </p>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-none border">
+                    <div class="p-2 pb-0">
+                        <video poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="guitar-video-player" playsinline controls>
+                            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Your First Singing Lesson</h5>
+                        <p class="card-text">In the same way as any other artistic domain, singing lends itself perfectly to self-teaching.</p>
+                    </div>
+                </div>
             </div>
-            <div class="mb-0"><button class="btn btn-danger">View Courses</button></div>
-          </div>
-          <div class="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-3 mb-sm-0">
-            <img class="img-fluid scaleX-n1-rtl" src="/sneat-html-django-admin-template/demo-1/static/img/illustrations/girl-app-academy.png" alt="girl illustration" />
-          </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-none border">
+                    <div class="p-2 pb-0">
+                        <video poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="guitar-video-player-2" playsinline controls>
+                            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Guitar for Beginners</h5>
+                        <p class="card-text">The Fender Acoustic Guitar is the best choice for both beginners and professionals offering a great sound.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body row gy-4">
-      <div class="col-sm-12 col-lg-4 text-center pt-md-5 px-3">
-        <span class="badge bg-label-primary rounded-3 mb-3"><i class="bx bx-gift bx-md"></i></span>
-        <h3 class="card-title mb-4">Today's Free Courses</h3>
-        <p class="card-text mb-4">
-          We offers 284 Free Online courses from top tutors and companies to help you start or advance your career
-          skills. Learn online for free and fast today!
-        </p>
-        <button class="btn btn-primary">Get premium courses</button>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100 shadow-none border">
-          <div class="p-2 pb-0">
-            <video poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="guitar-video-player" playsinline controls>
-              <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Your First Singing Lesson</h5>
-            <p class="card-text">
-              In the same way as any other artistic domain, singing lends itself perfectly to self-teaching.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100 shadow-none border">
-          <div class="p-2 pb-0">
-            <video poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="guitar-video-player-2" playsinline controls>
-              <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Guitar for Beginners</h5>
-            <p class="card-text">
-              The Fender Acoustic Guitar is the best choice for both beginners and professionals offering a great sound.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
-
-          </div>
-          <!-- / Content: End -->
-
-          
-          <!-- Footer: Start -->
-          <footer class="content-footer footer bg-footer-theme">
-  <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-    <div class="mb-2 mb-md-0">
-      © 2023 'KT AIVLE SCHOOL TEAM 3' All rights reserved.
-    </div>
-    <div class="d-none d-lg-inline-block">
-      <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-      <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-      <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/django-introduction.html" target="_blank" class="footer-link me-4">Documentation</a>
-      <a href="https://themeselection.com/support/" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
-    </div>
-  </div>
-</footer>
-
-          <!-- Footer: End -->
-          
-
-          <div class="content-backdrop fade"></div>
-        </div>
-        <!--/ Content wrapper: End -->
-      </div>
-      <!-- / Layout page: End -->
-    </div>
-
-    
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
-    
-    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-    <div class="drag-target"></div>
-  </div>
-  <!-- Layout wrapper: End -->
-  
-
-    
-
-<!--Core Javascript-->
-<script src="{% static '/home/js/jquery.js' %}"></script>
-<script src="{% static '/home/js/popper.js' %}"></script>
-<script src="{% static '/home/js/bootstrap.js' %}"></script>
-<script src="{% static '/home/js/perfect-scrollbar.js' %}"></script>
-<script src="{% static '/home/js/hammer.js' %}"></script>
-<script src="{% static '/home/js/typeahead.js' %}"></script>
-<script src="{% static '/home/js/menu.js' %}"></script>
-<script src="{% static '/home/js/main.js' %}"></script>
-
-
-    <!--Vendors Javascript-->
-    
- 
-<script src="{% static '/home/js/select2.js' %}"></script>
-<script src="{% static '/home/js/plyr.js' %}"></script>
-
-
-    <!--Page Javascript-->
-    
- 
-<script src="{% static '/home/js/app-academy-course.js' %}"></script>
-
-
-  </body>
-
-</html>
+{% endblock %}
