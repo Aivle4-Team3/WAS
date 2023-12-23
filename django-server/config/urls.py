@@ -14,6 +14,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -28,17 +30,19 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('chat/', include('chat.urls')),
     path('lecture/', include('lecture.urls')),
-    
+
     path('accounts/login/', LoginView.as_view(), name='account_login'),
+    path('accounts/login_success/', views.login_success, name='login_success'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
-    path('accounts/password/reset/', PasswordResetView.as_view(), name='account_reset_password'),
+    path('accounts/password/reset/', PasswordResetView.as_view(),
+         name='account_reset_password'),
     path('accounts/', include('allauth.urls')),
-    path('accounts/signup/', socialaccount_views.SignupView.as_view(), name='account_signup'),
+    path('accounts/signup/', socialaccount_views.SignupView.as_view(),
+         name='account_signup'),
 
     path('admin/', admin.site.urls),
 ]
 
-from django.conf import settings
-from django.conf.urls.static import static
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

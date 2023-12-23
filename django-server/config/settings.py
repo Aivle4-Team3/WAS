@@ -111,7 +111,7 @@ SOCIALACCOUNT_PROVIDERS = {
 SITE_ID = 1
 
 # 로그인 후 리디렉션할 페이지
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'login_success'
 # 로그아웃 후 리디렉션할 페이지
 ACCOUNT_LOGOUT_REDIRECT_URL = 'login'
 # 가입 후 리디렉션할 페이지
