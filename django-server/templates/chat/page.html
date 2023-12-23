@@ -118,14 +118,21 @@
                                     <!-- /Chat contacts -->
 
                                     <!-- Chat History -->
-                                    <div class="col app-chat-history">
+                                    <div id="app-history" class="col app-chat-history">
                                         <div class="chat-history-wrapper">
                                             <div class="chat-history-header border-bottom">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="d-flex overflow-hidden align-items-center">
                                                         <i class="bx bx-menu bx-sm cursor-pointer d-lg-none d-block me-2" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-contacts"></i>
                                                         <div class="flex-shrink-0 avatar">
-                                                            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Avatar" class="rounded-circle" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-sidebar-right" />
+                                                            <img
+                                                                src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+                                                                alt="Avatar"
+                                                                class="rounded-circle"
+                                                                data-bs-toggle="sidebar"
+                                                                data-overlay=""
+                                                                data-target="#app-chat-sidebar-right"
+                                                            />
                                                         </div>
                                                         <div class="chat-contact-info flex-grow-1 ms-3">
                                                             <h6 class="m-0">강의제목</h6>
@@ -152,30 +159,38 @@
                                                 </div>
                                             </div>
                                             <div class="chat-history-body ps ps--active-y">
-                                                <ul id="chat-log" class="list-unstyled chat-history mb-0">
-
-
-                                                    <li class="chat-message" v-bind:class="{'chat-message-right': statement.type == 'querry'}" v-for="statement in statements">
+                                                <ul class="list-unstyled chat-history mb-0">
+                                                    <li class="chat-message" :class="{'chat-message-right': statement.type == 'querry'}" v-for="(statement, index) in statements">
                                                         <div class="d-flex overflow-hidden">
-                                                          <div class="user-avatar flex-shrink-0 me-3">
-                                                            <div class="avatar avatar-sm">
-                                                              <img title="{{ user }}" v-if="statement.type == 'querry'" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Avatar" class="rounded-circle">
-                                                              <img title="bot" v-if="statement.type == 'answer'" src="{% static '/chat/img/gpt_logo.svg' %}" alt="Avatar" class="rounded-circle">
+                                                            <div class="user-avatar flex-shrink-0 me-3">
+                                                                <div class="avatar avatar-sm">
+                                                                    <img
+                                                                        title="{{ user }}"
+                                                                        v-if="statement.type == 'querry'"
+                                                                        src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+                                                                        alt="Avatar"
+                                                                        class="rounded-circle"
+                                                                    />
+                                                                    <img
+                                                                        title="bot"
+                                                                        v-if="statement.type == 'answer'"
+                                                                        src="{% static '/chat/img/gpt_logo.svg' %}"
+                                                                        alt="Avatar"
+                                                                        class="rounded-circle"
+                                                                    />
+                                                                </div>
                                                             </div>
-                                                          </div>
-                                                          <div class="chat-message-wrapper flex-grow-1">
-                                                            <div class="chat-message-text">
-                                                              <p class="mb-0">[[ statement.message ]]</p>
+                                                            <div class="chat-message-wrapper flex-grow-1">
+                                                                <div class="chat-message-text">
+                                                                    <p class="mb-0">[[ statement.message ]]</p>
+                                                                </div>
+                                                                <div class="text-end text-muted mt-1">
+                                                                    <i class="bx bx-check-double" :class="{'text-success': index == statements.length - 1}"></i>
+                                                                    <small>[[ statement.time ]]</small>
+                                                                </div>
                                                             </div>
-                                                            <div class="text-end text-muted mt-1">
-                                                                <i class="bx bx-check-double text-success"></i>
-                                                                <small>[[ statement.time ]]</small>
-                                                            </div>
-                                                          </div>
                                                         </div>
-                                                      </li>
-
-
+                                                    </li>
                                                 </ul>
                                                 <div class="ps__rail-x" style="left: 0px; bottom: -258px">
                                                     <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
@@ -186,15 +201,20 @@
                                             </div>
                                             <!-- Chat message form -->
                                             <div class="chat-history-footer">
-                                                <form class="form-send-message d-flex justify-content-between align-items-center">
-                                                    <input id="chat-message-input" class="form-control message-input border-0 me-3 shadow-none" placeholder="Type your message here..." />
+                                                <form @submit.prevent="" class="form-send-message d-flex justify-content-between align-items-center">
+                                                    <input
+                                                        v-model="inputMessage"
+                                                        class="form-control message-input border-0 me-3 shadow-none"
+                                                        placeholder="Type your message here..."
+                                                        :autofocus="'autofocus'"
+                                                    />
                                                     <div class="message-actions d-flex align-items-center">
                                                         <i class="speech-to-text bx bx-microphone bx-sm cursor-pointer"></i>
                                                         <label for="attach-doc" class="form-label mb-0">
                                                             <i class="bx bx-paperclip bx-sm cursor-pointer mx-3 text-body"></i>
                                                             <input type="file" id="attach-doc" hidden="" />
                                                         </label>
-                                                        <button id="chat-message-submit" class="btn btn-primary d-flex send-msg-btn">
+                                                        <button @click="submit" class="btn btn-primary d-flex send-msg-btn">
                                                             <i class="bx bx-paper-plane me-md-1 me-0"></i>
                                                             <span class="align-middle d-md-inline-block d-none">Send</span>
                                                         </button>
