@@ -1,12 +1,12 @@
 from django.shortcuts import render
 
 
-def login(request):
+def enterence(request):
     context = {
         'background_video': "https://www.youtube.com/embed/Ga-UF1j7cQ4",
     }
 
-    return render(request, './account/index.html', context)
+    return render(request, './enterence.html', context)
 
 
 def login_success(request):

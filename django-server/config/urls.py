@@ -25,7 +25,7 @@ from allauth.account.views import LoginView, LogoutView, PasswordResetView
 
 
 urlpatterns = [
-    path('', views.login, name='login'),
+    path('', views.enterence, name='enterence'),
 
     path('home/', include('home.urls')),
     path('chat/', include('chat.urls')),
