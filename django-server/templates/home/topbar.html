@@ -20,25 +20,25 @@
                     <div class="avatar avatar-online">
                         <!-- Moke condition for displaying user avatar -->
                         <span>{{ user }} 님 환영합니다 😊　</span>
-                        <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="{{ user.avatar.url }}" alt class="w-px-40 rounded-circle" />
                     </div>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="/sneat-html-django-admin-template/demo-1/pages/account_settings/account/">
+                        <a class="dropdown-item" href="{% url 'mypage' %}">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
                                         <!-- Moke condition for displaying user avatar -->
 
-                                        <img src="/sneat-html-django-admin-template/demo-1/static/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="{{ user.avatar.url }}" alt class="w-px-40 rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-medium d-block">admin</span>
+                                    <span class="fw-medium d-block">{{ user }}</span>
 
-                                    <small class="text-muted">admin</small>
+                                    <small class="text-muted">{{ user.last_name }} {{ user.first_name }}</small>
                                 </div>
                             </div>
                         </a>

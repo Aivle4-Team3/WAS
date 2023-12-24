@@ -28,5 +28,5 @@ def mypage(request):
         if user_form.is_valid():
             user_form.save()
 
-    context = {'countries': countries }
+    context = {'user': model, 'countries': countries}
     return render(request, './account/mypage.html', context=context)
