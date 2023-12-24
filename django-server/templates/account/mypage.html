@@ -17,14 +17,14 @@
                 </li>
             </ul>
             <div class="card mb-4">
-                <form id="formAccountSettings" method="POST" action="{% url 'mypage' %}" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'mypage' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                     <h5 class="card-header">Profile Details</h5>
                     <!-- Account -->
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             <img
-                                src="{{ profile.avatar.url }}"
+                                src="{{ user.avatar.url }}"
                                 alt="이미지 없음"
                                 class="d-block rounded"
                                 height="100"
@@ -68,20 +68,20 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="firstName" class="form-label">성</label>
-                                <input class="form-control" type="text" id="firstName" name="firstName" placeholder="성" autofocus="" value="{{ profile.first_name }}" />
+                                <label for="lastName" class="form-label">성</label>
+                                <input class="form-control" type="text" name="last_name" id="lastName" placeholder="성" value="{{ user.last_name }}"/>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="lastName" class="form-label">이름</label>
-                                <input class="form-control" type="text" name="lastName" id="lastName" placeholder="이름" value="{{ profile.last_name }}"/>
+                                <label for="firstName" class="form-label">이름</label>
+                                <input class="form-control" type="text" id="firstName" name="first_name" placeholder="이름" autofocus="" value="{{ user.first_name }}" />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">E-mail</label>
-                                <input class="form-control" type="text" id="email" name="email" placeholder="john.doe@example.com" value="{{ profile.email }}"/>
+                                <input class="form-control" type="text" id="email" name="email" placeholder="john.doe@example.com" value="{{ user.email }}"/>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="organization" class="form-label">조직</label>
-                                <input type="text" class="form-control" id="organization" name="organization" placeholder="학생" value="{{ profile.organization }}"/>
+                                <input type="text" class="form-control" id="organization" name="organization" placeholder="학생" value="{{ user.organization|default:'' }}"/>
                             </div>
 
                             <div class="mb-3 col-md-6">
@@ -99,7 +99,7 @@
                                 <label class="form-label" for="phoneNumber">휴대전화</label>
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text">KR (+82)</span>
-                                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="202 555 0111" value="{{ profile.phoneNumber }}"/>
+                                    <input type="text" id="phoneNumber" name="phone_number" class="form-control" placeholder="202 555 0111" value="{{ user.phone_number|default:'' }}"/>
                                 </div>
                             </div>
                         </div>
