@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.forms.models import model_to_dict
+from django_countries import countries
 from . import models
 
 
@@ -22,16 +22,16 @@ def mypage(request):
         model.last_name = request.POST['lastName']
         model.email = request.POST['email']
         model.organization = request.POST['organization']
+        model.country = request.POST['country']
         model.phoneNumber = request.POST['phoneNumber']
 
         # 추가 파일 데이터
         print(request.FILES)
-        model.avatar = request.FILES['avatar']
+        if 'avatar' in request.FILES:
+            model.avatar = request.FILES['avatar']
 
         # 접근 유저의 모델 저장
         model.save()
 
-    context = {
-        'profile': model_to_dict(model),
-    }
+    context = {'countries': countries }
     return render(request, './account/mypage.html', context=context)
