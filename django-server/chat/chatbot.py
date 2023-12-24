@@ -24,11 +24,16 @@ def make_message(msg, history):
 
 
 def chat(msg, history):
-    response = client.chat.completions.create(
-        model="gpt-4",
-        messages=make_message(msg, history),
-        temperature=0.5,
-    )
-    answer = response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=make_message(msg, history),
+            temperature=0.5,
+        )
+    except Exception as ex:
+        if ex.code == "insufficient_quota":
+            answer = "죄송해요! API키 사용량 터졌어요!"
+    else:
+        answer = response.choices[0].message.content
     history.append((msg, answer))
     return answer
