@@ -24,6 +24,8 @@ environ.Env.read_env(
     env_file=os.path.join(BASE_DIR, 'key.config')
 )
 
+# 구글 드라이브 스토리지용 키
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'gdkey.config')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -41,6 +43,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
+    'gdstorage',
 
     'django.contrib.admin',
     'django.contrib.auth',

@@ -4,10 +4,22 @@ from datetime import timedelta
 
 # Create your models here.
 
+from gdstorage.storage import GoogleDriveStorage, GoogleDrivePermissionType, GoogleDrivePermissionRole, GoogleDriveFilePermission
+from gdstorage.storage import GoogleDriveStorage
+
+# Define Google Drive Storage
+
+permission = GoogleDriveFilePermission(
+    GoogleDrivePermissionRole.READER,
+    GoogleDrivePermissionType.ANYONE
+)
+
+gd_storage = GoogleDriveStorage(permissions=(permission, ))
+
 
 class Lecture(models.Model):
     thumbnail = models.ImageField(
-        upload_to="images/", default="default_thumbnail.jpg")
+        upload_to="images/", default="default_thumbnail.jpg", storage=gd_storage)
     chapter = models.CharField(max_length=10, default="")
     grade = models.SmallIntegerField(validators=[MinValueValidator(0),
                                                  MaxValueValidator(5)], default=5)
