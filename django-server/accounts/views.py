@@ -15,7 +15,7 @@ def mypage(request):
 
     if request.method == "POST":
 
-        # 추가 데이터
+        # 추가 폼 데이터
         print(request.POST)
         # 추가 데이터 수정
         model.first_name = request.POST['firstName']
@@ -23,6 +23,10 @@ def mypage(request):
         model.email = request.POST['email']
         model.organization = request.POST['organization']
         model.phoneNumber = request.POST['phoneNumber']
+
+        # 추가 파일 데이터
+        print(request.FILES)
+        model.avatar = request.FILES['avatar']
 
         # 접근 유저의 모델 저장
         model.save()

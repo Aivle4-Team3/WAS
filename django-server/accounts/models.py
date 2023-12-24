@@ -9,3 +9,5 @@ class User(AbstractUser):
     organization = models.CharField(max_length=15, null=True)
     country = models.CharField(max_length=15, null=True)
     phoneNumber = PhoneNumberField(null=True)
+    avatar = models.ImageField(
+        upload_to="avatar/", default="default_avatar.jpg")
