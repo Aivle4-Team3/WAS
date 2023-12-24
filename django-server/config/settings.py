@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
+    'phonenumber_field',
 
     'accounts',
     'home',
@@ -83,6 +84,9 @@ AUTHENTICATION_CLASSES = (
     'allauth.socialaccount.providers.oauth2.client.OAuth2',
     # ...
 )
+
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # 소셜 로그인 관련 설정
 SOCIALACCOUNT_PROVIDERS = {

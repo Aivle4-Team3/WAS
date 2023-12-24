@@ -46,33 +46,24 @@
                 </div>
                 <hr class="my-0" />
                 <div class="card-body">
-                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                    <form id="formAccountSettings" method="POST" action="{% url 'mypage' %}">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label for="firstName" class="form-label">성</label>
-                                <input class="form-control" type="text" id="firstName" name="firstName" placeholder="성" autofocus="" />
+                                <input class="form-control" type="text" id="firstName" name="firstName" placeholder="성" autofocus="" value="{{ profile.first_name }}" />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="lastName" class="form-label">이름</label>
-                                <input class="form-control" type="text" name="lastName" id="lastName" placeholder="이름" />
+                                <input class="form-control" type="text" name="lastName" id="lastName" placeholder="이름" value="{{ profile.last_name }}"/>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">E-mail</label>
-                                <input class="form-control" type="text" id="email" name="email" value="" placeholder="john.doe@example.com" />
+                                <input class="form-control" type="text" id="email" name="email" placeholder="john.doe@example.com" value="{{ profile.email }}"/>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="organization" class="form-label">조직</label>
-                                <input type="text" class="form-control" id="organization" name="organization" placeholder="학생" />
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="address" class="form-label">주소</label>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="zipCode" class="form-label">우편번호</label>
-                                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="231465" maxlength="6" />
+                                <input type="text" class="form-control" id="organization" name="organization" placeholder="학생" value="{{ profile.organization }}"/>
                             </div>
 
                             <div class="mb-3 col-md-6">
@@ -110,11 +101,11 @@
                                 <label class="form-label" for="phoneNumber">휴대전화</label>
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text">KR (+82)</span>
-                                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="202 555 0111" />
+                                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="202 555 0111" value="{{ profile.phoneNumber }}"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2">
+                        <div class="">
                             <button type="submit" class="btn btn-primary me-2">수정</button>
                             <button type="reset" class="btn btn-outline-secondary">취소</button>
                         </div>
