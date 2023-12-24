@@ -10,17 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os, environ
+import os
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
-    DEBUG = (bool, False)
+    DEBUG=(bool, False)
 )
 environ.Env.read_env(
-    env_file = os.path.join(BASE_DIR, 'key.config')
+    env_file=os.path.join(BASE_DIR, 'key.config')
 )
 
 
@@ -40,8 +41,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
-    
-    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,12 +55,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
+    'phonenumber_field',
+    'django_countries',
 
+    'accounts',
+    'home',
+    'lecture',
     'chat',
-
-
-    'home.apps.HomeConfig',
-    'video.apps.VideoConfig',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,9 @@ AUTHENTICATION_CLASSES = (
     'allauth.socialaccount.providers.oauth2.client.OAuth2',
     # ...
 )
+
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # 소셜 로그인 관련 설정
 SOCIALACCOUNT_PROVIDERS = {
@@ -110,13 +114,15 @@ SOCIALACCOUNT_PROVIDERS = {
 # allauth site_id
 SITE_ID = 1
 
+ACCOUNT_AUTHENTICATION_METHOD = 'username' # or email, userusername_email
 # 로그인 후 리디렉션할 페이지
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'login_success'
+# 가입 후 리디렉션할 페이지
+ACCOUNT_SIGNUP_REDIRECT_URL = 'login_success'
 # 로그아웃 후 리디렉션할 페이지
-ACCOUNT_LOGOUT_REDIRECT_URL = 'login'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'enterence'
 # 로그아웃 버튼 클릭 시 자동 로그아웃
 ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 
 ACCOUNT_SESSION_REMEMBER = False
 

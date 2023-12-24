@@ -18,15 +18,24 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static '/home/css/styles.css' %}" rel="stylesheet" />
-        <link href="{% static '/home/css/popup.css' %}" rel="stylesheet">
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <img src= "{% static '/home/img/EDU.png' %}" style = "height: 50px; width: auto; "> 
-                <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;A+EDU</a> 
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <img src="{% static '/home/img/EDU.png' %}" style="height: 50px; width: auto; drop-shadow(1px 1px 1px white);" />
+                <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;A+EDU</a>
+                <button
+                    class="navbar-toggler navbar-toggler-right"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -46,11 +55,20 @@
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">AI EDU는 교사가 되어 AI '학생'에게 지식을 전달하고, 이를 통해 교육 방법의 효과를 직접 평가할 수 있는 공간을 제공합니다. 사용자는 다양한 교육 내용을 AI에게 가르치며, AI는 학습 과정을 거쳐 해당 과목에 대한 성취도 평가 시험을 치르게 됩니다.</p>
-                        <a class="btn btn-primary btn-xl" onclick="openPopup()">Sign in</a>
-                        {% block popup %}
-                            {% include 'account/popup.html' %}
-                        {% endblock %} 
+                        {% if user.is_authenticated %}
+                        <p>
+                            <img src="{{ user.avatar.url }}" style="width: 200px; height: 200px; border-radius: 50%" />
+                        </p>
+                        <a class="btn btn-primary btn-xl" href="/home">Enterence</a>
+                        {% else %}
+                            <p class="text-white-75 mb-5" style="color: wheat">
+                                AI EDU는 교사가 되어 AI '학생'에게 지식을 전달하고, 이를 통해 교육 방법의 효과를 직접 평가할 수 있는 공간을 제공합니다. 사용자는 다양한 교육 내용을 AI에게 가르치며, AI는
+                                학습 과정을 거쳐 해당 과목에 대한 성취도 평가 시험을 치르게 됩니다.
+                            </p>
+                            <a class="btn btn-primary btn-xl" onclick="window.open('/accounts/login', '_blank', 'toolbar=no,scrollbars=no,resizable=yes,top=500,left=1000,width=400,height=+h')">
+                                Sign in
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -58,8 +76,14 @@
         <!-- About-->
         <section class="page-section bg-primary" id="about">
             <div class="video-background">
-                <iframe frameborder="0" height="100%" width="100%" allow="autoplay; encrypted-media"
-                        allowfullscreen="" src="{{ background_video }}?mute=1&amp;loop=1&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0">
+                <iframe
+                    frameborder="0"
+                    height="100%"
+                    width="100%"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen=""
+                    src="{{ background_video }}?mute=1&amp;loop=1&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"
+                >
                 </iframe>
             </div>
             <div class="container px-4 px-lg-5">
@@ -67,7 +91,10 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="text-white mt-0">We've got what you need!</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
+                        <p class="text-white-75 mb-4">
+                            Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No
+                            strings attached!
+                        </p>
                         <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
                     </div>
                 </div>
@@ -174,8 +201,14 @@
         <!-- Call to action-->
         <section class="page-section bg-dark text-white">
             <div class="video-background">
-                <iframe frameborder="0" height="100%" width="100%" allow="autoplay; encrypted-media"
-                        allowfullscreen="" src="{{ background_video }}?mute=1&amp;loop=1&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0">
+                <iframe
+                    frameborder="0"
+                    height="100%"
+                    width="100%"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen=""
+                    src="{{ background_video }}?mute=1&amp;loop=1&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"
+                >
                 </iframe>
             </div>
             <div class="container px-4 px-lg-5 text-center">

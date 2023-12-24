@@ -1,0 +1,169 @@
+{% extends "../base.html" %} {% load static %} {% block extra_head_content %}
+
+<!-- Icons -->
+<link rel="stylesheet" href="{% static '/home/css/boxicons.css' %}" />
+<link rel="stylesheet" href="{% static '/home/css/fontawesome.css' %}" />
+<link rel="stylesheet" href="{% static '/home/css/flag-icons.css' %}" />
+<link rel="stylesheet" href="{% static '/chat/css/three-dots.css' %}" />
+
+<!--Page CSS-->
+
+<link rel="stylesheet" href="{% static '/chat/css/perfect-scrollbar.css' %}" />
+<link rel="stylesheet" href="{% static '/chat/css/app-chat.css' %}" />
+
+<!--Fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com/" />
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+
+<link rel="stylesheet" type="text/css" href="{% static '/chat/css/core.css' %}" class="template-customizer-core-css" />
+<link rel="stylesheet" type="text/css" href="{% static '/chat/css/theme-default.css' %}" class="template-customizer-theme-css" />
+
+<script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="{% static '/chat/js/perfect-scrollbar.js' %}"></script>
+<script src="{% static '/chat/js/chat.js' %}"></script>
+
+{% endblock %} {% block contents %}
+<!-- Content: Start -->
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="app-chat overflow-hidden card">
+        <div class="row g-0">
+            <!-- Chat & Contacts -->
+            <div class="col app-chat-contacts app-sidebar flex-grow-0 overflow-hidden border-end" id="app-chat-contacts">
+                <div class="sidebar-header pt-3 px-3 mx-1">
+                    <div class="d-flex align-items-center me-3 me-lg-0">
+                        <div class="flex-shrink-0 avatar avatar-online me-2" data-bs-toggle="sidebar" data-overlay="app-overlay-ex" data-target="#app-chat-sidebar-left">
+                            <img class="user-avatar rounded-circle cursor-pointer" src="" alt="Avatar" />
+                        </div>
+                        <div class="flex-grow-1 input-group input-group-merge rounded-pill ms-1">
+                            <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search fs-4"></i></span>
+                            <input type="text" class="form-control chat-search-input" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
+                        </div>
+                    </div>
+                    <i class="bx bx-x cursor-pointer position-absolute top-0 end-0 mt-2 me-1 fs-4 d-lg-none d-block" data-overlay="" data-bs-toggle="sidebar" data-target="#app-chat-contacts"></i>
+                </div>
+                <hr class="container-m-nx mt-3 mb-0" />
+                <div class="sidebar-body ps ps--active-y">
+                    <!-- Chats -->
+                    <ul class="list-unstyled chat-contact-list pt-1" id="chat-list">
+                        <li class="chat-contact-list-item chat-contact-list-item-title">
+                            <h5 class="text-primary mb-0">Chats</h5>
+                        </li>
+                        <li class="chat-contact-list-item chat-list-item-0 d-none">
+                            <h6 class="text-muted mb-0">No Chats Found</h6>
+                        </li>
+                        <li class="chat-contact-list-item active">
+                            <a class="d-flex align-items-center">
+                                <div class="flex-shrink-0 avatar avatar-offline">
+                                    <img src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" />
+                                </div>
+                                <div class="chat-contact-info flex-grow-1 ms-3">
+                                    <h6 class="chat-contact-name text-truncate m-0">강의 제목</h6>
+                                    <p class="chat-contact-status text-truncate mb-0 text-muted">I will purchase it for sure. 👍</p>
+                                </div>
+                                <small class="text-muted mb-auto">30 Minutes</small>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; height: 898px; right: 0px">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 752px"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Chat contacts -->
+
+            <!-- Chat History -->
+            <div id="app-history" class="col app-chat-history">
+                <div class="chat-history-wrapper">
+                    <div class="chat-history-header border-bottom">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex overflow-hidden align-items-center">
+                                <i class="bx bx-menu bx-sm cursor-pointer d-lg-none d-block me-2" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-contacts"></i>
+                                <div class="flex-shrink-0 avatar">
+                                    <img
+                                        src="{{ user.avatar.url }}"
+                                        alt="Avatar"
+                                        class="rounded-circle"
+                                        data-bs-toggle="sidebar"
+                                        data-overlay=""
+                                        data-target="#app-chat-sidebar-right"
+                                    />
+                                </div>
+                                <div class="chat-contact-info flex-grow-1 ms-3">
+                                    <h6 class="m-0">강의제목</h6>
+                                    <small class="user-status text-muted">{{ user }}</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="bx bx-phone-call cursor-pointer d-sm-block d-none me-3 fs-4"></i>
+                                <i class="bx bx-video cursor-pointer d-sm-block d-none me-3 fs-4"></i>
+                                <i class="bx bx-search cursor-pointer d-sm-block d-none me-3 fs-4"></i>
+                                <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="chat-header-actions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded fs-4"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="chat-header-actions">
+                                        <a class="dropdown-item" href="javascript:void(0);">View Contact</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Mute Notifications</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Block Contact</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Clear Chat</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-history-body ps ps--active-y" ref="chatHistoryBody">
+                        <ul class="list-unstyled chat-history mb-0">
+                            <li class="chat-message" :class="{'chat-message-right': statement.type == 'querry'}" v-for="(statement, index) in statements">
+                                <div class="d-flex overflow-hidden">
+                                    <div class="user-avatar flex-shrink-0 me-3">
+                                        <div class="avatar avatar-sm">
+                                            <img title="{{ user }}" v-if="statement.type == 'querry'" src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" />
+                                            <img title="학생" v-if="statement.type == 'answer'" src="{% static '/chat/img/gpt_logo.svg' %}" alt="Avatar" class="rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="chat-message-wrapper flex-grow-1">
+                                        <div class="chat-message-text">
+                                            <p class="mb-0">[[ statement.message ]]</p>
+                                        </div>
+                                        <div class="text-end text-muted mt-1">
+                                            <i class="bx bx-check-double" :class="{'text-success': index == statements.length - 1}"></i>
+                                            <small>[[ statement.time ]]</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <div class="dot-pulse" v-show="waitting" style="margin-left: 20px"></div>
+                        </ul>
+                    </div>
+                    <!-- Chat message form -->
+                    <div class="chat-history-footer">
+                        <form @submit.prevent="" class="form-send-message d-flex justify-content-between align-items-center">
+                            <input v-model="inputMessage" class="form-control message-input border-0 me-3 shadow-none" placeholder="Type your message here..." :autofocus="'autofocus'" />
+                            <div class="message-actions d-flex align-items-center">
+                                <i class="speech-to-text bx bx-microphone bx-sm cursor-pointer"></i>
+                                <label for="attach-doc" class="form-label mb-0">
+                                    <i class="bx bx-paperclip bx-sm cursor-pointer mx-3 text-body"></i>
+                                    <input type="file" id="attach-doc" hidden="" />
+                                </label>
+                                <button @click="submit" class="btn btn-primary d-flex send-msg-btn">
+                                    <i class="bx bx-paper-plane me-md-1 me-0"></i>
+                                    <span class="align-middle d-md-inline-block d-none">Send</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /Chat History -->
+        </div>
+    </div>
+</div>
+<!-- / Content: End -->
+{% endblock %}
