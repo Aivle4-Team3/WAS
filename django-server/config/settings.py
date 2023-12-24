@@ -151,8 +151,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'aivledb',
-        'USER': 'aivle',
-        'PASSWORD': 'aivle'
+        'USER': env('DB_MASTER_USER_ID'),
+        'PASSWORD': env('DB_MASTER_USER_PWD'),
+        'HOST': env('DB_HOST'),
+        'PORT': '5432',
     }
 }
 
