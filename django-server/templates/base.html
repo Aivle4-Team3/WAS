@@ -53,16 +53,17 @@
         <link rel="stylesheet" href="{% static '/home/css/select2.css' %}" />
         <link rel="stylesheet" href="{% static '/home/css/plyr.css' %}" />
 
+        <link rel="stylesheet" href="{% static '/home/css/snow.css' %}" />
+
         <!--Page CSS-->
 
         <link rel="stylesheet" href="{% static '/home/css/app-academy.css' %}" />
-        {% block extra_head_content %}
-        {% endblock extra_head_content %}
+        {% block extra_head_content %} {% endblock extra_head_content %}
     </head>
 
     <body>
         <!-- Layout wrapper: Start -->
-        <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-wrapper layout-content-navbar snow-wrapper">
             <div class="layout-container">
                 <!-- Menu: Start -->
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -107,6 +108,13 @@
                 </div>
                 <!-- / Layout page: End -->
             </div>
+
+            <div class="snow layer1 a"></div>
+            <div class="snow layer1"></div>
+            <div class="snow layer2 a"></div>
+            <div class="snow layer2"></div>
+            <div class="snow layer3 a"></div>
+            <div class="snow layer3"></div>
 
             <!-- Overlay -->
             <div class="layout-overlay layout-menu-toggle"></div>

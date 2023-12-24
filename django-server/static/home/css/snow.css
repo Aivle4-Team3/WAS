@@ -1,0 +1,209 @@
+html,
+body {
+    margin: 0;
+}
+
+.snow-wrapper {
+    width: 100vw;
+    height: 100%;
+    background: radial-gradient(farthest-corner at 30vw 20vh, #7397a1 1%, #3f2c41 100%);
+}
+
+.snow {
+    border-radius: 50%;
+    opacity: 0.8;
+    position: absolute;
+    top: -100vh;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.layer1 {
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: blur(1.5px);
+    box-shadow: 5.2vw 40.8vh 0 -0.09rem#fff, 42.7vw 88.1vh 0 -0.47rem#fff, 25.9vw 91vh 0 -0.04rem#fff, 40.1vw 48.3vh 0 -0.04rem#fff, 95.9vw 57.4vh 0 -0.29rem#fff, 34.4vw 14.1vh 0 -0.17rem#fff,
+        45.2vw 67.3vh 0 -0.45rem#fff, 50.3vw 7.9vh 0 -0.34rem#fff, 42.2vw 47.4vh 0 -0.48rem#fff, 40.4vw 9.9vh 0 -0.12rem#fff, 43.4vw 4.4vh 0 -0.22rem#fff, 13vw 91.5vh 0 -0.25rem#fff,
+        55vw 24.2vh 0 -0.27rem#fff, 3.8vw 35.8vh 0 -0.21rem#fff, 80.3vw 9.5vh 0 -0.34rem#fff, 37.9vw 64.9vh 0 -0.19rem#fff, 78.3vw 2.7vh 0 -0.04rem#fff, 89vw 5.6vh 0 -0.05rem#fff,
+        30.1vw 70vh 0 -0.41rem#fff, 41.4vw 52vh 0 -0.35rem#fff, 4.7vw 1vh 0 -0.29rem#fff, 12.1vw 76.2vh 0 -0.3rem#fff, 88.5vw 51.1vh 0 -0.22rem#fff, 9.5vw 89vh 0 -0.45rem#fff,
+        78.1vw 96vh 0 -0.2rem#fff, 27.2vw 71.1vh 0 -0.35rem#fff, 65.4vw 44.8vh 0 -0.25rem#fff, 19vw 85.1vh 0 -0.3rem#fff, 30.5vw 71.9vh 0 -0.28rem#fff, 92.4vw 50.1vh 0 -0.42rem#fff,
+        70.7vw 0.1vh 0 -0.13rem#fff, 43.3vw 16.3vh 0 -0.22rem#fff, 67.3vw 98.9vh 0 -0.36rem#fff, 52.9vw 65.6vh 0 -0.21rem#fff, 97.1vw 3.3vh 0 -0.35rem#fff, 80.4vw 23.2vh 0 -0.23rem#fff,
+        43.5vw 69vh 0 -0.32rem#fff, 95vw 88.1vh 0 -0.42rem#fff, 40.7vw 88.2vh 0 -0.27rem#fff, 72.8vw 82.9vh 0 -0.14rem#fff, 87.3vw 61.1vh 0 -0.49rem#fff, 48.8vw 45.3vh 0 -0.45rem#fff,
+        75.5vw 34.3vh 0 -0.07rem#fff, 86vw 72.1vh 0 -0.46rem#fff, 14.7vw 95.6vh 0 -0.02rem#fff, 84.6vw 98vh 0 -0.2rem#fff, 24.7vw 79.7vh 0 -0.07rem#fff, 86vw 58.5vh 0 -0.44rem#fff,
+        62.3vw 70.8vh 0 -0.09rem#fff, 26.6vw 22vh 0 -0.02rem#fff, 15.5vw 33.5vh 0 -0.26rem#fff, 52.6vw 8.1vh 0 -0.41rem#fff, 24.4vw 29.6vh 0 -0.23rem#fff, 49vw 62.9vh 0 -0.28rem#fff,
+        36vw 29.9vh 0 -0.2rem#fff, 24.9vw 86.9vh 0 -0.36rem#fff, 71.4vw 4.1vh 0 -0.21rem#fff, 31.3vw 10.9vh 0 -0.35rem#fff, 95.8vw 22.7vh 0 -0.11rem#fff, 53.1vw 64.4vh 0 -0.01rem#fff,
+        26.4vw 66.7vh 0 -0.19rem#fff, 37.8vw 52.7vh 0 -0.39rem#fff, 18.7vw 58.5vh 0 -0.48rem#fff, 62.6vw 63.4vh 0 -0.46rem#fff, 88.8vw 92.5vh 0 -0.08rem#fff, 5.2vw 30.2vh 0 -0.04rem#fff,
+        53.8vw 61.3vh 0 -0.44rem#fff, 16.2vw 15.8vh 0 -0.06rem#fff, 65vw 56.5vh 0 -0.01rem#fff, 0.1vw 27.5vh 0 -0.44rem#fff, 8.1vw 62.6vh 0 -0.16rem#fff, 44.4vw 85.8vh 0 -0.32rem#fff,
+        7.5vw 87vh 0 -0.05rem#fff, 42.9vw 38.9vh 0 -0.22rem#fff, 73.9vw 11.9vh 0 -0.05rem#fff, 68.6vw 44.5vh 0 -0.12rem#fff, 15.3vw 16.9vh 0 -0.47rem#fff, 43vw 57.5vh 0 -0.35rem#fff,
+        63vw 88.1vh 0 -0.41rem#fff, 20.7vw 57.9vh 0 -0.14rem#fff, 35.3vw 17.8vh 0 -0.26rem#fff, 81.8vw 10.4vh 0 -0.48rem#fff, 52.9vw 27.6vh 0 -0.24rem#fff, 72.8vw 16.5vh 0 -0.4rem#fff,
+        19.9vw 32.9vh 0 -0.06rem#fff, 4.7vw 4.7vh 0 -0.23rem#fff, 50.9vw 54.7vh 0 -0.39rem#fff, 86.5vw 97.1vh 0 -0.28rem#fff, 39.7vw 20.7vh 0 -0.04rem#fff, 24.6vw 53.9vh 0 -0.44rem#fff,
+        70.4vw 65.2vh 0 -0.07rem#fff, 31.6vw 30.1vh 0 -0.49rem#fff, 63.5vw 72.7vh 0 -0.21rem#fff, 38.2vw 7.2vh 0 -0.37rem#fff, 38.6vw 81.3vh 0 -0.34rem#fff, 89.6vw 81.3vh 0 -0.3rem#fff,
+        34.8vw 19.2vh 0 -0.2rem#fff, 39.1vw 4.2vh 0 -0.28rem#fff, 77.4vw 66.9vh 0 -0.19rem#fff, 38.3vw 32.8vh 0 -0.5rem#fff, 57.1vw 23.7vh 0 -0.1rem#fff, 19.9vw 34.8vh 0 -0.4rem#fff,
+        86.3vw 84.5vh 0 -0.38rem#fff, 85.2vw 97.2vh 0 -0.11rem#fff, 61.2vw 96.3vh 0 -0.18rem#fff, 86.3vw 11.4vh 0 -0.28rem#fff, 39.5vw 17vh 0 -0.48rem#fff, 5vw 5.3vh 0 -0.47rem#fff,
+        12.2vw 7.8vh 0 -0.18rem#fff, 40.6vw 25.2vh 0 -0.09rem#fff, 24.9vw 26.8vh 0 -0.42rem#fff, 40.7vw 75.1vh 0 -0.39rem#fff, 27.8vw 62.3vh 0 -0.32rem#fff, 18.9vw 49.2vh 0 -0.39rem#fff,
+        49vw 32.7vh 0 -0.11rem#fff, 89.8vw 45.6vh 0 -0.3rem#fff, 0.5vw 89.3vh 0 -0.2rem#fff, 10.5vw 60.6vh 0 -0.31rem#fff, 41.8vw 72.3vh 0 -0.09rem#fff, 61.1vw 56.1vh 0 -0.24rem#fff,
+        32.1vw 89.4vh 0 -0.26rem#fff, 41.4vw 89.5vh 0 -0.37rem#fff, 61.6vw 36.6vh 0 -0.24rem#fff, 57.1vw 42.4vh 0 -0.36rem#fff, 21.3vw 97.3vh 0 -0.05rem#fff, 29.8vw 29.5vh 0 -0.46rem#fff,
+        10.6vw 21.6vh 0 -0.31rem#fff, 19vw 63.9vh 0 -0.01rem#fff, 33.5vw 34.7vh 0 -0.31rem#fff, 4.1vw 50.9vh 0 -0.1rem#fff, 39.1vw 98.5vh 0 -0.41rem#fff, 30.3vw 61.8vh 0 -0.17rem#fff,
+        36.3vw 96.1vh 0 -0.12rem#fff, 37.5vw 21.2vh 0 -0.18rem#fff, 96.2vw 13.4vh 0 -0.14rem#fff, 92.3vw 55.3vh 0 -0.36rem#fff, 77.1vw 8.2vh 0 -0.07rem#fff, 7.2vw 18.7vh 0 -0.08rem#fff,
+        84.1vw 33.7vh 0 -0.27rem#fff, 62.4vw 60.5vh 0 -0.04rem#fff, 95.6vw 28.1vh 0 -0.03rem#fff, 73.4vw 17.4vh 0 -0.06rem#fff, 63vw 60.7vh 0 -0.46rem#fff, 5.6vw 24.1vh 0 -0.26rem#fff,
+        40.8vw 28.6vh 0 -0.49rem#fff, 25.9vw 68.1vh 0 -0.31rem#fff, 36vw 93.4vh 0 -0.05rem#fff, 31.4vw 16.9vh 0 -0.41rem#fff, 18.2vw 16.9vh 0 -0.4rem#fff, 35.6vw 64.5vh 0 -0.37rem#fff,
+        18.9vw 98.8vh 0 -0.4rem#fff, 26.3vw 75.8vh 0 -0.36rem#fff, 64.9vw 58.8vh 0 -0.14rem#fff, 57.5vw 54.4vh 0 -0.26rem#fff, 80vw 30.7vh 0 -0.4rem#fff, 62.5vw 78vh 0 -0.14rem#fff,
+        96.3vw 16.8vh 0 -0.42rem#fff, 1.8vw 13.7vh 0 -0.32rem#fff, 88.2vw 87.3vh 0 -0.13rem#fff, 73.5vw 11.2vh 0 -0.31rem#fff, 69.2vw 74vh 0 -0.02rem#fff, 92.3vw 15.2vh 0 -0.43rem#fff,
+        94vw 90.4vh 0 -0.31rem#fff, 36.4vw 10.9vh 0 -0.42rem#fff, 81.6vw 7.2vh 0 -0.25rem#fff, 38.9vw 61.8vh 0 -0.23rem#fff, 45.3vw 46.6vh 0 -0.07rem#fff, 33.1vw 63.8vh 0 -0.33rem#fff,
+        68.2vw 82.6vh 0 -0.03rem#fff, 92.8vw 78.4vh 0 -0.38rem#fff, 68.9vw 88.6vh 0 -0.36rem#fff, 14.3vw 68.3vh 0 -0.07rem#fff, 54.5vw 0.8vh 0 -0.34rem#fff, 47.9vw 63.5vh 0 -0.16rem#fff,
+        92.5vw 92.3vh 0 -0.04rem#fff, 45.8vw 99.8vh 0 -0.45rem#fff, 87.1vw 13.7vh 0 -0.37rem#fff, 60.4vw 4.2vh 0 -0.27rem#fff, 84.3vw 56.2vh 0 -0.11rem#fff, 73.9vw 57.3vh 0 -0.33rem#fff,
+        37.8vw 39.6vh 0 -0.13rem#fff, 29.9vw 92.7vh 0 -0.26rem#fff, 53.4vw 51.2vh 0 -0.07rem#fff, 17.8vw 35.9vh 0 -0.11rem#fff, 38.3vw 76.7vh 0 -0.44rem#fff, 98.1vw 69.8vh 0 -0.5rem#fff,
+        77.2vw 63.3vh 0 -0.23rem#fff, 78.6vw 50.3vh 0 -0.36rem#fff, 72.8vw 45.7vh 0 -0.11rem#fff, 44.4vw 71.8vh 0 -0.21rem#fff, 41.9vw 75.4vh 0 -0.27rem#fff, 45.5vw 35.4vh 0 -0.39rem#fff,
+        92.2vw 12.3vh 0 -0.03rem#fff, 93.3vw 90.2vh 0 -0.19rem#fff, 79.6vw 19.8vh 0 -0.04rem#fff, 94.3vw 18.7vh 0 -0.06rem#fff, 94.5vw 10.9vh 0 -0.45rem#fff, 64vw 67.3vh 0 -0.42rem#fff,
+        23.3vw 60.7vh 0 -0.29rem#fff, 78.5vw 63vh 0 -0.37rem#fff, 53.3vw 69.1vh 0 -0.41rem#fff, 36.8vw 19.6vh 0 -0.16rem#fff, 97.4vw 98.5vh 0 -0.5rem#fff, 61.7vw 20.4vh 0 -0.4rem#fff,
+        60.5vw 69.8vh 0 -0.05rem#fff, 56.2vw 2.6vh 0 -0.29rem#fff, 4vw 85.9vh 0 -0.27rem#fff, 92.5vw 29.9vh 0 -0.37rem#fff, 69.5vw 26.8vh 0 -0.41rem#fff, 28.8vw 5.5vh 0 -0.14rem#fff,
+        33vw 42.8vh 0 -0.26rem#fff, 4.1vw 0.3vh 0 -0.07rem#fff, 67.6vw 44.5vh 0 -0.01rem#fff, 37.2vw 69.1vh 0 -0.2rem#fff, 46.2vw 69.8vh 0 -0.41rem#fff, 13.2vw 46.9vh 0 -0.43rem#fff,
+        24.9vw 86.6vh 0 -0.44rem#fff, 58vw 71.8vh 0 -0.44rem#fff, 39.9vw 0.6vh 0 -0.48rem#fff, 23.6vw 77.3vh 0 -0.25rem#fff, 1.7vw 61.9vh 0 -0.25rem#fff, 31.9vw 72vh 0 -0.26rem#fff,
+        48.7vw 26.8vh 0 -0.33rem#fff, 62vw 76.4vh 0 -0.13rem#fff, 49.8vw 93vh 0 -0.29rem#fff, 45.9vw 47.7vh 0 -0.4rem#fff, 66.5vw 90.3vh 0 -0.46rem#fff, 58.1vw 9.9vh 0 -0.19rem#fff,
+        75.5vw 7vh 0 -0.27rem#fff, 44.1vw 55.1vh 0 -0.23rem#fff, 90.2vw 9.5vh 0 -0.07rem#fff, 52.1vw 9.4vh 0 -0.11rem#fff, 24.6vw 49.9vh 0 -0.2rem#fff, 64.9vw 87.3vh 0 -0.41rem#fff,
+        7.8vw 78.8vh 0 -0.35rem#fff, 27.9vw 70.7vh 0 -0.08rem#fff, 41.2vw 35.3vh 0 -0.05rem#fff, 28.6vw 87.7vh 0 -0.36rem#fff, 5.8vw 34.9vh 0 -0.22rem#fff, 42.5vw 66.1vh 0 -0.1rem#fff,
+        66.5vw 59.2vh 0 -0.47rem#fff, 34vw 77.6vh 0 -0.04rem#fff, 67.1vw 73.5vh 0 -0.24rem#fff, 46.9vw 55.7vh 0 -0.46rem#fff, 28.3vw 0.2vh 0 -0.29rem#fff, 68.2vw 33.1vh 0 -0.27rem#fff,
+        81.3vw 38.4vh 0 -0.22rem#fff, 76.3vw 80.4vh 0 -0.46rem#fff, 92.5vw 17.6vh 0 -0.3rem#fff, 38.8vw 92.6vh 0 -0.01rem#fff, 45.2vw 48.2vh 0 -0.13rem#fff, 75vw 90.3vh 0 -0.11rem#fff,
+        62vw 92.5vh 0 -0.02rem#fff, 18vw 8.5vh 0 -0.3rem#fff, 56.2vw 93.9vh 0 -0.48rem#fff, 35.3vw 57.1vh 0 -0.04rem#fff, 34.5vw 23.9vh 0 -0.08rem#fff, 39.4vw 5.3vh 0 -0.23rem#fff,
+        64.7vw 99.4vh 0 -0.13rem#fff, 97.1vw 6.3vh 0 -0.19rem#fff, 98.3vw 26.1vh 0 -0.3rem#fff, 61.8vw 86.5vh 0 -0.08rem#fff, 70.6vw 40.8vh 0 -0.26rem#fff, 7.3vw 86.6vh 0 -0.23rem#fff,
+        77.2vw 14.3vh 0 -0.1rem#fff, 68.9vw 4.8vh 0 -0.13rem#fff, 88.4vw 50.1vh 0 -0.38rem#fff, 41.3vw 82.1vh 0 -0.24rem#fff, 58.5vw 74.9vh 0 -0.24rem#fff, 13.5vw 66.9vh 0 -0.14rem#fff,
+        91.5vw 85.9vh 0 -0.29rem#fff, 9.8vw 38.1vh 0 -0.32rem#fff, 62.2vw 63.8vh 0 -0.24rem#fff, 21.2vw 41vh 0 -0.24rem#fff, 42.3vw 34.2vh 0 -0.32rem#fff, 19.5vw 81.3vh 0 -0.04rem#fff,
+        65.8vw 45.5vh 0 -0.07rem#fff, 11.6vw 42.4vh 0 -0.11rem#fff, 0.3vw 3.2vh 0 -0.48rem#fff, 24.6vw 75.1vh 0 -0.48rem#fff, 75.8vw 3.5vh 0 -0.34rem#fff, 29.7vw 39.4vh 0 -0.15rem#fff,
+        21vw 61vh 0 -0.45rem#fff, 29.4vw 63.3vh 0 -0.23rem#fff, 9.3vw 11.1vh 0 -0.45rem#fff, 35vw 85.8vh 0 -0.23rem#fff, 26.7vw 98vh 0 -0.31rem#fff, 39.8vw 35.7vh 0 -0.17rem#fff,
+        86vw 2.7vh 0 -0.46rem#fff, 21.3vw 39.8vh 0 -0.18rem#fff, 26.8vw 6.9vh 0 -0.24rem#fff, 69.1vw 35.7vh 0 -0.02rem#fff, 96.6vw 14.7vh 0 -0.39rem#fff, 19.9vw 43.4vh 0 -0.19rem#fff,
+        34.1vw 14vh 0 -0.38rem#fff, 31.4vw 76.5vh 0 -0.33rem#fff, 46.5vw 78.3vh 0 -0.17rem#fff, 40.7vw 59.5vh 0 -0.41rem#fff, 67.4vw 3.5vh 0 -0.28rem#fff, 87.9vw 45.1vh 0 -0.24rem#fff;
+    animation-duration: 6s;
+}
+
+.layer1.a {
+    animation-delay: -3s;
+}
+
+.layer2 {
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: blur(3px);
+    box-shadow: 80.3vw 12.4vh 0 -0.27rem#fff, 65.7vw 95vh 0 -0.44rem#fff, 12.9vw 87vh 0 -0.12rem#fff, 43.4vw 78.8vh 0 -0.42rem#fff, 37.6vw 44.3vh 0 -0.1rem#fff, 24.7vw 12.3vh 0 -0.24rem#fff,
+        57.7vw 70.8vh 0 -0.14rem#fff, 18.7vw 38.3vh 0 -0.27rem#fff, 94.5vw 78.6vh 0 -0.09rem#fff, 3.9vw 59.9vh 0 -0.44rem#fff, 62.7vw 19.5vh 0 -0.28rem#fff, 63.7vw 54.5vh 0 -0.43rem#fff,
+        19.9vw 22.9vh 0 -0.33rem#fff, 67.3vw 9.3vh 0 -0.25rem#fff, 25.8vw 10.9vh 0 -0.29rem#fff, 22vw 47.1vh 0 -0.22rem#fff, 70.1vw 92.2vh 0 -0.14rem#fff, 89.5vw 63.4vh 0 -0.01rem#fff,
+        24.7vw 95vh 0 -0.15rem#fff, 1.3vw 28.4vh 0 -0.31rem#fff, 45.5vw 13vh 0 -0.49rem#fff, 9.8vw 63.2vh 0 -0.33rem#fff, 82.7vw 60.5vh 0 -0.38rem#fff, 56vw 15.9vh 0 -0.46rem#fff,
+        76.3vw 6.7vh 0 -0.5rem#fff, 53vw 75.9vh 0 -0.21rem#fff, 92vw 98.7vh 0 -0.2rem#fff, 87.1vw 22.4vh 0 -0.35rem#fff, 62.7vw 83.3vh 0 -0.16rem#fff, 13.2vw 71.2vh 0 -0.43rem#fff,
+        75.3vw 1.4vh 0 -0.33rem#fff, 47.3vw 91.6vh 0 -0.28rem#fff, 38.5vw 96.3vh 0 -0.1rem#fff, 36.4vw 96.5vh 0 -0.21rem#fff, 72.2vw 30.8vh 0 -0.48rem#fff, 71.4vw 86.3vh 0 -0.14rem#fff,
+        4.9vw 57.9vh 0 -0.1rem#fff, 45.8vw 58.4vh 0 -0.17rem#fff, 64vw 77.5vh 0 -0.4rem#fff, 86.2vw 94.3vh 0 -0.03rem#fff, 50.7vw 93.3vh 0 -0.18rem#fff, 73.4vw 90.2vh 0 -0.05rem#fff,
+        74.4vw 71.6vh 0 -0.46rem#fff, 5.4vw 6.4vh 0 -0.28rem#fff, 26.5vw 89.8vh 0 -0.08rem#fff, 38.3vw 71.8vh 0 -0.07rem#fff, 0.2vw 18.7vh 0 -0.46rem#fff, 10.5vw 37.3vh 0 -0.25rem#fff,
+        58.2vw 14.1vh 0 -0.03rem#fff, 88vw 55.2vh 0 -0.36rem#fff, 33.1vw 12.6vh 0 -0.26rem#fff, 74.3vw 11.3vh 0 -0.12rem#fff, 43.5vw 82.6vh 0 -0.1rem#fff, 70.8vw 14.6vh 0 -0.14rem#fff,
+        69.5vw 35.3vh 0 -0.48rem#fff, 52.2vw 7.8vh 0 -0.09rem#fff, 17.4vw 75.4vh 0 -0.13rem#fff, 99.3vw 35.5vh 0 -0.43rem#fff, 75.6vw 71.9vh 0 -0.37rem#fff, 28.1vw 12.3vh 0 -0.14rem#fff,
+        71.6vw 91.6vh 0 -0.45rem#fff, 92.5vw 14.3vh 0 -0.12rem#fff, 57.7vw 78.6vh 0 -0.24rem#fff, 30.2vw 64.6vh 0 -0.06rem#fff, 31.5vw 68.8vh 0 -0.45rem#fff, 71.5vw 26.2vh 0 -0.24rem#fff,
+        25.1vw 31.2vh 0 -0.14rem#fff, 32.2vw 15.3vh 0 -0.06rem#fff, 77.8vw 29vh 0 -0.49rem#fff, 53vw 82vh 0 -0.31rem#fff, 53.4vw 5.1vh 0 -0.08rem#fff, 56.6vw 26vh 0 -0.44rem#fff,
+        18.3vw 73.9vh 0 -0.05rem#fff, 65.9vw 44.7vh 0 -0.03rem#fff, 4.2vw 79.9vh 0 -0.38rem#fff, 43.9vw 11.6vh 0 -0.12rem#fff, 85.5vw 2.1vh 0 -0.23rem#fff, 94vw 4vh 0 -0.3rem#fff,
+        43.8vw 93.6vh 0 -0.43rem#fff, 23vw 35vh 0 -0.04rem#fff, 37.3vw 13.7vh 0 -0.35rem#fff, 17.5vw 2vh 0 -0.07rem#fff, 25.2vw 15.7vh 0 -0.39rem#fff, 57.2vw 79.1vh 0 -0.41rem#fff,
+        30.7vw 9.5vh 0 -0.47rem#fff, 93.8vw 4.4vh 0 -0.09rem#fff, 90vw 44.3vh 0 -0.29rem#fff, 96.3vw 19.2vh 0 -0.46rem#fff, 31.4vw 25.6vh 0 -0.39rem#fff, 35.5vw 37.1vh 0 -0.21rem#fff,
+        92vw 2.5vh 0 -0.35rem#fff, 22.9vw 23.5vh 0 -0.04rem#fff, 5.7vw 68.7vh 0 -0.18rem#fff, 2.4vw 66.1vh 0 -0.42rem#fff, 63vw 20.8vh 0 -0.12rem#fff, 28.3vw 28.4vh 0 -0.43rem#fff,
+        90.6vw 6vh 0 -0.09rem#fff, 26.7vw 93.6vh 0 -0.13rem#fff, 35.4vw 3.9vh 0 -0.04rem#fff, 88.5vw 60.3vh 0 -0.06rem#fff, 56.1vw 89.3vh 0 -0.15rem#fff, 55.4vw 79.2vh 0 -0.39rem#fff,
+        18.1vw 62.5vh 0 -0.4rem#fff, 99.7vw 89.6vh 0 -0.02rem#fff, 62.6vw 69.2vh 0 -0.37rem#fff, 3.6vw 71.5vh 0 -0.2rem#fff, 85.4vw 86vh 0 -0.08rem#fff, 11.3vw 69.3vh 0 -0.04rem#fff,
+        73vw 13.3vh 0 -0.49rem#fff, 76.5vw 27.6vh 0 -0.42rem#fff, 0.2vw 90.8vh 0 -0.04rem#fff, 73.7vw 31.6vh 0 -0.11rem#fff, 30.5vw 12.6vh 0 -0.05rem#fff, 40.9vw 36vh 0 -0.22rem#fff,
+        68.4vw 17.9vh 0 -0.04rem#fff, 75.2vw 87.7vh 0 -0.47rem#fff, 28.4vw 63vh 0 -0.47rem#fff, 2vw 68vh 0 -0.06rem#fff, 65.8vw 58vh 0 -0.04rem#fff, 11.3vw 25.3vh 0 -0.44rem#fff,
+        96.1vw 77vh 0 -0.11rem#fff, 77vw 27vh 0 -0.43rem#fff, 53.5vw 30.9vh 0 -0.4rem#fff, 89vw 34.2vh 0 -0.01rem#fff, 26.8vw 10.9vh 0 -0.21rem#fff, 90vw 1.4vh 0 -0.14rem#fff,
+        49vw 38.3vh 0 -0.24rem#fff, 3.8vw 10.5vh 0 -0.35rem#fff, 56.6vw 79.9vh 0 -0.36rem#fff, 99.3vw 84.4vh 0 -0.15rem#fff, 45vw 30.1vh 0 -0.49rem#fff, 63.7vw 65.1vh 0 -0.42rem#fff,
+        11.8vw 42.9vh 0 -0.46rem#fff, 44.5vw 40.3vh 0 -0.39rem#fff, 99.7vw 47.8vh 0 -0.43rem#fff, 49.4vw 78.4vh 0 -0.19rem#fff, 44.2vw 11.2vh 0 -0.42rem#fff, 54.4vw 85.1vh 0 -0.4rem#fff,
+        50.7vw 27.5vh 0 -0.49rem#fff, 10.2vw 63.8vh 0 -0.18rem#fff, 51.5vw 83vh 0 -0.11rem#fff, 39.4vw 16vh 0 -0.39rem#fff, 82.9vw 12.7vh 0 -0.46rem#fff, 31.7vw 15vh 0 -0.17rem#fff,
+        75vw 43.8vh 0 -0.07rem#fff, 41.8vw 65.9vh 0 -0.37rem#fff, 39.7vw 47.3vh 0 -0.22rem#fff, 75.2vw 54vh 0 -0.48rem#fff, 36.8vw 77.2vh 0 -0.45rem#fff, 85.7vw 86.6vh 0 -0.3rem#fff,
+        86.7vw 36vh 0 -0.3rem#fff, 60.7vw 35.3vh 0 -0.02rem#fff, 32.7vw 91.5vh 0 -0.34rem#fff, 4.8vw 62.3vh 0 -0.24rem#fff, 89.8vw 84vh 0 -0.32rem#fff, 56.2vw 79.2vh 0 -0.36rem#fff,
+        87.8vw 90vh 0 -0.22rem#fff, 45.7vw 75.7vh 0 -0.27rem#fff, 9.5vw 41.7vh 0 -0.43rem#fff, 94.3vw 69.4vh 0 -0.06rem#fff, 99vw 23.2vh 0 -0.45rem#fff, 2.2vw 39.9vh 0 -0.24rem#fff,
+        47.5vw 7.2vh 0 -0.1rem#fff, 45vw 99.3vh 0 -0.17rem#fff, 64.5vw 16.2vh 0 -0.01rem#fff, 35.5vw 31vh 0 -0.07rem#fff, 53.9vw 75.9vh 0 -0.26rem#fff, 2.2vw 87vh 0 -0.3rem#fff,
+        3.3vw 25.2vh 0 -0.28rem#fff, 67.7vw 18.8vh 0 -0.39rem#fff, 22.3vw 78.4vh 0 -0.15rem#fff, 81.5vw 2.3vh 0 -0.24rem#fff, 77.1vw 21vh 0 -0.14rem#fff, 86.7vw 12.3vh 0 -0.03rem#fff,
+        78.9vw 3.2vh 0 -0.29rem#fff, 22.3vw 10.3vh 0 -0.14rem#fff, 92.6vw 53.5vh 0 -0.31rem#fff, 66.1vw 82vh 0 -0.36rem#fff, 21.9vw 70.7vh 0 -0.1rem#fff, 60.9vw 50.7vh 0 -0.36rem#fff,
+        80.7vw 24.5vh 0 -0.32rem#fff, 29.5vw 84.6vh 0 -0.16rem#fff, 22.5vw 85.3vh 0 -0.35rem#fff, 27.9vw 72.8vh 0 -0.02rem#fff, 83.2vw 91.1vh 0 -0.27rem#fff, 49.4vw 97.3vh 0 -0.23rem#fff,
+        92vw 30vh 0 -0.41rem#fff, 40.1vw 5.5vh 0 -0.24rem#fff, 79.7vw 22.3vh 0 -0.18rem#fff, 43.1vw 4vh 0 -0.07rem#fff, 26.7vw 58.3vh 0 -0.23rem#fff, 67.7vw 62.9vh 0 -0.06rem#fff,
+        92.7vw 58.6vh 0 -0.34rem#fff, 5.8vw 32.7vh 0 -0.02rem#fff, 40.4vw 16.4vh 0 -0.22rem#fff, 88vw 2.8vh 0 -0.5rem#fff, 35.8vw 84.9vh 0 -0.11rem#fff, 84.9vw 18.3vh 0 -0.32rem#fff,
+        78vw 17.9vh 0 -0.39rem#fff, 47.4vw 27.9vh 0 -0.45rem#fff, 37.6vw 97.4vh 0 -0.43rem#fff, 80.3vw 34.5vh 0 -0.15rem#fff, 17.7vw 88.3vh 0 -0.14rem#fff, 57.4vw 35.3vh 0 -0.06rem#fff,
+        15.4vw 98.4vh 0 -0.42rem#fff, 74.2vw 94.5vh 0 -0.38rem#fff, 81.7vw 21.5vh 0 -0.25rem#fff, 5.8vw 20.3vh 0 -0.12rem#fff, 65.6vw 39.8vh 0 -0.24rem#fff, 33.8vw 41.2vh 0 -0.25rem#fff,
+        0.2vw 94.1vh 0 -0.34rem#fff, 32.1vw 39.2vh 0 -0.32rem#fff, 3.3vw 2.9vh 0 -0.19rem#fff, 32.5vw 81.6vh 0 -0.35rem#fff, 97.5vw 5.1vh 0 -0.09rem#fff, 61.4vw 71.5vh 0 -0.31rem#fff,
+        53.8vw 25.5vh 0 -0.44rem#fff, 56.6vw 14.2vh 0 -0.18rem#fff, 81.7vw 59vh 0 -0.23rem#fff, 73.7vw 0.4vh 0 -0.35rem#fff, 75.6vw 47vh 0 -0.29rem#fff, 65.2vw 64.8vh 0 -0.26rem#fff,
+        50.8vw 69.1vh 0 -0.41rem#fff, 31.1vw 28.6vh 0 -0.06rem#fff, 57.2vw 30.2vh 0 -0.02rem#fff, 85.7vw 72vh 0 -0.15rem#fff, 93.4vw 31.1vh 0 -0.07rem#fff, 5.4vw 45.3vh 0 -0.39rem#fff,
+        72.3vw 26vh 0 -0.14rem#fff, 93.4vw 36.3vh 0 -0.1rem#fff, 99.5vw 75.9vh 0 -0.16rem#fff, 72.2vw 61.7vh 0 -0.15rem#fff, 76.8vw 22.9vh 0 -0.3rem#fff, 15.2vw 57.6vh 0 -0.13rem#fff,
+        4.5vw 97.3vh 0 -0.38rem#fff, 15.4vw 7.9vh 0 -0.3rem#fff, 26.9vw 60.2vh 0 -0.16rem#fff, 22.7vw 33.6vh 0 -0.49rem#fff, 50.2vw 41.9vh 0 -0.03rem#fff, 66.4vw 94.8vh 0 -0.35rem#fff,
+        84.7vw 4.6vh 0 -0.03rem#fff, 64.6vw 54vh 0 -0.07rem#fff, 20.4vw 4.5vh 0 -0.01rem#fff, 74.9vw 69.2vh 0 -0.24rem#fff, 35.4vw 0.1vh 0 -0.38rem#fff, 4.6vw 35.7vh 0 -0.47rem#fff,
+        80.1vw 45.1vh 0 -0.18rem#fff, 16.3vw 67.1vh 0 -0.23rem#fff, 26.5vw 3.9vh 0 -0.19rem#fff, 37.6vw 79.2vh 0 -0.1rem#fff, 79.1vw 18.8vh 0 -0.36rem#fff, 78.1vw 47.3vh 0 -0.13rem#fff,
+        23.3vw 2.8vh 0 -0.33rem#fff, 74.1vw 78.7vh 0 -0.36rem#fff, 43.1vw 21.9vh 0 -0.21rem#fff, 39.6vw 77.6vh 0 -0.26rem#fff, 3.1vw 99.2vh 0 -0.19rem#fff, 93vw 75vh 0 -0.47rem#fff,
+        89.3vw 52.2vh 0 -0.38rem#fff, 75vw 32.9vh 0 -0.45rem#fff, 58.7vw 93.1vh 0 -0.48rem#fff, 93.7vw 36.1vh 0 -0.48rem#fff, 57.4vw 81.4vh 0 -0.02rem#fff, 62.2vw 88.9vh 0 -0.46rem#fff,
+        63.2vw 26.1vh 0 -0.17rem#fff, 56.5vw 87.6vh 0 -0.16rem#fff, 12.4vw 20.7vh 0 -0.32rem#fff, 90.5vw 63.2vh 0 -0.11rem#fff, 59.2vw 47.2vh 0 -0.06rem#fff, 80.1vw 83.9vh 0 -0.35rem#fff,
+        49.9vw 12.5vh 0 -0.38rem#fff, 90.3vw 73.9vh 0 -0.47rem#fff, 92.4vw 74.2vh 0 -0.18rem#fff, 46.7vw 38.3vh 0 -0.1rem#fff, 87.4vw 98.2vh 0 -0.1rem#fff, 10.6vw 40.3vh 0 -0.17rem#fff,
+        96.4vw 74.4vh 0 -0.02rem#fff, 36.3vw 67.3vh 0 -0.23rem#fff, 78vw 28vh 0 -0.43rem#fff, 1.6vw 38.9vh 0 -0.37rem#fff, 41.5vw 63.3vh 0 -0.18rem#fff, 84.6vw 68.5vh 0 -0.43rem#fff,
+        88.5vw 13.4vh 0 -0.14rem#fff, 28vw 54.4vh 0 -0.19rem#fff, 85.5vw 82.6vh 0 -0.21rem#fff, 64.5vw 63.4vh 0 -0.22rem#fff, 16vw 50.9vh 0 -0.28rem#fff, 35.5vw 62.4vh 0 -0.27rem#fff,
+        64.7vw 55.1vh 0 -0.1rem#fff, 31.7vw 27.6vh 0 -0.04rem#fff, 52.7vw 93.9vh 0 -0.49rem#fff, 73.4vw 65vh 0 -0.35rem#fff, 96.1vw 50.2vh 0 -0.03rem#fff, 94.8vw 52.1vh 0 -0.28rem#fff,
+        15.1vw 70.1vh 0 -0.42rem#fff, 76.5vw 8.1vh 0 -0.12rem#fff, 92.2vw 85.4vh 0 -0.47rem#fff, 42vw 30.8vh 0 -0.24rem#fff, 9.9vw 95.9vh 0 -0.32rem#fff, 31.9vw 93.4vh 0 -0.39rem#fff;
+    animation-duration: 8s;
+}
+
+.layer2.a {
+    animation-delay: -4s;
+}
+
+.layer3 {
+    width: 0.8rem;
+    height: 0.8rem;
+    filter: blur(6px);
+    box-shadow: 1.9vw 44.7vh 0 -0.05rem#fff, 92.3vw 75.9vh 0 -0.46rem#fff, 45.2vw 76.5vh 0 -0.16rem#fff, 31.7vw 13.8vh 0 -0.05rem#fff, 84.5vw 44vh 0 -0.26rem#fff, 73.8vw 51.1vh 0 -0.43rem#fff,
+        11.9vw 91vh 0 -0.4rem#fff, 51.4vw 82.6vh 0 -0.23rem#fff, 82vw 46.3vh 0 -0.33rem#fff, 71.6vw 96.2vh 0 -0.47rem#fff, 28.6vw 25.4vh 0 -0.17rem#fff, 14.1vw 89vh 0 -0.34rem#fff,
+        68.3vw 13.5vh 0 -0.11rem#fff, 55.1vw 63.3vh 0 -0.3rem#fff, 21.3vw 42.8vh 0 -0.34rem#fff, 13.9vw 19vh 0 -0.02rem#fff, 58.8vw 88.5vh 0 -0.23rem#fff, 46.1vw 28.1vh 0 -0.28rem#fff,
+        0.6vw 7.9vh 0 -0.39rem#fff, 20.1vw 29.6vh 0 -0.47rem#fff, 0.6vw 76.3vh 0 -0.08rem#fff, 53vw 9.4vh 0 -0.05rem#fff, 73.6vw 5.9vh 0 -0.1rem#fff, 12.4vw 51.5vh 0 -0.04rem#fff,
+        61.7vw 87.8vh 0 -0.47rem#fff, 70.1vw 37.4vh 0 -0.32rem#fff, 82vw 86.6vh 0 -0.49rem#fff, 65.2vw 2.6vh 0 -0.1rem#fff, 64.8vw 19.3vh 0 -0.33rem#fff, 55.3vw 88.5vh 0 -0.07rem#fff,
+        58.2vw 1.6vh 0 -0.02rem#fff, 26.4vw 73.9vh 0 -0.16rem#fff, 36.5vw 17.1vh 0 -0.22rem#fff, 2.5vw 95.2vh 0 -0.13rem#fff, 8.2vw 85.7vh 0 -0.15rem#fff, 27.3vw 39vh 0 -0.14rem#fff,
+        74.3vw 82.1vh 0 -0.49rem#fff, 19.1vw 48.2vh 0 -0.46rem#fff, 70.5vw 97.1vh 0 -0.36rem#fff, 33.5vw 78.8vh 0 -0.22rem#fff, 96.1vw 56.2vh 0 -0.3rem#fff, 97.4vw 19.2vh 0 -0.16rem#fff,
+        11.2vw 21.6vh 0 -0.09rem#fff, 93.9vw 28.3vh 0 -0.21rem#fff, 63.4vw 7.4vh 0 -0.11rem#fff, 75.3vw 73.1vh 0 -0.47rem#fff, 78.9vw 45.4vh 0 -0.17rem#fff, 98.6vw 34.5vh 0 -0.28rem#fff,
+        45.4vw 33.2vh 0 -0.46rem#fff, 57.2vw 54.5vh 0 -0.33rem#fff, 64.9vw 26.7vh 0 -0.12rem#fff, 85.2vw 6vh 0 -0.34rem#fff, 94.1vw 33.1vh 0 -0.02rem#fff, 51.7vw 42.3vh 0 -0.09rem#fff,
+        2.4vw 16.4vh 0 -0.31rem#fff, 71.9vw 78.7vh 0 -0.44rem#fff, 51.6vw 11.3vh 0 -0.17rem#fff, 53vw 30.2vh 0 -0.26rem#fff, 24vw 35vh 0 -0.33rem#fff, 80vw 44.6vh 0 -0.5rem#fff,
+        46.2vw 68vh 0 -0.22rem#fff, 94.6vw 28.7vh 0 -0.38rem#fff, 51.5vw 82.9vh 0 -0.04rem#fff, 27.5vw 6.8vh 0 -0.29rem#fff, 23.6vw 22.6vh 0 -0.22rem#fff, 28.8vw 38.9vh 0 -0.45rem#fff,
+        77.2vw 1.3vh 0 -0.13rem#fff, 92.8vw 65.7vh 0 -0.14rem#fff, 94vw 69.4vh 0 -0.5rem#fff, 89.5vw 0.2vh 0 -0.22rem#fff, 27.3vw 67.9vh 0 -0.23rem#fff, 77.9vw 1.8vh 0 -0.15rem#fff,
+        89.4vw 32.2vh 0 -0.32rem#fff, 44.4vw 83vh 0 -0.31rem#fff, 59.7vw 79.1vh 0 -0.47rem#fff, 30.1vw 85.1vh 0 -0.03rem#fff, 94.8vw 1.6vh 0 -0.04rem#fff, 73.3vw 95.1vh 0 -0.49rem#fff,
+        42.3vw 50.1vh 0 -0.39rem#fff, 76.6vw 47.9vh 0 -0.45rem#fff, 88.1vw 37.1vh 0 -0.12rem#fff, 83.3vw 47.7vh 0 -0.25rem#fff, 84.8vw 22.8vh 0 -0.26rem#fff, 64.3vw 48.2vh 0 -0.03rem#fff,
+        45.5vw 27.4vh 0 -0.11rem#fff, 52.2vw 59.2vh 0 -0.01rem#fff, 45.6vw 96.9vh 0 -0.41rem#fff, 54.3vw 91.1vh 0 -0.18rem#fff, 77.7vw 43.3vh 0 -0.31rem#fff, 38.5vw 14.5vh 0 -0.33rem#fff,
+        17.5vw 86.8vh 0 -0.42rem#fff, 58.9vw 59vh 0 -0.04rem#fff, 18.6vw 94.4vh 0 -0.09rem#fff, 25.5vw 18.3vh 0 -0.24rem#fff, 14.3vw 82.1vh 0 -0.15rem#fff, 89.4vw 74.5vh 0 -0.43rem#fff,
+        69.1vw 6.6vh 0 -0.39rem#fff, 92.3vw 17.9vh 0 -0.37rem#fff, 38.4vw 6.1vh 0 -0.27rem#fff, 23.1vw 74vh 0 -0.48rem#fff, 2.9vw 30.2vh 0 -0.45rem#fff, 88.2vw 90vh 0 -0.13rem#fff,
+        53.5vw 68.8vh 0 -0.12rem#fff, 14.7vw 88.5vh 0 -0.22rem#fff, 35.7vw 25.3vh 0 -0.38rem#fff, 28.1vw 94.6vh 0 -0.5rem#fff, 8.4vw 73.1vh 0 -0.4rem#fff, 13.7vw 66.2vh 0 -0.49rem#fff,
+        8.3vw 39.7vh 0 -0.03rem#fff, 67.5vw 89.2vh 0 -0.24rem#fff, 80.7vw 20.5vh 0 -0.03rem#fff, 59.9vw 65.4vh 0 -0.15rem#fff, 29.2vw 15.4vh 0 -0.23rem#fff, 95.2vw 4.3vh 0 -0.32rem#fff,
+        12.5vw 95.8vh 0 -0.11rem#fff, 6.8vw 53.8vh 0 -0.21rem#fff, 70.8vw 86.7vh 0 -0.39rem#fff, 8.5vw 71.4vh 0 -0.34rem#fff, 53.2vw 66.7vh 0 -0.1rem#fff, 80.5vw 23.1vh 0 -0.22rem#fff,
+        88.8vw 2vh 0 -0.28rem#fff, 10.1vw 50.3vh 0 -0.29rem#fff, 93.6vw 55.9vh 0 -0.09rem#fff, 75.8vw 90.7vh 0 -0.02rem#fff, 27.6vw 70.6vh 0 -0.33rem#fff, 82vw 44.9vh 0 -0.13rem#fff,
+        30.6vw 92.9vh 0 -0.06rem#fff, 61.9vw 7.9vh 0 -0.43rem#fff, 28.7vw 97.9vh 0 -0.21rem#fff, 69.3vw 83.3vh 0 -0.13rem#fff, 8.3vw 76.4vh 0 -0.34rem#fff, 30.4vw 68.6vh 0 -0.42rem#fff,
+        26.1vw 98.7vh 0 -0.35rem#fff, 87.5vw 44.9vh 0 -0.05rem#fff, 40.7vw 13.2vh 0 -0.46rem#fff, 39.6vw 71.5vh 0 -0.06rem#fff, 94vw 86.7vh 0 -0.36rem#fff, 87.5vw 70.3vh 0 -0.02rem#fff,
+        92.7vw 91.8vh 0 -0.5rem#fff, 42.9vw 32.9vh 0 -0.16rem#fff, 41.6vw 55.8vh 0 -0.12rem#fff, 24.5vw 10.7vh 0 -0.39rem#fff, 79.2vw 32.4vh 0 -0.27rem#fff, 3.2vw 11.1vh 0 -0.14rem#fff,
+        67.9vw 39.5vh 0 -0.2rem#fff, 78.3vw 56.7vh 0 -0.47rem#fff, 14vw 4.9vh 0 -0.48rem#fff, 42.8vw 26.9vh 0 -0.33rem#fff, 68.8vw 49.7vh 0 -0.01rem#fff, 68.8vw 36.8vh 0 -0.46rem#fff,
+        22.5vw 41.9vh 0 -0.1rem#fff, 72.2vw 63.3vh 0 -0.42rem#fff, 78.7vw 4.5vh 0 -0.5rem#fff, 98vw 47.9vh 0 -0.14rem#fff, 21vw 22vh 0 -0.14rem#fff, 91.4vw 63.7vh 0 -0.14rem#fff,
+        89.5vw 34.4vh 0 -0.24rem#fff, 58.6vw 8.1vh 0 -0.1rem#fff, 20.9vw 19.7vh 0 -0.14rem#fff, 32.6vw 79.8vh 0 -0.43rem#fff, 92.6vw 23.7vh 0 -0.06rem#fff, 88.9vw 56.4vh 0 -0.02rem#fff,
+        26vw 78.1vh 0 -0.08rem#fff, 17.9vw 28vh 0 -0.32rem#fff, 4vw 65.8vh 0 -0.08rem#fff, 15.9vw 41.2vh 0 -0.41rem#fff, 19.9vw 55.9vh 0 -0.3rem#fff, 79.7vw 39.1vh 0 -0.36rem#fff,
+        14.7vw 12.2vh 0 -0.31rem#fff, 5.1vw 95.9vh 0 -0.46rem#fff, 84vw 20vh 0 -0.45rem#fff, 85.5vw 48.3vh 0 -0.08rem#fff, 80.3vw 68.2vh 0 -0.1rem#fff, 11.2vw 99.9vh 0 -0.28rem#fff,
+        15.8vw 32.3vh 0 -0.45rem#fff, 76.5vw 41.2vh 0 -0.23rem#fff, 66.8vw 39.4vh 0 -0.13rem#fff, 40.5vw 34.3vh 0 -0.17rem#fff, 22vw 92.4vh 0 -0.29rem#fff, 67.5vw 87.3vh 0 -0.31rem#fff,
+        17.9vw 60.6vh 0 -0.41rem#fff, 57.8vw 52.4vh 0 -0.19rem#fff, 29.4vw 47.4vh 0 -0.47rem#fff, 31.7vw 22.5vh 0 -0.15rem#fff, 81.1vw 0.1vh 0 -0.44rem#fff, 9.6vw 60vh 0 -0.16rem#fff,
+        38.7vw 36.7vh 0 -0.23rem#fff, 80.5vw 27.7vh 0 -0.34rem#fff, 51.1vw 36vh 0 -0.27rem#fff, 16.9vw 22.5vh 0 -0.39rem#fff, 70.8vw 78.3vh 0 -0.22rem#fff, 10.1vw 52vh 0 -0.27rem#fff,
+        8.5vw 42.6vh 0 -0.47rem#fff, 38.6vw 52.6vh 0 -0.37rem#fff, 98.6vw 42.1vh 0 -0.2rem#fff, 36.7vw 65.6vh 0 -0.47rem#fff, 8.9vw 88.6vh 0 -0.37rem#fff, 93.7vw 97.1vh 0 -0.07rem#fff,
+        96.1vw 31.5vh 0 -0.25rem#fff, 66.3vw 3.3vh 0 -0.21rem#fff, 53.9vw 28.2vh 0 -0.1rem#fff, 65.3vw 88.5vh 0 -0.05rem#fff, 21.6vw 54.8vh 0 -0.25rem#fff, 16.1vw 3.8vh 0 -0.47rem#fff,
+        11.8vw 15.1vh 0 -0.22rem#fff, 50.9vw 94.8vh 0 -0.29rem#fff, 4.8vw 59.6vh 0 -0.28rem#fff, 22.8vw 66.8vh 0 -0.11rem#fff, 27.4vw 12.6vh 0 -0.44rem#fff, 77.9vw 80.3vh 0 -0.48rem#fff,
+        15.1vw 84.6vh 0 -0.41rem#fff, 53.1vw 75.8vh 0 -0.46rem#fff, 9.6vw 69.9vh 0 -0.28rem#fff, 94vw 99vh 0 -0.31rem#fff, 10.8vw 90.7vh 0 -0.24rem#fff, 63.9vw 23.1vh 0 -0.39rem#fff,
+        99vw 70.7vh 0 -0.44rem#fff, 38.8vw 39.5vh 0 -0.5rem#fff, 62.5vw 75.7vh 0 -0.22rem#fff, 85.7vw 37.4vh 0 -0.27rem#fff, 90.6vw 26.3vh 0 -0.22rem#fff, 39.2vw 61.2vh 0 -0.46rem#fff,
+        68.7vw 57.7vh 0 -0.17rem#fff, 38.2vw 32.5vh 0 -0.01rem#fff, 89.1vw 78.8vh 0 -0.48rem#fff, 29.9vw 78.9vh 0 -0.32rem#fff, 8vw 7.2vh 0 -0.06rem#fff, 50.4vw 14.4vh 0 -0.08rem#fff,
+        45.4vw 97.6vh 0 -0.44rem#fff, 97.3vw 67.3vh 0 -0.46rem#fff, 88vw 20.8vh 0 -0.18rem#fff, 33.2vw 77.1vh 0 -0.42rem#fff, 97.7vw 97.2vh 0 -0.2rem#fff, 74vw 21.8vh 0 -0.48rem#fff,
+        86.4vw 33.5vh 0 -0.02rem#fff, 87.8vw 96.7vh 0 -0.36rem#fff, 7.2vw 99.9vh 0 -0.04rem#fff, 90.8vw 21.2vh 0 -0.12rem#fff, 26.9vw 44.9vh 0 -0.33rem#fff, 42.2vw 46.9vh 0 -0.36rem#fff,
+        22.1vw 68.1vh 0 -0.16rem#fff, 82.6vw 64.4vh 0 -0.45rem#fff, 51.5vw 21.5vh 0 -0.49rem#fff, 11vw 32.2vh 0 -0.32rem#fff, 91.3vw 91.7vh 0 -0.48rem#fff, 29.9vw 37.8vh 0 -0.1rem#fff,
+        59.4vw 86.6vh 0 -0.38rem#fff, 32.7vw 87vh 0 -0.41rem#fff, 23.2vw 69.7vh 0 -0.04rem#fff, 80.2vw 99.5vh 0 -0.28rem#fff, 37.6vw 47.4vh 0 -0.3rem#fff, 76.9vw 20.5vh 0 -0.33rem#fff,
+        62.4vw 33.7vh 0 -0.39rem#fff, 60.2vw 98.3vh 0 -0.13rem#fff, 53.8vw 46.8vh 0 -0.17rem#fff, 46.5vw 95.8vh 0 -0.17rem#fff, 42.9vw 72.2vh 0 -0.3rem#fff, 13vw 4.4vh 0 -0.39rem#fff,
+        0.3vw 57.2vh 0 -0.45rem#fff, 26.1vw 86.9vh 0 -0.15rem#fff, 96.1vw 30.7vh 0 -0.43rem#fff, 0.9vw 28.6vh 0 -0.47rem#fff, 92.7vw 12.7vh 0 -0.23rem#fff, 9.6vw 68.3vh 0 -0.23rem#fff,
+        15.6vw 90.6vh 0 -0.3rem#fff, 91.4vw 73.5vh 0 -0.18rem#fff, 66vw 48.8vh 0 -0.08rem#fff, 10.7vw 87.5vh 0 -0.2rem#fff, 80.1vw 52.4vh 0 -0.5rem#fff, 46.4vw 84.1vh 0 -0.3rem#fff,
+        6.9vw 42.6vh 0 -0.42rem#fff, 19vw 79.3vh 0 -0.48rem#fff, 2.1vw 14.8vh 0 -0.04rem#fff, 22.1vw 15.7vh 0 -0.43rem#fff, 54vw 23.9vh 0 -0.49rem#fff, 51.3vw 44.8vh 0 -0.17rem#fff,
+        66vw 89.9vh 0 -0.49rem#fff, 14.6vw 55.1vh 0 -0.07rem#fff, 30.4vw 48vh 0 -0.05rem#fff, 66.7vw 78.2vh 0 -0.06rem#fff, 13.9vw 57.6vh 0 -0.33rem#fff, 12.8vw 69.1vh 0 -0.09rem#fff,
+        48vw 29.4vh 0 -0.16rem#fff, 3.3vw 65.8vh 0 -0.44rem#fff, 46.7vw 75.6vh 0 -0.5rem#fff, 2.1vw 61.7vh 0 -0.43rem#fff, 66.1vw 64.3vh 0 -0.4rem#fff, 66.4vw 14.8vh 0 -0.27rem#fff,
+        52.7vw 89vh 0 -0.15rem#fff, 40.9vw 78.7vh 0 -0.28rem#fff, 10.6vw 7.7vh 0 -0.01rem#fff, 37.7vw 37.4vh 0 -0.2rem#fff, 19vw 65.4vh 0 -0.11rem#fff, 0.2vw 13.8vh 0 -0.35rem#fff,
+        39.3vw 37.3vh 0 -0.37rem#fff, 6.3vw 43.2vh 0 -0.33rem#fff, 53vw 4.5vh 0 -0.38rem#fff, 98.1vw 5.1vh 0 -0.41rem#fff, 9.5vw 55.3vh 0 -0.22rem#fff, 89.8vw 45.9vh 0 -0.13rem#fff;
+    animation-duration: 10s;
+}
+
+.layer3.a {
+    animation-delay: -5s;
+}
+
+@keyframes fall {
+    100% {
+        transform: translateY(200vh);
+    }
+}
