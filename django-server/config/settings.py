@@ -41,11 +41,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
-    
-    
-    
 
-    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,10 +55,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
+    'phonenumber_field',
+    'django_countries',
 
-    'chat',
+    'accounts',
     'home',
     'lecture',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +85,9 @@ AUTHENTICATION_CLASSES = (
     'allauth.socialaccount.providers.oauth2.client.OAuth2',
     # ...
 )
+
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # 소셜 로그인 관련 설정
 SOCIALACCOUNT_PROVIDERS = {
@@ -112,6 +114,7 @@ SOCIALACCOUNT_PROVIDERS = {
 # allauth site_id
 SITE_ID = 1
 
+ACCOUNT_AUTHENTICATION_METHOD = 'username' # or email, userusername_email
 # 로그인 후 리디렉션할 페이지
 LOGIN_REDIRECT_URL = 'login_success'
 # 가입 후 리디렉션할 페이지

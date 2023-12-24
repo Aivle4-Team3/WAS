@@ -55,7 +55,12 @@
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        {% if user.is_anonymous %}
+                        {% if user.is_authenticated %}
+                        <p>
+                            <img src="{{ user.avatar.url }}" style="width: 200px; height: 200px; border-radius: 50%" />
+                        </p>
+                        <a class="btn btn-primary btn-xl" href="/home">Enterence</a>
+                        {% else %}
                             <p class="text-white-75 mb-5" style="color: wheat">
                                 AI EDU는 교사가 되어 AI '학생'에게 지식을 전달하고, 이를 통해 교육 방법의 효과를 직접 평가할 수 있는 공간을 제공합니다. 사용자는 다양한 교육 내용을 AI에게 가르치며, AI는
                                 학습 과정을 거쳐 해당 과목에 대한 성취도 평가 시험을 치르게 됩니다.
@@ -63,11 +68,6 @@
                             <a class="btn btn-primary btn-xl" onclick="window.open('/accounts/login', '_blank', 'toolbar=no,scrollbars=no,resizable=yes,top=500,left=1000,width=400,height=+h')">
                                 Sign in
                             </a>
-                        {% else %}
-                            <p>
-                                <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="border-radius: 50px" />
-                            </p>
-                            <a class="btn btn-primary btn-xl" href="/home">Enterence</a>
                         {% endif %}
                     </div>
                 </div>

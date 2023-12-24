@@ -1,0 +1,135 @@
+{% extends "../base.html" %}
+{% block contents %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">내정보 수정 /</span> 내정보</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> 내정보</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-account-settings-notifications.html"><i class="bx bx-bell me-1"></i> Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages-account-settings-connections.html"><i class="bx bx-link-alt me-1"></i> Connections</a>
+                </li>
+            </ul>
+            <div class="card mb-4">
+                <form method="POST" action="{% url 'mypage' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <h5 class="card-header">Profile Details</h5>
+                    <!-- Account -->
+                    <div class="card-body">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <img
+                                src="{{ user.avatar.url }}"
+                                alt="이미지 없음"
+                                class="d-block rounded"
+                                height="100"
+                                width="100"
+                                id="uploadedAvatar"
+                            />
+                            <div class="button-wrapper">
+                                <label for="uploadAvatar" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                    <span class="d-none d-sm-block">사진 수정</span>
+                                    <i class="bx bx-upload d-block d-sm-none"></i>
+                                    <input type="file" id="uploadAvatar" class="account-file-input" hidden="" accept="image/png, image/jpeg" name="avatar"/>
+                                </label>
+                                <button id="resetAvatar" type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                                    <i class="bx bx-reset d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">초기화</span>
+                                </button>
+
+                                <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                            </div>
+                            <script>
+                                const fileDOM = document.querySelector('#uploadAvatar');
+                                const preview = document.querySelector('#uploadedAvatar');
+
+                                fileDOM.addEventListener('change', () => {
+                                    const reader = new FileReader();
+                                    reader.onload = ({ target }) => {
+                                        preview.src = target.result;
+                                    };
+                                    reader.readAsDataURL(fileDOM.files[0]);
+                                });
+
+                                const originalAvatarUrl = preview.src;
+                                const resetDom = document.querySelector('#resetAvatar');
+                                resetDom.addEventListener('click', () => {
+                                    preview.src = originalAvatarUrl;
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <hr class="my-0" />
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="lastName" class="form-label">성</label>
+                                <input class="form-control" type="text" name="last_name" id="lastName" placeholder="성" value="{{ user.last_name }}"/>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="firstName" class="form-label">이름</label>
+                                <input class="form-control" type="text" id="firstName" name="first_name" placeholder="이름" autofocus="" value="{{ user.first_name }}" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input class="form-control" type="text" id="email" name="email" placeholder="john.doe@example.com" value="{{ user.email }}"/>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="organization" class="form-label">조직</label>
+                                <input type="text" class="form-control" id="organization" name="organization" placeholder="학생" value="{{ user.organization|default:'' }}"/>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="country">국가</label>
+                                <select name="country" class="select2 form-select">
+                                    {% for country_code, country in countries %}
+                                        <option value="{{ country }}" {% if country == user.country %}selected{% endif %}>
+                                            {{ country }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="phoneNumber">휴대전화</label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text">KR (+82)</span>
+                                    <input type="text" id="phoneNumber" name="phone_number" class="form-control" placeholder="202 555 0111" value="{{ user.phone_number|default:'' }}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <button type="submit" class="btn btn-primary me-2">수정</button>
+                            <button type="reset" class="btn btn-outline-secondary">취소</button>
+                        </div>
+                    </div>
+                </from>
+                <!-- /Account -->
+            </div>
+            <div class="card">
+                <h5 class="card-header">계정 삭제</h5>
+                <div class="card-body">
+                    <div class="mb-3 col-12 mb-0">
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading fw-bold mb-1">정말로 계정을 삭제하시겠습니까?</h6>
+                            <p class="mb-0">계정을 삭제하면 되돌릴 수 없습니다. 확실하게 해주세요.</p>
+                        </div>
+                    </div>
+                    <form id="formAccountDeactivation" onsubmit="return false">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
+                            <label class="form-check-label" for="accountActivation">내 계정 비활성화를 확인합니다</label>
+                        </div>
+                        <button type="submit" class="btn btn-danger deactivate-account">계정 비활성화</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

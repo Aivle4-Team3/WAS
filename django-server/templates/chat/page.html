@@ -56,7 +56,7 @@
                         <li class="chat-contact-list-item active">
                             <a class="d-flex align-items-center">
                                 <div class="flex-shrink-0 avatar avatar-offline">
-                                    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Avatar" class="rounded-circle" />
+                                    <img src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" />
                                 </div>
                                 <div class="chat-contact-info flex-grow-1 ms-3">
                                     <h6 class="chat-contact-name text-truncate m-0">강의 제목</h6>
@@ -85,7 +85,7 @@
                                 <i class="bx bx-menu bx-sm cursor-pointer d-lg-none d-block me-2" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-contacts"></i>
                                 <div class="flex-shrink-0 avatar">
                                     <img
-                                        src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+                                        src="{{ user.avatar.url }}"
                                         alt="Avatar"
                                         class="rounded-circle"
                                         data-bs-toggle="sidebar"
@@ -123,7 +123,7 @@
                                 <div class="d-flex overflow-hidden">
                                     <div class="user-avatar flex-shrink-0 me-3">
                                         <div class="avatar avatar-sm">
-                                            <img title="{{ user }}" v-if="statement.type == 'querry'" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Avatar" class="rounded-circle" />
+                                            <img title="{{ user }}" v-if="statement.type == 'querry'" src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" />
                                             <img title="학생" v-if="statement.type == 'answer'" src="{% static '/chat/img/gpt_logo.svg' %}" alt="Avatar" class="rounded-circle" />
                                         </div>
                                     </div>
