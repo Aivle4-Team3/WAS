@@ -1,14 +1,10 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import timedelta
-
-# Create your models here.
-
 from gdstorage.storage import GoogleDriveStorage, GoogleDrivePermissionType, GoogleDrivePermissionRole, GoogleDriveFilePermission
 from gdstorage.storage import GoogleDriveStorage
 
 # Define Google Drive Storage
-
 permission = GoogleDriveFilePermission(
     GoogleDrivePermissionRole.READER,
     GoogleDrivePermissionType.ANYONE
@@ -16,6 +12,8 @@ permission = GoogleDriveFilePermission(
 
 gd_storage = GoogleDriveStorage(permissions=(permission, ))
 
+
+# Create your models here.
 
 class Lecture(models.Model):
     thumbnail = models.ImageField(
@@ -27,3 +25,6 @@ class Lecture(models.Model):
     title = models.CharField(max_length=100, default="")
     summary = models.TextField(default="")
     reamin_time = models.DurationField(default=timedelta)
+
+    def __str__(self):
+        return self.title
