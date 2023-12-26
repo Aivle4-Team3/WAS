@@ -63,7 +63,11 @@
 
     <body>
         <!-- Layout wrapper: Start -->
-        <div class="layout-wrapper layout-content-navbar snow-wrapper">
+        <div class="layout-wrapper layout-content-navbar">
+            <div class="snow-wrapper back">
+                <div class="snow layer3 a"></div>
+                <div class="snow layer3"></div>
+            </div>
             <div class="layout-container">
                 <!-- Menu: Start -->
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -109,12 +113,12 @@
                 <!-- / Layout page: End -->
             </div>
 
-            <div class="snow layer1 a"></div>
-            <div class="snow layer1"></div>
-            <div class="snow layer2 a"></div>
-            <div class="snow layer2"></div>
-            <div class="snow layer3 a"></div>
-            <div class="snow layer3"></div>
+            <div class="snow-wrapper front">
+                <div class="snow layer1 a"></div>
+                <div class="snow layer1"></div>
+                <div class="snow layer2 a"></div>
+                <div class="snow layer2"></div>
+            </div>
 
             <!-- Overlay -->
             <div class="layout-overlay layout-menu-toggle"></div>
@@ -142,5 +146,6 @@
         <!--Page Javascript-->
 
         <script src="{% static '/home/js/app-academy-course.js' %}"></script>
+        <script src="{% static '/home/js/snow.js' %}"></script>
     </body>
 </html>
