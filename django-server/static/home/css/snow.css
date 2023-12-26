@@ -7,10 +7,12 @@ body {
     position: absolute;
     width: 100vw;
     height: 100%;
-    z-index: -10;
 }
 .snow-wrapper.back {
     background: radial-gradient(farthest-corner at 30vw 20vh, #7397a1 1%, #3f2c41 100%);
+}
+.snow--behind {
+    z-index: -10;
 }
 .snow-wrapper.front {
     pointer-events: none;

@@ -4,9 +4,19 @@ $(window).ready((e) => {
         const keyCode = e.keyCode;
 
         if (e.shiftKey && keyCode == 83) {
-            snowDiv.toggle();
-            localStorage.setItem("snow-off", snowDiv.is(":hidden"));
+            if (localStorage.getItem("snow") == "blizzard") {
+                snowDiv.filter(".front").addClass("snow--behind");
+                localStorage.setItem("snow", "quit");
+            } else if (localStorage.getItem("snow") == "quit") {
+                snowDiv.hide();
+                localStorage.setItem("snow", "off");
+            } else {
+                snowDiv.filter(".front").removeClass("snow--behind");
+                snowDiv.show();
+                localStorage.setItem("snow", "blizzard");
+            }
         }
     });
-    snowDiv.toggle(!JSON.parse(localStorage.getItem("snow-off")));
+    snowDiv.toggle(localStorage.getItem("snow") != "off");
+    snowDiv.filter(".front").toggleClass("snow--behind", localStorage.getItem("snow") == "quit");
 });
