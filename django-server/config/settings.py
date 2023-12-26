@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import environ
 from pathlib import Path
+from config import asset_storage
+from storages.backends.s3boto3 import S3Boto3Storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +26,8 @@ environ.Env.read_env(
     env_file=os.path.join(BASE_DIR, 'key.config')
 )
 
+# 구글 드라이브 스토리지용 키
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'gdkey.config')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -41,6 +45,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
+    'gdstorage',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,6 +62,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.kakao',
     'phonenumber_field',
     'django_countries',
+    'storages',
 
     'accounts',
     'home',
@@ -164,6 +170,20 @@ DATABASES = {
     }
 }
 
+# AWS Setting
+AWS_REGION = ''
+AWS_STORAGE_BUCKET_NAME = ''
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+
+
+# Media Setting
+MEDIA_URL = "https://%s/media/" % AWS_S3_CUSTOM_DOMAIN
+DEFAULT_FILE_STORAGE = 'config.asset_storage.MediaStorage'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -199,7 +219,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
