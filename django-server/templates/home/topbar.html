@@ -19,8 +19,8 @@
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                         <!-- Moke condition for displaying user avatar -->
-                        <span>{{ user }} 님 환영합니다 😊　</span>
-                        <img src="{{ user.avatar.url }}" alt class="w-px-40 rounded-circle" />
+                        <span>{{ user.id }} 님 환영합니다 😊　</span>
+                        <img src="{{ user.avatar.url }}" alt="프로필" class="w-px-40 rounded-circle" />
                     </div>
                 </a>
 
@@ -32,7 +32,7 @@
                                     <div class="avatar avatar-online">
                                         <!-- Moke condition for displaying user avatar -->
 
-                                        <img src="{{ user.avatar.url }}" alt class="w-px-40 rounded-circle" />
+                                        <img src="{{ user.avatar.url }}" alt="프로필" class="w-px-40 rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
