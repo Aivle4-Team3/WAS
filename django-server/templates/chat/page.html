@@ -1,26 +1,16 @@
 {% extends "../base.html" %} {% load static %} {% block extra_head_content %}
 
-<!-- Icons -->
-<link rel="stylesheet" href="{% static '/home/css/boxicons.css' %}" />
-<link rel="stylesheet" href="{% static '/home/css/fontawesome.css' %}" />
-<link rel="stylesheet" href="{% static '/home/css/flag-icons.css' %}" />
-<link rel="stylesheet" href="{% static '/chat/css/three-dots.css' %}" />
-
 <!--Page CSS-->
-
-<link rel="stylesheet" href="{% static '/chat/css/perfect-scrollbar.css' %}" />
 <link rel="stylesheet" href="{% static '/chat/css/app-chat.css' %}" />
 
 <!--Fonts-->
 <link rel="preconnect" href="https://fonts.googleapis.com/" />
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
 
-<link rel="stylesheet" type="text/css" href="{% static '/chat/css/core.css' %}" class="template-customizer-core-css" />
-<link rel="stylesheet" type="text/css" href="{% static '/chat/css/theme-default.css' %}" class="template-customizer-theme-css" />
+<!--Effect-->
+<link rel="stylesheet" href="{% static '/chat/css/three-dots.css' %}" />
 
-<script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="{% static '/chat/js/perfect-scrollbar.js' %}"></script>
 <script src="{% static '/chat/js/chat.js' %}"></script>
 
 {% endblock %} {% block contents %}
@@ -84,14 +74,7 @@
                             <div class="d-flex overflow-hidden align-items-center">
                                 <i class="bx bx-menu bx-sm cursor-pointer d-lg-none d-block me-2" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-contacts"></i>
                                 <div class="flex-shrink-0 avatar">
-                                    <img
-                                        src="{{ user.avatar.url }}"
-                                        alt="Avatar"
-                                        class="rounded-circle"
-                                        data-bs-toggle="sidebar"
-                                        data-overlay=""
-                                        data-target="#app-chat-sidebar-right"
-                                    />
+                                    <img src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-sidebar-right" />
                                 </div>
                                 <div class="chat-contact-info flex-grow-1 ms-3">
                                     <h6 class="m-0">강의제목</h6>

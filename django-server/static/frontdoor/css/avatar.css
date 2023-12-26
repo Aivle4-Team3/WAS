@@ -64,21 +64,10 @@
     display: none;
 }
 
-.avatar:hover .enter {
-    animation: rotate_image 5s linear;
-    transform-origin: 50% 50%;
-}
-
-@keyframes rotate_image {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .avatar .enter {
     display: none;
-    background-color: antiquewhite;
-    color: darkgrey;
+    background-color: #dfb980;
+    color: darkslategray;
     justify-content: center;
     align-items: center;
     border-radius: 50%;

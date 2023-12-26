@@ -2,30 +2,16 @@
 
 <!DOCTYPE html>
 
-<html
-    lang="en"
-    class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
-    dir="ltr"
-    data-theme="theme-default"
-    data-assets-path="/sneat-html-django-admin-template/demo-1/static/"
-    data-base-url=""
-    data-framework="django"
-    data-template="vertical-menu--theme-default-light"
->
+<html lang="ko" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr">
     <head>
-        <base href="/sneat-html-django-admin-template/demo-1/" />
+        <base href="/home/" />
         <title>에이쁠 에듀｜홈</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta
-            name="description"
-            content="Sneat is a modern, clean and fully responsive admin template built with Bootstrap 5, Django, HTML, CSS, and JavaScript. It has a huge collection of reusable UI components. It can be used for all types of web applications like custom admin panel, project management system, admin dashboard, Backend application or CRM."
-        />
-        <meta name="keywords" content="django, django admin, dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
-        <!-- Canonical SEO -->
-        <link rel="canonical" href="https://themeselection.com/item/sneat-bootstrap-django-admin-template/" />
+        <meta name="description" content="에이쁠 에듀의 홈페이지입니다." />
+        <meta name="keywords" content="aivle, aivle school, django, django admin, dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="/sneat-html-django-admin-template/demo-1/static/img/favicon/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="{% static '/img/EDU.png' %}" />
 
         <!-- Include the styles partial -->
 
@@ -35,28 +21,24 @@
         <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
         <!-- Icons -->
-        <link rel="stylesheet" href="{% static '/home/css/boxicons.css' %}" />
-        <link rel="stylesheet" href="{% static '/home/css/fontawesome.css' %}" />
-        <link rel="stylesheet" href="{% static '/home/css/flag-icons.css' %}" />
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
 
         <!--Core CSS -->
-
-        <link rel="stylesheet" href="{% static '/home/css/core.css' %}" class="template-customizer-core-css" />
-        <link rel="stylesheet" href="{% static '/home/css/theme-default.css' %}" class="template-customizer-theme-css" />
+        <link rel="stylesheet" href="{% static '/vendor/sneat-bootstrap/core.css' %}" class="template-customizer-core-css" />
+        <link rel="stylesheet" href="{% static '/vendor/sneat-bootstrap/theme-default.css' %}" class="template-customizer-theme-css" />
 
         <link rel="stylesheet" href="{% static '/home/css/home.css' %}" />
 
         <!--Vendor CSS-->
-        <link rel="stylesheet" href="{% static '/home/css/perfect-scrollbar.css' %}" />
-        <link rel="stylesheet" href="{% static '/home/css/typeahead.css' %}" />
+        <link rel="stylesheet" href="{% static '/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+        <link rel="stylesheet" href="{% static '/vendor/libs/typeahead/typeahead.css' %}" />
 
-        <link rel="stylesheet" href="{% static '/home/css/select2.css' %}" />
-        <link rel="stylesheet" href="{% static '/home/css/plyr.css' %}" />
+        <link rel="stylesheet" href="{% static '/vendor/libs/select2/select2.css' %}" />
+        <link rel="stylesheet" href="{% static '/vendor/libs/plyr/plyr.css' %}" />
 
         <link rel="stylesheet" href="{% static '/home/css/snow.css' %}" />
 
         <!--Page CSS-->
-
         <link rel="stylesheet" href="{% static '/home/css/app-academy.css' %}" />
         {% block extra_head_content %} {% endblock extra_head_content %}
     </head>
@@ -68,6 +50,7 @@
                 <div class="snow layer3 a"></div>
                 <div class="snow layer3"></div>
             </div>
+
             <div class="layout-container">
                 <!-- Menu: Start -->
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -129,23 +112,22 @@
         <!-- Layout wrapper: End -->
 
         <!--Core Javascript-->
-        <script src="{% static '/home/js/jquery.js' %}"></script>
-        <script src="{% static '/home/js/popper.js' %}"></script>
-        <script src="{% static '/home/js/bootstrap.js' %}"></script>
-        <script src="{% static '/home/js/perfect-scrollbar.js' %}"></script>
-        <script src="{% static '/home/js/hammer.js' %}"></script>
-        <script src="{% static '/home/js/typeahead.js' %}"></script>
-        <script src="{% static '/home/js/menu.js' %}"></script>
-        <script src="{% static '/home/js/main.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="{% static '/vendor/js/bootstrap.js' %}"></script>
+        <script src="{% static '/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+        <script src="{% static '/vendor/libs/typeahead-js/typeahead.js' %}"></script>
+        <script src="{% static '/vendor/js/menu.js' %}"></script>
 
         <!--Vendors Javascript-->
-
-        <script src="{% static '/home/js/select2.js' %}"></script>
-        <script src="{% static '/home/js/plyr.js' %}"></script>
+        <!-- 사용자 정의 가능한 셀렉트 박스 및 드롭다운 목록을 생성 -->
+        <script src="{% static '/vendor/libs/select2/select2.js' %}"></script>
+        <!-- HTML5 비디오 및 오디오 플레이어를 생성하고 커스터마이징 -->
+        <script src="{% static '/vendor/libs/plyr/plyr.js' %}"></script>
 
         <!--Page Javascript-->
-
+        <script src="{% static '/home/js/main.js' %}"></script>
         <script src="{% static '/home/js/app-academy-course.js' %}"></script>
+
         <script src="{% static '/home/js/snow.js' %}"></script>
     </body>
 </html>

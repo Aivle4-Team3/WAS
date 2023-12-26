@@ -58,14 +58,19 @@
                             <span class="align-middle">FAQ</span>
                         </a>
                     </li>
+                    {% if user.is_superuser %}
                     <li>
-                        <form action="{% url 'account_logout' %}" method="post">
-                            {% csrf_token %} {% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="lQzZReEEyWxc5c72IlXOBxxYlgwHQV6mH1hzxZbsf6riRIL6i52cKXpOiSPcSc3G" /> {% endcomment %}
-                            <button type="submit" class="dropdown-item">
-                                <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">Sign out</span>
-                            </button>
-                        </form>
+                        <a class="dropdown-item" href="/admin/">
+                            <i class="bx bx-lock me-2"></i>
+                            <span class="align-middle">Admin</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a class="dropdown-item" href="/accounts/logout/">
+                            <i class="bx bx-power-off me-2"></i>
+                            <span class="align-middle">Sign out</span>
+                        </a>
                     </li>
                 </ul>
             </li>

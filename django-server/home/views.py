@@ -4,7 +4,7 @@ from .models import Lecture
 
 def index(request):
 
-    lectures = Lecture.objects.order_by('-title')
+    lectures = Lecture.objects.order_by('-visited')
     context = {
         'lectures': lectures,
     }
