@@ -1,6 +1,6 @@
 {% block sidebar %}
 <div class="app-brand demo">
-    <a href="/" class="app-brand-link">
+    <a href="/home" class="app-brand-link">
         <span class="app-brand-logo demo">
             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
@@ -76,7 +76,7 @@
     </li>
 
     <li class="menu-item">
-        <a href="" class="menu-link">
+        <a href="{% url 'faq' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-envelope"></i>
             <div class="text-truncate">1:1 질문</div>
         </a>

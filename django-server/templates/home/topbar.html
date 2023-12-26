@@ -53,6 +53,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="dropdown-item" href="{% url 'faq' %}">
+                            <i class="bx bx-help-circle me-2"></i>
+                            <span class="align-middle">FAQ</span>
+                        </a>
+                    </li>
+                    <li>
                         <form action="{% url 'account_logout' %}" method="post">
                             {% csrf_token %} {% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="lQzZReEEyWxc5c72IlXOBxxYlgwHQV6mH1hzxZbsf6riRIL6i52cKXpOiSPcSc3G" /> {% endcomment %}
                             <button type="submit" class="dropdown-item">
