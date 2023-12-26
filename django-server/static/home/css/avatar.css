@@ -1,0 +1,100 @@
+.avatar {
+    height: 200px;
+    position: relative;
+    width: 200px;
+    align-self: center;
+    text-decoration-line: none;
+}
+
+.avatar img {
+    border-radius: 9999px;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+
+@keyframes cycle-colors {
+    0% {
+        border-color: hsl(0, 100%, 50%);
+    }
+    25% {
+        border-color: hsl(90, 100%, 50%);
+    }
+    50% {
+        border-color: hsl(180, 100%, 50%);
+    }
+    75% {
+        border-color: hsl(270, 100%, 50%);
+    }
+    100% {
+        border-color: hsl(360, 100%, 50%);
+    }
+}
+
+@keyframes pulse {
+    to {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+.avatar::before,
+.avatar::after {
+    animation: pulse 2s linear infinite;
+    border: #fff solid 8px;
+    border-radius: 9999px;
+    box-sizing: border-box;
+    content: " ";
+    height: 140%;
+    left: -20%;
+    opacity: 0.6;
+    position: absolute;
+    top: -20%;
+    transform: scale(0.714);
+    width: 140%;
+    z-index: 1;
+}
+
+.avatar::after {
+    animation-delay: 1s;
+}
+
+.avatar:hover img {
+    display: none;
+}
+
+.avatar:hover .enter {
+    animation: rotate_image 5s linear;
+    transform-origin: 50% 50%;
+}
+
+@keyframes rotate_image {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.avatar .enter {
+    display: none;
+    background-color: antiquewhite;
+    color: darkgrey;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    font-size: xx-large;
+}
+.avatar:hover .enter {
+    display: flex;
+}
+
+.avatar:hover::before,
+.avatar:hover::after {
+    animation: pulse 2s linear infinite, cycle-colors 8s linear infinite;
+}
+
+.avatar:hover::after {
+    animation-delay: 0.5s;
+}

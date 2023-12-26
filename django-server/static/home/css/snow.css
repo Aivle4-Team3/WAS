@@ -4,12 +4,18 @@ body {
 }
 
 .snow-wrapper {
+    position: absolute;
     width: 100vw;
     height: 100%;
+}
+.snow-wrapper.back {
     background: radial-gradient(farthest-corner at 30vw 20vh, #7397a1 1%, #3f2c41 100%);
 }
+.snow-wrapper.front {
+    pointer-events: none;
+}
 
-.snow {
+.snow-wrapper .snow {
     border-radius: 50%;
     opacity: 0.8;
     position: absolute;
@@ -73,7 +79,7 @@ body {
         21vw 61vh 0 -0.45rem#fff, 29.4vw 63.3vh 0 -0.23rem#fff, 9.3vw 11.1vh 0 -0.45rem#fff, 35vw 85.8vh 0 -0.23rem#fff, 26.7vw 98vh 0 -0.31rem#fff, 39.8vw 35.7vh 0 -0.17rem#fff,
         86vw 2.7vh 0 -0.46rem#fff, 21.3vw 39.8vh 0 -0.18rem#fff, 26.8vw 6.9vh 0 -0.24rem#fff, 69.1vw 35.7vh 0 -0.02rem#fff, 96.6vw 14.7vh 0 -0.39rem#fff, 19.9vw 43.4vh 0 -0.19rem#fff,
         34.1vw 14vh 0 -0.38rem#fff, 31.4vw 76.5vh 0 -0.33rem#fff, 46.5vw 78.3vh 0 -0.17rem#fff, 40.7vw 59.5vh 0 -0.41rem#fff, 67.4vw 3.5vh 0 -0.28rem#fff, 87.9vw 45.1vh 0 -0.24rem#fff;
-    animation-duration: 6s;
+    animation-duration: 13s;
 }
 
 .layer1.a {
@@ -134,7 +140,7 @@ body {
         88.5vw 13.4vh 0 -0.14rem#fff, 28vw 54.4vh 0 -0.19rem#fff, 85.5vw 82.6vh 0 -0.21rem#fff, 64.5vw 63.4vh 0 -0.22rem#fff, 16vw 50.9vh 0 -0.28rem#fff, 35.5vw 62.4vh 0 -0.27rem#fff,
         64.7vw 55.1vh 0 -0.1rem#fff, 31.7vw 27.6vh 0 -0.04rem#fff, 52.7vw 93.9vh 0 -0.49rem#fff, 73.4vw 65vh 0 -0.35rem#fff, 96.1vw 50.2vh 0 -0.03rem#fff, 94.8vw 52.1vh 0 -0.28rem#fff,
         15.1vw 70.1vh 0 -0.42rem#fff, 76.5vw 8.1vh 0 -0.12rem#fff, 92.2vw 85.4vh 0 -0.47rem#fff, 42vw 30.8vh 0 -0.24rem#fff, 9.9vw 95.9vh 0 -0.32rem#fff, 31.9vw 93.4vh 0 -0.39rem#fff;
-    animation-duration: 8s;
+    animation-duration: 16s;
 }
 
 .layer2.a {
