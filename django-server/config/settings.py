@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'lecture',
     'chat',
     'board',
+    'evaluation'
 ]
 
 MIDDLEWARE = [

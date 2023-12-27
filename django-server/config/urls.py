@@ -29,6 +29,7 @@ urlpatterns = [
     path('lecture/', include('lecture.urls')),
     path('chat/', include('chat.urls')),
     path('board/', include('board.urls')),
+    path('evaluation/', include('evaluation.urls')),
     path('admin/', admin.site.urls),
 ]
 
