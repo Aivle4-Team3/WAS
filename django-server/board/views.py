@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def board(request):
-    return render(request, "./board/bode.html")
+    return render(request, "./board/board.html")
