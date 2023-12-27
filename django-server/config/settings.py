@@ -45,7 +45,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
-    'gdstorage',
+    
 
     'django.contrib.admin',
     'django.contrib.auth',
