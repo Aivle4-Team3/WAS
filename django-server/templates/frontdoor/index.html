@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <img src="{% static '/img/EDU.png' %}" style="height: 50px; width: auto; drop-shadow(1px 1px 1px white);" />
-                <a class="navbar-brand" href="#page-top">&nbsp;&nbsp;A+EDU</a>
+                <a class="navbar-brand" href="#page-top"><img src="{% static 'frontdoor/img/logoText.png' %}"/></a>
                 <button
                     class="navbar-toggler navbar-toggler-right"
                     type="button"
@@ -58,7 +58,7 @@
                         <li class="nav-item"><a class="nav-link" href="/accounts/login/">로그인</a></li>
                         <li class="nav-item"><a class="nav-link" href="/accounts/signup/">회원가입</a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">A+에듀 소식</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#news">A+에듀 소식</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Q&amp;A</a></li>
                     </ul>
                 </div>
@@ -91,7 +91,7 @@
             </div>
         </header>
         <!-- About-->
-        <section class="page-section bg-primary" id="about">
+        <section class="page-section bg-primary" id="news">
             <div class="carousel">
                 <div class="carousel-item active">
                     <img src="{% static 'frontdoor/img/haerin1.jpg' %}" alt="Slide 1">
