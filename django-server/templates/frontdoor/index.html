@@ -92,22 +92,17 @@
         </header>
         <!-- About-->
         <section class="page-section bg-primary" id="about">
-            <div class="video-background">
-                <iframe frameborder="0" height="100%" width="100%" allow="autoplay; encrypted-media" allowfullscreen="" src="{{ background_video }}"> </iframe>
-            </div>
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">We've got what you need!</h2>
-                        <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">
-                            Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No
-                            strings attached!
-                        </p>
-                        <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
-                    </div>
+            <div class="carousel">
+                <div class="carousel-item active">
+                    <img src="{% static 'frontdoor/img/haerin1.jpg' %}" alt="Slide 1">
                 </div>
-            </div>
+                <div class="carousel-item">
+                    <img src="{% static 'frontdoor/img/haerin2.jpg' %}" alt="Slide 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'frontdoor/img/haerin3.jpg' %}" alt="Slide 3">
+                </div>
+            </div>     
         </section>
         <!-- Services-->
         <img src="" style="width: 67%; position: absolute" />
@@ -240,5 +235,6 @@
         <!-- SimpleLightbox plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="{% static 'frontdoor/js/frontdoor.js' %}"></script>
     </body>
 </html>

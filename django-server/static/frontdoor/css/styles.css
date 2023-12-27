@@ -11016,3 +11016,21 @@ header.masthead h1, header.masthead .h1 {
   transform: translate(-50%, -50%);
   object-fit: cover; /* Cover the entire area of .video-background */
 }
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  display: none;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: lightgray;
+  margin-bottom: 10px;
+}
+
+.carousel-item.active {
+  display: block;
+}
