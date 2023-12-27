@@ -45,7 +45,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'daphne',
-    
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'lecture',
     'chat',
     'board',
+    'evaluation',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,7 @@ LOGIN_REDIRECT_URL = 'login_success'
 # 가입 후 리디렉션할 페이지
 ACCOUNT_SIGNUP_REDIRECT_URL = 'login_success'
 # 로그아웃 후 리디렉션할 페이지
-ACCOUNT_LOGOUT_REDIRECT_URL = 'frontdoor'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'enterence'
 # 로그아웃 버튼 클릭 시 자동 로그아웃
 ACCOUNT_LOGOUT_ON_GET = True
 
@@ -172,10 +173,10 @@ DATABASES = {
 }
 
 # AWS Setting
-AWS_REGION = ''
-AWS_STORAGE_BUCKET_NAME = ''
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
+AWS_REGION = 'ap-northeast-2'
+AWS_STORAGE_BUCKET_NAME = 'ktaivle-team3-bucket'
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
