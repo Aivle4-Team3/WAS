@@ -28,7 +28,7 @@ def list(request):
     if search_key:
         post_list=Post.objects.filter(title__contains=search_key)
     # return HttpResponse(post_all)
-    return render(request, 'blog/list.html', {'post_all' : post_list, 'q':search_key}) # 템플릿을 응답하고 싶을 때 사용
+    return render(request, 'board/list.html', {'post_all' : post_list, 'q':search_key}) # 템플릿을 응답하고 싶을 때 사용
 
 # 상세 보기
 def detail(request, no):
@@ -37,22 +37,22 @@ def detail(request, no):
     comment_list = post.comments.all() # QuerySet
     tag_list = post.tag.all() # QuerySet
     # return HttpResponse(post.title)
-    return render(request, 'blog/detail.html', {'post' : post, 'comment_all':comment_list, 'tag_list':tag_list})
+    return render(request, 'board/detail.html', {'post' : post, 'comment_all':comment_list, 'tag_list':tag_list})
 
 def profile(request):
     user = User.objects.first()
-    return render(request, 'blog/profile.html', {'user' : user})
+    return render(request, 'board/profile.html', {'user' : user})
 
 def tag_list(request, id):
     tag = Tag.objects.get(id=id)
     post_list = tag.post_set.all()
-    return render(request, 'blog/list.html', {'post_all' : post_list})
+    return render(request, 'board/list.html', {'post_all' : post_list})
 
 def test3(request):
     print('요청 방식:',request.method)
     print('Get방식으로 전달된 문자열:', request.GET)
     print('Post방식으로 전달된 문자열:', request.POST)
-    return render(request, 'blog/form_test.html')
+    return render(request, 'board/form_test.html')
 
 def post_create(request):
     if request.method == 'POST':
@@ -77,17 +77,17 @@ def post_update(request, id):
         form = PostModelForm(request.POST, instance=post)
         if form.is_valid():
             form.save() # 추가도 하고 수정도 가능, 구분은 새로운 데이터면 추가 디비에서 가져온거면 수정 
-            return redirect('blog:list')
+            return redirect('board:list')
     else:
         form = PostModelForm(instance=post)
     
-    return render(request, 'blog/post_update.html', {'form':form})
+    return render(request, 'board/post_update.html', {'form':form})
 
 # Data 삭제 작업
 def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
     if request.method=='POST':
         post.delete()
-        return redirect('blog:list')
+        return redirect('board:list')
     else:
-        return render(request, 'blog/post_delete.html', {'post':post})
+        return render(request, 'board/post_delete.html', {'post':post})

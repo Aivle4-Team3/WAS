@@ -1,0 +1,20 @@
+
+
+{% block title %}상세 보기{% endblock title %}
+
+{% block content %}
+
+<h1> {{post.title}} </h1>
+제목 : {{post.title}} <br>
+내용 : {{post.body}} <br>
+
+<hr>
+<p>댓글</p>
+{% for comment in comment_all %}
+    <p>{{comment.message}} / {{comment.author}} / {{comment.updated}} </p>
+{%empty%}
+    <p> 댓글이 존재하지 않습니다. </p>
+{% endfor %}
+<hr>
+
+{% endblock content %}
