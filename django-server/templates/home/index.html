@@ -15,7 +15,7 @@
                 {% for lecture in lectures %}
                 <form class="col-sm-6 col-lg-4" method="post" action="{% url 'lecture' lecture.title %}">
                     {% csrf_token %}
-                    <input type="hidden" name="video_id" value="{{ lecture.video.id }}" />
+                    <input type="hidden" name="lecture_id" value="{{ lecture.id }}" />
                     <div class="card p-2 h-100 shadow-none border">
                         <div class="rounded-2 text-center mb-3">
                             <input type="image" class="img-fluid" src="{{ lecture.thumbnail.url }}" alt="Submit" title="{{ lecture.title }}" />

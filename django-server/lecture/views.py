@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from home.models import Lecture
 from .models import Video
 # Create your views here.
 
@@ -6,8 +7,11 @@ from .models import Video
 def lecture(request, lecture_name):
 
     if request.method == "POST":
+
+        lecture = Lecture.objects.get(id=request.POST['lecture_id'])
+
         context = {
-            'video_file': Video.objects.get(id=request.POST['video_id']).file,
+            'lecture': lecture,
         }
 
         return render(request, './lecture/index.html', context)
