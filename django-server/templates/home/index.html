@@ -13,12 +13,12 @@
             {% if lectures %}
             <div class="row gy-4 mb-4">
                 {% for lecture in lectures %}
-                <div class="col-sm-6 col-lg-4">
+                <form class="col-sm-6 col-lg-4" method="post" action="{% url 'lecture' lecture.title %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="lecture_id" value="{{ lecture.id }}" />
                     <div class="card p-2 h-100 shadow-none border">
                         <div class="rounded-2 text-center mb-3">
-                            <a href="/lecture/{{ lecture.video.id }}">
-                                <img class="img-fluid" src="{{ lecture.thumbnail.url }}" alt="{{ lecture.video.id }}" title="{{ lecture.title }}" />
-                            </a>
+                            <input type="image" class="img-fluid" src="{{ lecture.thumbnail.url }}" alt="Submit" title="{{ lecture.title }}" />
                         </div>
                         <div class="card-body p-3 pt-2">
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -27,23 +27,23 @@
                                     {{ lecture.rating }} <span class="text-warning"><i class="bx bxs-star me-1"></i></span><span class="text-muted">({{ lecture.student_count }})</span>
                                 </h6>
                             </div>
-                            <a href="/lecture/{{ lecture.video.id }}" class="h5">{{ lecture.video.id }}</a>
+                            <button type="submit" class="h5" style="background: none; border: none; padding: 0; margin: 0">{{ lecture.title }}</button>
                             <p class="mt-2">{{ lecture.summary }}</p>
                             <p class="d-flex align-items-center"><i class="bx bx-time-five me-2"></i>{{ lecture.remain_time }}</p>
                             <div class="progress mb-4" style="height: 8px">
                                 <div class="progress-bar w-75" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="d-flex flex-column flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
-                                <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="/lecture/{{ lecture.video.id }}">
+                                <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="#">
                                     <i class="bx bx-sync align-middle me-2"></i><span>Start Over</span>
                                 </a>
-                                <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center" href="/lecture/{{ lecture.video.id }}">
+                                <button type="submit" class="app-academy-md-50 btn btn-label-primary d-flex align-items-center">
                                     <span class="me-2">Continue</span><i class="bx bx-chevron-right lh-1 scaleX-n1-rtl"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 {% endfor %}
                 {% else %}
                 <p>빈 강의</p>
