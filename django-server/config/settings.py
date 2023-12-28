@@ -128,7 +128,7 @@ LOGIN_REDIRECT_URL = 'login_success'
 # 가입 후 리디렉션할 페이지
 ACCOUNT_SIGNUP_REDIRECT_URL = 'login_success'
 # 로그아웃 후 리디렉션할 페이지
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'frontdoor'
 # 로그아웃 버튼 클릭 시 자동 로그아웃
 ACCOUNT_LOGOUT_ON_GET = True
 
@@ -147,6 +147,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'home.context.context_processor',
             ],
         },
     },

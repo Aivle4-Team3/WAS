@@ -11,7 +11,24 @@
     </div>
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-        <span>［오늘의 명언］반복은 천재를 낳고, 믿음은 기적을 낳는다. － 안진수</span>
+        <div id="slick-pharse">
+            {% for phrase in phrase_list %}
+                <div>{{ phrase }}</div>
+            {% endfor %}
+        </div>
+        <script>
+            window.onload = function() {
+                $('#slick-pharse').slick({
+                    infinite: true,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    arrows: false,
+                    vertical: true,
+                  });
+            }
+        </script>
+        <style>
+        </style>
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- User -->
@@ -19,7 +36,7 @@
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                         <!-- Moke condition for displaying user avatar -->
-                        <span>{{ user.id }} 님 환영합니다 😊　</span>
+                        <span>{{ user }} 님 환영합니다 😊　</span>
                         <img src="{{ user.avatar.url }}" alt="프로필" class="w-px-40 rounded-circle" />
                     </div>
                 </a>
