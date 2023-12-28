@@ -7,7 +7,11 @@ from .forms import *
 
 
 def board(request):
-    return render(request, "./board/board.html")
+    post_list = Post.objects.all()
+    search_key = request.GET.get('keyword')
+    if search_key:
+        post_list=Post.objects.filter(title__contains=search_key)
+    return render(request, 'board/board.html', {'post_all' : post_list, 'q':search_key})
 
 
 # Create your views here.
@@ -28,7 +32,7 @@ def list(request):
     if search_key:
         post_list=Post.objects.filter(title__contains=search_key)
     # return HttpResponse(post_all)
-    return render(request, 'board/list.html', {'post_all' : post_list, 'q':search_key}) # 템플릿을 응답하고 싶을 때 사용
+    return render(request, 'board/board.html', {'post_all' : post_list, 'q':search_key}) # 템플릿을 응답하고 싶을 때 사용
 
 # 상세 보기
 def detail(request, no):

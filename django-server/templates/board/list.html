@@ -11,7 +11,7 @@
     <input type='submit' value='검색'>
 </form>
 {% for post in post_all %}
-    <a href="/blog/{{post.id}}"> {{post.title}} </a> <br>
+    <a href="/board/{{post.id}}"> {{post.title}} </a> <br>
 {% endfor %}
 
 <a href="{% url 'blog:create' %}">[새 글 쓰기]</a>
