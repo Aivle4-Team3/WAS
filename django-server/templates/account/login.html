@@ -16,6 +16,16 @@
 
         <!-- Custom styles for this template-->
         <link href="{% static '/accounts/css/sb-admin-2.css' %}" rel="stylesheet" />
+        <style>
+            .bt{
+                color: black !important;
+                background-color: white !important;
+                border-color: gray !important;
+            }
+            .h4.text-gray-900.mb-4{
+                font-size: 20px;
+            }
+        </style>
     </head>
 
     <body class="bg-gradient-primary">
@@ -31,7 +41,7 @@
                                 <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">AI 학생을 학습하고 성장시켜 보세요!</h1>
                                         </div>
                                         <form class="user" method="post" action="{% url 'account_login' %}">
                                             {% csrf_token %}
@@ -55,7 +65,9 @@
                                                     <label class="custom-control-label" for="customCheck">Remember Me</label>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                            
+                                            <button type="submit" class="btn btn-primary btn-user btn-block bt">Login</button> 
+                                            
                                         </form>
                                         <hr />
                                         <form class="user" action="{% provider_login_url 'google' %}" method="post">
