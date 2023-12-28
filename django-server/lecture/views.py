@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from home.models import Lecture
-from .models import Video
+from .models import Lecture
 # Create your views here.
 
 

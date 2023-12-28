@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Lecture
+from lecture.models import Lecture
 
 
 def index(request):
