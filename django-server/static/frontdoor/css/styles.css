@@ -11036,3 +11036,9 @@ header.masthead h1, header.masthead .h1 {
 .carousel-item.active {
   display: block;
 }
+
+.carousel-item img {
+  width:500px;
+  height:auto;
+  vertical-align: middle;
+}
