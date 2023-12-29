@@ -482,6 +482,7 @@ button:not(:disabled),
 }
 
 textarea {
+    width: 100%;
     resize: vertical
 }
 
