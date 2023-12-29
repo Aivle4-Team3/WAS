@@ -21,7 +21,7 @@
             
 
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">eCommerce /</span> Category List
+  <span class="text-muted fw-light">QnA 게시판 /</span>
 </h4>
 
 <div class="app-ecommerce-category">
@@ -29,20 +29,24 @@
   <div class="card">
     <div class="card-datatable table-responsive">
       
-      <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"><div class="card-header d-flex flex-wrap py-0"><div class="me-5 ms-n2 pe-5"><div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control" placeholder="Search Category" aria-controls="DataTables_Table_0"></label></div></div><div class="d-flex justify-content-start justify-content-md-end align-items-baseline"><div class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-3 mb-sm-0 gap-3 pt-0"><div class="dataTables_length mt-0 mt-md-3" id="DataTables_Table_0_length"><label></label></div><div class="dt-buttons"><a href="{% url 'board:create' %}">[새 글 쓰기]</a> </div></div>
+      <div class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-end mb-3 mb-sm-0 gap-3 pt-0">
+  <div class="dataTables_length mt-0 mt-md-3" id="DataTables_Table_0_length"><label></label></div><div class="dt-buttons"><a href="{% url 'board:create' %}" class="ms-3">[새 글 쓰기]</a> </div></div>
     
     </div></div>
     <table id="DataTables_Table_0" class="table table-bordered">
       <thead>
           <tr>
-              <th>Title</th>
-              <!-- Add more columns as needed -->
+              <th>제목</th>
+              <th col width="20%">작성자</th>
+              <th col width="20%">작성 시간</th>
           </tr>
       </thead>
       <tbody>
           {% for post in post_all %}
           <tr>
               <td><a href="/board/{{post.id}}">{{post.title}}</a></td>
+              <td><a href="/board/{{post.id}}">{{post.author}}</a></td>
+              <td><a href="/board/{{post.id}}">{{post.created}}</a></td>
               <!-- Add more cells with post information as needed -->
           </tr>
           {% endfor %}
@@ -138,4 +142,4 @@
 <script type="text/javascript" id="">(function(b,c,d){var a=b.createElement("script");a.type="text/javascript";a.src="https://a.omappapi.com/app/js/api.min.js";a.async=!0;a.dataset.user=c;a.dataset.account=d;b.getElementsByTagName("head")[0].appendChild(a)})(document,252882,269977);</script>
 <!-- Page JS -->
   <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/app-ecommerce-category-list.js.다운로드"></script>
-    {% endblock %}
+{% endblock %}

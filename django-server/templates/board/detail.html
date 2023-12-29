@@ -1,20 +1,195 @@
+{% extends "../base.html" %} {% load static %}
+{% block contents %}
 
-
-{% block title %}상세 보기{% endblock title %}
-
-{% block content %}
-
-<h1> {{post.title}} </h1>
-제목 : {{post.title}} <br>
-내용 : {{post.body}} <br>
+{% comment %} <h1> 제목 : {{post.title}} </h1>
+내용 : <br>
+{{post.body}} <br>
 
 <hr>
-<p>댓글</p>
-{% for comment in comment_all %}
-    <p>{{comment.message}} / {{comment.author}} / {{comment.updated}} </p>
-{%empty%}
-    <p> 댓글이 존재하지 않습니다. </p>
-{% endfor %}
-<hr>
+<p>댓글</p> {% endcomment %}
+<style>
+    /* 댓글 입력 폼에 대한 스타일 변경 */
+    form[action^="{% url 'board:create_comment' post.id %}"] {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        display: flex;
+        flex-direction: column; /* 요소들을 세로로 배치 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+        width: 100%; /* 가로 크기를 80%로 설정 */
+    }
 
-{% endblock content %}
+    /* 메시지 입력창 크기 조정 */
+    form[action^="{% url 'board:create_comment' post.id %}"] textarea#id_message {
+        width: 100%; /* 가로로 꽉 채우기 */
+        height: 50px; /* 원하는 세로 높이로 조정 */
+        resize: vertical; /* 세로로만 조절 가능하도록 설정 */
+    }
+
+    /* 버튼 스타일 변경 */
+    form[action^="{% url 'board:create_comment' post.id %}"] button.btn-primary {
+        margin-left: auto; /* 버튼을 오른쪽으로 정렬 */
+        margin-top: 10px; /* 위쪽 여백 추가 */
+    }
+
+    /* 댓글 컨테이너 스타일 */
+    .comment-container {
+        border: 1px solid #696cff;;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* 작성자 스타일 */
+    .comment-author {
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    /* 업데이트 시간 스타일 */
+    .comment-created {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 5px;
+    }
+
+    /* 메시지 스타일 */
+    .comment-message {
+        font-size: 16px;
+    }
+</style>
+
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar  ">
+    <div class="layout-container">
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+  
+          <!-- Content -->
+          
+            <div class="container-xxl flex-grow-1 container-p-y">
+              
+              
+  
+  <h4 class="py-3 mb-4">
+    <span class="text-muted fw-light">익명게시판 /</span> 자유게시판
+  </h4>
+  
+  <div class="app-ecommerce-category">
+    <!-- Category List Table -->
+    <div class="card">
+      <div class="card-datatable table-responsive">
+        
+        
+      
+      </div></div>
+      <table id="DataTables_Table_0" class="table table-bordered">
+        <tbody>
+            <h5> 작성자 : {{post.author}} </h5>
+            <h1> 제목 : {{post.title}} </h1>
+                    내용 : <br>
+                    {{post.body}} <br>
+
+                    <hr>
+                    <p>댓글</p>
+                                <!-- 댓글 템플릿 -->
+                    {% for comment in comment_all %}
+                    <div class="comment-container">
+                        <span class="comment-author">{{ comment.author }}</span>
+                        <span class="comment-created">{{ comment.created }}</span>
+                        <p class="comment-message">{{ comment.message }}</p>
+                    </div>
+                    {%empty%}
+                    <p>댓글이 존재하지 않습니다.</p>
+                    {% endfor %}
+
+                    <hr>
+
+                    <form action="{% url 'board:create_comment' post.id %}" method="POST">
+                    {% csrf_token %}
+                    <label for="{{ comment_form.message.id_for_label }}">댓글 입력</label>
+                    <textarea
+                        name="{{ comment_form.message.name }}"
+                        id="{{ comment_form.message.id_for_label }}"
+                        placeholder="여러분들의 소중한 댓글을 입력해주세요."
+                        cols="{{ comment_form.message.widget.attrs.cols }}"
+                        rows="{{ comment_form.message.widget.attrs.rows }}"
+                        {% if comment_form.message.disabled %}disabled{% endif %}
+                        {% if comment_form.message.required %}required{% endif %}
+                    >{{ comment_form.message.value|default:'' }}</textarea>
+                    <button type="submit" class="btn btn-primary">제출</button>
+                    </form>
+
+<hr>
+<a href="{% url 'board:board' %}">목록가기</a>
+        </tbody>
+    </table>
+      
+      
+      </div>
+      
+    </div>
+    
+    
+    </div>
+  </div>
+  
+            </div>
+            <!-- / Content -->
+  
+  
+            
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+  
+      
+      
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+      
+      
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+      
+    </div>
+    <!-- / Layout wrapper -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/jquery.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/popper.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/bootstrap.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/perfect-scrollbar.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/hammer.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/i18n.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/typeahead.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/menu.js.다운로드"></script>
+    
+    <!-- endbuild -->
+  
+    <!-- Vendors JS -->
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/moment.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/datatables-bootstrap5.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/select2.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/popular.min.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/index.min.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/index.min(1).js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/katex.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/quill.js.다운로드"></script>
+  
+    <!-- Main JS -->
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/main.js.다운로드"></script>
+    
+  
+    <script type="text/javascript" id="">console.log("TS:GTM Worked!");</script>
+  <script type="text/javascript" id="">(function(b,c,d){var a=b.createElement("script");a.type="text/javascript";a.src="https://a.omappapi.com/app/js/api.min.js";a.async=!0;a.dataset.user=c;a.dataset.account=d;b.getElementsByTagName("head")[0].appendChild(a)})(document,252882,269977);</script>
+  <!-- Page JS -->
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/app-ecommerce-category-list.js.다운로드"></script>
+    <!-- Scroll to Comment Form -->
+
+
+    {% endblock contents %}
