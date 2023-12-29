@@ -7,7 +7,7 @@ from .forms import *
 
 
 def board(request):
-    post_list = Post.objects.all()
+    post_list = Post.objects.all().order_by('-id')
     search_key = request.GET.get('keyword')
     if search_key:
         post_list=Post.objects.filter(title__contains=search_key)
@@ -41,7 +41,8 @@ def detail(request, no):
     comment_list = post.comments.all() # QuerySet
     tag_list = post.tag.all() # QuerySet
     # return HttpResponse(post.title)
-    return render(request, 'board/detail.html', {'post' : post, 'comment_all':comment_list, 'tag_list':tag_list})
+    comment_form=CommentForm()
+    return render(request, 'board/detail.html', {'post' : post, 'comment_all':comment_list, 'tag_list':tag_list, 'comment_form':comment_form})
 
 def profile(request):
     user = User.objects.first()
@@ -95,3 +96,19 @@ def post_delete(request, id):
         return redirect('board:list')
     else:
         return render(request, 'board/post_delete.html', {'post':post})
+    
+def create_comment(request, id):
+    post = get_object_or_404(Post, id=id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.author = '익명'
+        comment.save()
+    return redirect('board:detail', post.id)
+
+def delete_comment(request, post_id, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.author == comment.author:
+        comment.delete()
+    return redirect('board:detail')

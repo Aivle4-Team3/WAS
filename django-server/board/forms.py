@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 class PostForm(forms.Form):
     title = forms.CharField(label='제목') # 위젯으로 바뀔 때 input 타입 텍스트로 바뀜, 기본 위젯
@@ -9,3 +9,8 @@ class PostModelForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'body']
+        
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['message', ]
