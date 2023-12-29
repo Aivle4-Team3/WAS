@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 big = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(big))
-from ai import testbot
+from ai import testbot, evalbot
 # Create your views here.
 
 
@@ -13,11 +13,13 @@ def evaluation(request):
 
 def evaluation1(request, video1):
     a = []
-    print(video1)
     qs = Test.objects.filter(video=video1)
     for q in qs:
-        a.append(testbot.test_ai(q.question))
-    test_eval(my_ai_ans, true_ans)
+        t = testbot.test_ai(q.question)
+        a.append(t)
+        print("답: ",t)
+    for my, q in zip(a, qs):
+        print('채점 결과: ', evalbot.test_eval(my, q.answer))
     #시험 문제를 가져오기 -> 어느 비디오에서 왔는가? 
     #시험 문제를 풀게하기
     #채점까지 해야함.
