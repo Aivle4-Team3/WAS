@@ -1,7 +1,86 @@
 {% extends "../base.html" %} {% load static %}
 {% block contents %}
+<style>
+    /* 폼 전체에 대한 스타일 */
+    form {
+        width: 50%; /* 원하는 폭으로 조정 */
+        margin: auto; /* 가운데 정렬 */
+    }
 
-    <h1> POST 등록</h1>
+    /* 테이블에 대한 스타일 (Bootstrap 스타일 적용) */
+    table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #dee2e6;
+    }
+
+    th, td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+
+    /* 등록 버튼에 대한 스타일 (Bootstrap 스타일 적용) */
+    input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #fff;
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+</style>
+
+    {% comment %} <h1> POST 등록</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" value="등록">
+    </form> {% endcomment %}
+
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar  ">
+    <div class="layout-container">
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+  
+          <!-- Content -->
+          
+            <div class="container-xxl flex-grow-1 container-p-y">
+              
+              
+  
+  <h4 class="py-3 mb-4">
+    <span class="text-muted fw-light">익명게시판 /</span> 게시글 등록 
+  </h4>
+  
+  <div class="app-ecommerce-category">
+    <!-- Category List Table -->
+    <div class="card">
+      <div class="card-datatable table-responsive">
+        
+        
+      
+      </div></div>
+      <table id="DataTables_Table_0" class="table table-bordered">
+        <tbody>
+            
     <form action="" method="POST">
         {% csrf_token %}
         <table>
@@ -9,4 +88,75 @@
         </table>
         <input type="submit" value="등록">
     </form>
+
+<hr>
+<a href="{% url 'board:board' %}">목록가기</a>
+        </tbody>
+    </table>
+      
+      
+      </div>
+      
+    </div>
+    
+    
+    </div>
+  </div>
+  
+            </div>
+            <!-- / Content -->
+  
+  
+            
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+  
+      
+      
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+      
+      
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+      
+    </div>
+    <!-- / Layout wrapper -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/jquery.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/popper.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/bootstrap.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/perfect-scrollbar.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/hammer.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/i18n.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/typeahead.js.다운로드"></script>
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/menu.js.다운로드"></script>
+    
+    <!-- endbuild -->
+  
+    <!-- Vendors JS -->
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/moment.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/datatables-bootstrap5.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/select2.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/popular.min.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/index.min.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/index.min(1).js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/katex.js.다운로드"></script>
+  <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/quill.js.다운로드"></script>
+  
+    <!-- Main JS -->
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/main.js.다운로드"></script>
+    
+  
+    <script type="text/javascript" id="">console.log("TS:GTM Worked!");</script>
+  <script type="text/javascript" id="">(function(b,c,d){var a=b.createElement("script");a.type="text/javascript";a.src="https://a.omappapi.com/app/js/api.min.js";a.async=!0;a.dataset.user=c;a.dataset.account=d;b.getElementsByTagName("head")[0].appendChild(a)})(document,252882,269977);</script>
+  <!-- Page JS -->
+    <script src="./eCommerce Category List - Apps _ Sneat - Bootstrap 5 HTML Admin Template - Pro_files/app-ecommerce-category-list.js.다운로드"></script>
+    <!-- Scroll to Comment Form -->
     {% endblock %}

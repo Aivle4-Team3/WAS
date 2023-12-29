@@ -9,6 +9,10 @@ class PostModelForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'body']
+        labels = {
+            'title': '제목',
+            'body': '내용',
+        }
         
 class CommentForm(forms.ModelForm):
     class Meta:

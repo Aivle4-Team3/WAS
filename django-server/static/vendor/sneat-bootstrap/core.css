@@ -435,6 +435,7 @@ button,
 select,
 optgroup,
 textarea {
+    width: 100%;
     margin: 0;
     font-family: inherit;
     font-size: inherit;
@@ -20283,7 +20284,7 @@ html:not([dir=rtl]) .ms-2 {
 }
 
 html:not([dir=rtl]) .ms-3 {
-    margin-left: 1rem !important
+    margin-right: 1rem !important
 }
 
 html:not([dir=rtl]) .ms-4 {
