@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.chatpage, name='chat'),
+    path('<str:lecture_name>', views.chatpage, name='chat'),
+
 ]
