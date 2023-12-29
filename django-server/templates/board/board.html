@@ -21,7 +21,7 @@
             
 
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">익명게시판 /</span> 자유게시판
+  <span class="text-muted fw-light">QnA 게시판 /</span>
 </h4>
 
 <div class="app-ecommerce-category">
@@ -36,14 +36,17 @@
     <table id="DataTables_Table_0" class="table table-bordered">
       <thead>
           <tr>
-              <th>Title</th>
-              <!-- Add more columns as needed -->
+              <th>제목</th>
+              <th col width="20%">작성자</th>
+              <th col width="20%">작성 시간</th>
           </tr>
       </thead>
       <tbody>
           {% for post in post_all %}
           <tr>
               <td><a href="/board/{{post.id}}">{{post.title}}</a></td>
+              <td><a href="/board/{{post.id}}">{{post.author}}</a></td>
+              <td><a href="/board/{{post.id}}">{{post.created}}</a></td>
               <!-- Add more cells with post information as needed -->
           </tr>
           {% endfor %}

@@ -47,7 +47,7 @@
     }
 
     /* 업데이트 시간 스타일 */
-    .comment-updated {
+    .comment-created {
         font-size: 12px;
         color: #888;
         margin-bottom: 5px;
@@ -95,7 +95,7 @@
                     {% for comment in comment_all %}
                     <div class="comment-container">
                         <span class="comment-author">{{ comment.author }}</span>
-                        <span class="comment-updated">{{ comment.updated }}</span>
+                        <span class="comment-created">{{ comment.created }}</span>
                         <p class="comment-message">{{ comment.message }}</p>
                     </div>
                     {%empty%}

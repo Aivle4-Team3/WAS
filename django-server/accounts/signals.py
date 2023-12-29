@@ -4,7 +4,7 @@ from django.core.files.base import ContentFile
 import requests
 
 
-# 소셜 계정으로 가입시 시그널
+# 소셜 계정으로 가입 시 시그널
 @receiver(user_signed_up)
 def populate_profile(request, sociallogin=None, **kwargs):
     if sociallogin:
