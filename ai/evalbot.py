@@ -21,7 +21,7 @@ def make_message(my_ai_ans, true_ans):
     # messages.append({'role': 'assistant',
     #                  "content": "선생님, 오셨군요!"})
 
-    messages.append({"role": "user", "content": f'{my_ai_ans}, 이건 내가 쓴 답이고, {true_ans}, 이건 정답이야 내가 쓴 답을 채점해서 맞으면 1 틀리면 0 을 보내줘'})
+    messages.append({"role": "user", "content": f'{my_ai_ans}, 이건 내가 쓴 답이고, {true_ans}, 이건 정답이야 내가 쓴 답을 채점해서 맞으면 1 틀리면 0 을 보내줘. 모르겠어요는 틀린거야.'})
     return messages
 
 

@@ -18,10 +18,20 @@ def evaluation1(request, video1):
         t = testbot.test_ai(q.question)
         a.append(t)
         print("답: ",t)
+
+    checklist = []
     for my, q in zip(a, qs):
-        print('채점 결과: ', evalbot.test_eval(my, q.answer))
+        is_answer = evalbot.test_eval(my, q.answer)
+        print('채점 결과: ', is_answer)
+        checklist.append(is_answer)
     #시험 문제를 가져오기 -> 어느 비디오에서 왔는가? 
     #시험 문제를 풀게하기
     #채점까지 해야함.
     #채점 결과
-    return render(request, "./evaluation/ev.html", context={})
+    context = {
+        'num_correct': checklist.count('1'),
+        'num_wrong': checklist.count('0'),
+        'checklist': checklist,
+    }
+
+    return render(request, "./evaluation/ev.html", context=context)
