@@ -134,6 +134,14 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 ACCOUNT_SESSION_REMEMBER = False
 
+# 소셜 계정으로 로그인 시 자동으로 사용자 계정을 생성할지
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_FORMS = {
+    # 소셜계정 가입 후 추가 폼
+    'signup': 'accounts.forms.CustomSocialSignupForm',
+}
+
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
