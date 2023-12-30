@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from django_countries import countries
+from allauth.account.views import SignupView
 from . import models
-from .forms import UserForm
+from .forms import UserForm, CustomSignupForm
+
+
+class CustomSignupView(SignupView):
+    form_class = CustomSignupForm
 
 
 def login_success(request):
@@ -30,6 +35,7 @@ def mypage(request):
 
     context = {'user': model, 'countries': countries}
     return render(request, './account/mypage.html', context=context)
+
 
 def faq(request):
     # # 접근 유저

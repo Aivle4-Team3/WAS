@@ -142,10 +142,11 @@
     <form method="post" action="{% url 'account_signup' %}" class="signup">
       {% csrf_token %}
 
+      {% if form.errors %}
+        <p style="color:red;">양식에 맞게 작성해주세요.</p>
+      {% endif %}
       <!-- User-specific fields -->
-      {{ form.username }}
-      {{ form.password1 }}
-      {{ form.password2 }}
+      {{ form.as_table }}
 
       <!-- Other form fields can be added if needed -->
 
