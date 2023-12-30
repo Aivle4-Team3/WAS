@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django_countries import countries
 from allauth.account.views import SignupView
-from . import models
+from .models import User
 from .forms import UserForm, CustomSignupForm
 
 
@@ -9,15 +9,11 @@ class CustomSignupView(SignupView):
     form_class = CustomSignupForm
 
 
-def login_success(request):
-    return render(request, './account/login_success.html')
-
-
 def mypage(request):
     # 접근 유저
     username = request.user
     # 접근 유저의 모델 읽기
-    model = models.User.objects.get(username=username)
+    model = User.objects.get(username=username)
 
     if request.method == "POST":
 
