@@ -63,6 +63,9 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_countries',
     'storages',
+    # 게시글 에디터
+    'ckeditor',
+    'ckeditor_uploader',
 
     'accounts',
     'home',
@@ -122,7 +125,7 @@ SOCIALACCOUNT_PROVIDERS = {
 # allauth site_id
 SITE_ID = 1
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username' # or email, userusername_email
+ACCOUNT_AUTHENTICATION_METHOD = 'username'  # or email, userusername_email
 # 로그인 후 리디렉션할 페이지
 LOGIN_REDIRECT_URL = 'home'
 # 가입 후 리디렉션할 페이지
@@ -180,7 +183,8 @@ AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
+    AWS_STORAGE_BUCKET_NAME, AWS_REGION)
 
 
 # Media Setting
@@ -235,3 +239,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# 게시글 에디터 저장 위치
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'

@@ -62,11 +62,11 @@
         </div>
         <table id="DataTables_Table_0" class="table table-bordered">
             <tbody>
-                <h5>작성자 : {{post.author}}</h5>
-                <h1>제목 : {{post.title}}</h1>
+                <h5>작성자 : {{ post.author }}</h5>
+                <h1>제목 : {{ post.title }}</h1>
                 내용 :
                 <br />
-                {{post.body}}
+                {{ post.body|safe }}
                 <br />
 
                 <hr />
@@ -92,12 +92,23 @@
                         placeholder="여러분들의 소중한 댓글을 입력해주세요."
                         cols="{{ comment_form.message.widget.attrs.cols }}"
                         rows="{{ comment_form.message.widget.attrs.rows }}"
-                        {% if comment_form.message.disabled %}
+                        {%
+                        if
+                        comment_form.message.disabled
+                        %}
                         disabled
-                        {% endif %}
-                        {% if comment_form.message.required %}
+                        {%
+                        endif
+                        %}
+                        {%
+                        if
+                        comment_form.message.required
+                        %}
                         required
-                        {% endif %}>
+                        {%
+                        endif
+                        %}
+                    >
                       {{ comment_form.message.value|default:'' }}
                     </textarea>
                     <button type="submit" class="btn btn-primary">제출</button>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from accounts.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 # Create your models here.
 
@@ -8,7 +10,7 @@ from accounts.models import User
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
-    body = models.TextField()
+    body = RichTextUploadingField('내용', blank=True, null=True)
     tag = models.ManyToManyField('Tag', null=True, blank=True)
     created = models.DateTimeField(auto_now=True)
     # null=True: 기존에 있던 데이터의 값들은 null

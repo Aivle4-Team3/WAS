@@ -31,6 +31,7 @@ urlpatterns = [
     path('board/', include('board.urls')),
     path('evaluation/', include('evaluation.urls')),
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls'))
 ]
 
 if settings.DEBUG:

@@ -1,4 +1,5 @@
 {% extends "../base.html" %} {% load static %} {% block contents %}
+{{ form.media }}
 <style>
     /* 폼 전체에 대한 스타일 */
     form {
@@ -60,7 +61,7 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     <table>
-                        {{form.as_table}}
+                        {{ form.as_table }}
                     </table>
                     <input type="submit" value="등록" />
                 </form>
