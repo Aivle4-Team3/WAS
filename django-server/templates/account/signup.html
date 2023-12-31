@@ -153,6 +153,18 @@
       <button type="submit">{% trans 'Sign Up' %}</button>
     </form>
 
+    <hr /><hr /><hr />
+    <div>
+      <form class="user" action="{% provider_login_url 'google' %}" method="post">
+          {% csrf_token %}
+          <button class="btn btn-google btn-user btn-block"><i class="fab fa-google fa-fw"></i>Sign up with Google</button>
+      </form>
+      <form class="user" action="{% provider_login_url 'naver' %}" method="post">
+          {% csrf_token %}
+          <button class="btn btn-facebook btn-user btn-block"><i class="fab fa-facebook-f fa-fw"></i>Sign up with Naver</button>
+      </form>
+    </div>
+
     <p>
       {% trans '이미 계정이 있으신가요?' %} <a href="{% url 'account_login' %}">{% trans 'Log in' %}</a>
     </p>
