@@ -53,8 +53,8 @@ window.addEventListener("DOMContentLoaded", function () {
         },
     });
 
-    const roomName = "basic";
-    const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + roomName + "/");
+    const lecture = this.document.querySelector('#app-history').dataset.lectureId;
+    const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + lecture + "/");
 
     // 서버에서 메시지 수용
     chatSocket.onmessage = function (e) {
