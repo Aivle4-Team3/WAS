@@ -26,10 +26,10 @@ def make_message(my_ans, given_ans):
     return messages
 
 
-def test_eval(question, given_ans, eval_results, idx):
+def test_eval(question, given_ans, eval_results, idx, chat_message):
     result = eval_results[idx]
     result[0], result[1] = question, given_ans
-    my_ans = test_ai(question)
+    my_ans = test_ai(question, chat_message)
     result[2] = my_ans
     try:
         response = client.chat.completions.create(
