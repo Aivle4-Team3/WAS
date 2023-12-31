@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.github',
     'phonenumber_field',
     'django_countries',
     'storages',
@@ -117,6 +118,22 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     },
+    'kakao': {
+        'SCOPE': ['profile_nickname', 'profile_image'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'APP': {
+            'client_id': env('KAKAO_OAUTH_CLIENT_ID'),
+            'secret': env('KAKAO_OAUTH_SECRET'),
+        }
+    },
+    'github': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['user:email'],
+        'APP': {
+            'client_id': env('GITHUB_OAUTH_CLIENT_ID'),
+            'secret': env('GITHUB_OAUTH_SECRET'),
+        }
+    }
 }
 
 # allauth site_id
