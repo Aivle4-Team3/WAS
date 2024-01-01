@@ -84,10 +84,11 @@
                             <div class="d-flex align-items-center">
                                 <form action="{% url 'evaluation' lecture_name %}" method="POST" class="btn p-2">
                                     {% csrf_token %}
-                                    <button class="text-grey" style="background-color: transparent; border: none; color: #566a7f" type="submit">성취도평가 하기</button>
+                                    <button class="text-grey" style="background-color: transparent; border: none; color: #566a7f" type="submit" onclick="getElementById('loader').style.display = 'flex'">성취도평가 하기</button>
                                     <input type="hidden" name="lecture_id" value="{{ lecture_id }}" />
                                 </form>
                             </div>
+                            {% block loading %} {% include 'chat/loading.html' %} {% endblock %}
                         </div>
                     </div>
                     <div class="chat-history-body ps ps--active-y" ref="chatHistoryBody">
