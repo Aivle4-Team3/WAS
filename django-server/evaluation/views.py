@@ -7,7 +7,8 @@ from threading import Thread
 import sys
 big = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(big))
-from ai import evalbot
+from ai import evalbot, testbot
+
 # Create your views here.
 
 
@@ -23,21 +24,26 @@ def evaluation(request, lecture_name):
         lecture = Lecture.objects.get(id = lecture_id)
         video = lecture.video        
         statements = Test.objects.filter(video=video)
-        
 
+        # 결과 저장할 가변 리스트
         eval_results = [[0, 0, 0, 0] for i in range(len(statements))]
 
+        # 쓰레딩
         threads = []
-        for idx, q in enumerate(statements):
-            threads.append(Thread(target=evalbot.test_eval, args=(q.question, q.answer, eval_results, idx, chat_message)))
+        for eval_result, statement in zip(eval_results, statements):
+            threads.append(Thread(target=evalbot.test_eval, args=(
+                statement.question, statement.answer, testbot.test(chat_message), eval_result)))
 
-        for th in threads: th.start()
-        for th in threads: th.join()
+        for th in threads:
+            th.start()
+        for th in threads:
+            th.join()
 
+        # 결과
         for er in eval_results:
-            print('문제:', er[0], '답:', er[1], '풀이:', er[2], '정답 여부:', er[3])
+            print(*map(': '.join, zip(["문제", "답", "풀이", "정답 여부"], er)))
         checklist = [er[3] for er in eval_results]
-        
+
         context = {
             'lecture_name': lecture_name,
             'num_correct': checklist.count('1'),
