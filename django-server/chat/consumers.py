@@ -1,13 +1,8 @@
-import sys
 import json
 from channels.generic.websocket import WebsocketConsumer
-from pathlib import Path
 from lecture.models import Lecture
 from .models import Message
-from ai import chatbot
-
-big = Path(__file__).resolve().parent.parent.parent
-sys.path.append(str(big))
+from config.settings import chatbot
 
 
 class ChatConsumer(WebsocketConsumer):

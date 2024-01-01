@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from student_ai import Chatbot
 import os
 import environ
 from pathlib import Path
@@ -120,7 +121,7 @@ SOCIALACCOUNT_PROVIDERS = {
 # allauth site_id
 SITE_ID = 1
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username' # or email, userusername_email
+ACCOUNT_AUTHENTICATION_METHOD = 'username'  # or email, userusername_email
 # 로그인 후 리디렉션할 페이지
 LOGIN_REDIRECT_URL = 'home'
 # 가입 후 리디렉션할 페이지
@@ -178,7 +179,8 @@ AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
+    AWS_STORAGE_BUCKET_NAME, AWS_REGION)
 
 
 # Media Setting
@@ -233,3 +235,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+chatbot = Chatbot(api_key=env('CHATGPT_API_KEY'))
