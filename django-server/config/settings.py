@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.github',
     'phonenumber_field',
     'django_countries',
     'storages',
@@ -119,6 +120,22 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     },
+    'kakao': {
+        'SCOPE': ['profile_nickname', 'profile_image'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'APP': {
+            'client_id': env('KAKAO_OAUTH_CLIENT_ID'),
+            'secret': env('KAKAO_OAUTH_SECRET'),
+        }
+    },
+    'github': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['user:email'],
+        'APP': {
+            'client_id': env('GITHUB_OAUTH_CLIENT_ID'),
+            'secret': env('GITHUB_OAUTH_SECRET'),
+        }
+    }
 }
 
 # allauth site_id
@@ -135,6 +152,14 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'frontdoor'
 ACCOUNT_LOGOUT_ON_GET = True
 
 ACCOUNT_SESSION_REMEMBER = False
+
+# 소셜 계정으로 로그인 시 자동으로 사용자 계정을 생성할지
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_FORMS = {
+    # 소셜계정 가입 후 추가 폼
+    'signup': 'accounts.forms.CustomSocialSignupForm',
+}
+
 
 ROOT_URLCONF = 'config.urls'
 
