@@ -49,7 +49,7 @@
                                     <img src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" />
                                 </div>
                                 <div class="chat-contact-info flex-grow-1 ms-3">
-                                    <h6 class="chat-contact-name text-truncate m-0">강의 제목</h6>
+                                    <h6 class="chat-contact-name text-truncate m-0">{{ lecture_name }}</h6>
                                     <p class="chat-contact-status text-truncate mb-0 text-muted">I will purchase it for sure. 👍</p>
                                 </div>
                                 <small class="text-muted mb-auto">30 Minutes</small>
@@ -67,7 +67,7 @@
             <!-- /Chat contacts -->
 
             <!-- Chat History -->
-            <div id="app-history" class="col app-chat-history">
+            <div id="app-history" class="col app-chat-history" data-lecture-id="{{ lecture_id }}">
                 <div class="chat-history-wrapper">
                     <div class="chat-history-header border-bottom">
                         <div class="d-flex justify-content-between align-items-center">
@@ -77,16 +77,18 @@
                                     <img src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" data-bs-toggle="sidebar" data-overlay="" data-target="#app-chat-sidebar-right" />
                                 </div>
                                 <div class="chat-contact-info flex-grow-1 ms-3">
-                                    <h6 class="m-0">강의제목</h6>
+                                    <h6 class="m-0">{{ lecture_name }}</h6>
                                     <small class="user-status text-muted">{{ user }}</small>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <a href="{% url 'evaluation' %}" class="btn p-2" role="button" aria-haspopup="true" aria-expanded="false">
-                                    성취도평가 하기
-                                </a>
-
+                                <form action="{% url 'evaluation' lecture_name %}" method="POST" class="btn p-2">
+                                    {% csrf_token %}
+                                    <button class="text-grey" style="background-color: transparent; border: none; color: #566a7f" type="submit" onclick="getElementById('loader').style.display = 'flex'">성취도평가 하기</button>
+                                    <input type="hidden" name="lecture_id" value="{{ lecture_id }}" />
+                                </form>
                             </div>
+                            {% block loading %} {% include 'chat/loading.html' %} {% endblock %}
                         </div>
                     </div>
                     <div class="chat-history-body ps ps--active-y" ref="chatHistoryBody">
