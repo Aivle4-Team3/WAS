@@ -53,3 +53,7 @@ def faq(request):
 
     # context = {'user': model, 'countries': countries}
     return render(request, './home/faq.html')
+
+def consent(request):
+
+    return render(request, 'account/consent.html')

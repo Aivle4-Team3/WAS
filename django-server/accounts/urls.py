@@ -16,4 +16,5 @@ urlpatterns = [
     path('', include('allauth.urls')),
     path('signup/', socialaccount_views.SignupView.as_view(),
          name='account_signup'),
+    path('consent/', views.consent, name='consent' ),
 ]
