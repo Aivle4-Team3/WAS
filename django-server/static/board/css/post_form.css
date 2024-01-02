@@ -1,0 +1,48 @@
+.django-ckeditor-widget {
+    width: 100%;
+}
+/* 폼 전체에 대한 스타일 */
+form {
+    width: 50%; /* 원하는 폭으로 조정 */
+    margin: auto; /* 가운데 정렬 */
+}
+
+/* 테이블에 대한 스타일 (Bootstrap 스타일 적용) */
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid #dee2e6;
+}
+
+th,
+td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+/* 등록 버튼에 대한 스타일 (Bootstrap 스타일 적용) */
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
