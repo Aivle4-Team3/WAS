@@ -10,3 +10,7 @@ def index(request):
     }
 
     return render(request, './home/index.html', context)
+
+def realhome(request):
+
+    return render(request, './home/Fullcalendar.html')

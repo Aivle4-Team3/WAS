@@ -11,11 +11,12 @@
 
 <ul class="menu-inner py-1">
     <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
-        <a href="{% url 'home' %}" class="menu-link">
+        <a href="{% url 'realhome' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div class="text-truncate">홈</div>
         </a>
     </li>
+
     <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
         <a href="{% url 'home' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-book"></i>

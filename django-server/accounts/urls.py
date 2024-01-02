@@ -11,7 +11,7 @@ urlpatterns = [
     path('signup/', CustomSignupView.as_view(), name='account_signup'),
     path('password/reset/', PasswordResetView.as_view(), name='account_reset_password'),
     path('mypage', mypage, name='mypage'),
-    path('faq', faq, name='faq'),
+    path('faq/', faq, name='faq'),
     path('consent/', consent, name='consent' ),
     path('', include('allauth.urls')),  # 오버라이딩할 때 순서 잘 생각하자...
 ]
