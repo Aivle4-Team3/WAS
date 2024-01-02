@@ -92,27 +92,11 @@
                         placeholder="여러분들의 소중한 댓글을 입력해주세요."
                         cols="{{ comment_form.message.widget.attrs.cols }}"
                         rows="{{ comment_form.message.widget.attrs.rows }}"
-                        {%
-                        if
-                        comment_form.message.disabled
-                        %}
-                        disabled
-                        {%
-                        endif
-                        %}
-                        {%
-                        if
-                        comment_form.message.required
-                        %}
-                        required
-                        {%
-                        endif
-                        %}
-                    >
-                      {{ comment_form.message.value|default:'' }}
-                    </textarea>
+                        {% if comment_form.message.disabled %}disabled{% endif %}
+                        {% if comment_form.message.required %}required{% endif %}
+                    >{{ comment_form.message.value|default:'' }}</textarea>
                     <button type="submit" class="btn btn-primary">제출</button>
-                </form>
+                    </form>
 
                 <hr />
                 <a href="{% url 'board:board' %}">목록가기</a>
