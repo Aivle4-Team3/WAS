@@ -10,33 +10,46 @@
 <div class="menu-inner-shadow"></div>
 
 <ul class="menu-inner py-1">
-    <li class="menu-item active open">
+    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
         <a href="{% url 'home' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div class="text-truncate">홈</div>
         </a>
     </li>
-
-    <li class="menu-item">
-        <a href="{% url 'evaluation' '전체?' %}" class="menu-link">
+    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+        <a href="{% url 'home' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-book"></i>
             <div class="text-truncate">강의실</div>
         </a>
     </li>
-
-    <li class="menu-item">
+    <li class="menu-item {% if request.resolver_match.url_name == 'chat' %}active{% endif %}">
         <a href="{% url 'chat' '전체?' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-chat"></i>
             <div class="text-truncate">AI 학생</div>
         </a>
     </li>
-
-    <li class="menu-item">
+    <li class="menu-item {% if request.resolver_match.url_name == 'board' %}active{% endif %}">
         <a href="{% url 'board:board' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-envelope"></i>
             <div class="text-truncate">게시판</div>
         </a>
     </li>
-
-    {% endblock %}
 </ul>
+    {% endblock %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                // 모든 메뉴 항목에서 'active' 클래스 제거
+                menuItems.forEach(function(i) {
+                    i.classList.remove('active');
+                });
+    
+                // 클릭된 메뉴 항목에 'active' 클래스 추가
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
