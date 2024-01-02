@@ -13,4 +13,4 @@ def index(request):
 
 def realhome(request):
 
-    return render(request, './home/Fullcalendar.html')
+    return render(request, './home/fullcalendar.html')
