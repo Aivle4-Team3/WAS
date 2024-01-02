@@ -1,6 +1,6 @@
 from django.urls import path, include
 from allauth.account.views import LoginView, LogoutView, PasswordResetView
-from .views import CustomSignupView, mypage, faq
+from .views import CustomSignupView, mypage, faq, consent
 
 # Create your views here.
 
@@ -12,5 +12,6 @@ urlpatterns = [
     path('password/reset/', PasswordResetView.as_view(), name='account_reset_password'),
     path('mypage', mypage, name='mypage'),
     path('faq', faq, name='faq'),
+    path('consent/', consent, name='consent' ),
     path('', include('allauth.urls')),  # 오버라이딩할 때 순서 잘 생각하자...
 ]
