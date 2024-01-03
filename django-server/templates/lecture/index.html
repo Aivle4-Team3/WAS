@@ -88,10 +88,10 @@
                         </button>
                         <input type="hidden" name="lecture_id" value="{{ lecture.id }}" />
                     </form>
-                    <ul style="list-style-type: none; padding-left:0;">
+                    <ul id="video-list" style="list-style-type: none; padding-left:0;">
                         {% for video in videos %}
                             <li class="accordion-item shadow-none border border-bottom-0 mb-0">
-                                <label class="bg-lighter rounded-0 accordion-button collapsed" style="cursor: pointer">
+                                <label class="rounded-0 accordion-button collapsed" :class="{ 'bg-lighter': picked_video_url === '{{ video.file.url }}' }" style="cursor: pointer">
                                     {{ video.name }}
                                     <input type="radio" value="{{ video.file.url }}" v-model="picked_video_url" style="display:none;">
                                 </label>
@@ -115,7 +115,7 @@
             delimiters: ["[[", "]]"],
             el: '#courseBody',
             data: {
-                picked_video_url: '',
+                picked_video_url: $('#video-list').find('input').eq(0).attr('value'),
             },
         });
 
