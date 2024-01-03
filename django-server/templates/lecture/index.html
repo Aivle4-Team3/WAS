@@ -19,9 +19,11 @@
                 <div class="card academy-content shadow-none border">
                     <div class="p-2">
                         <div class="cursor-pointer">
-                            <video id="player" controls>
-                                <source src="{{ lecture.video.file.url }}" type="video/mp4" />
-                            </video>
+                            {% for video in videos %}
+                                <video id="player" controls>
+                                    <source src="{{ video.file.url }}" type="video/mp4" />
+                                </video>
+                            {% endfor %}
                         </div>
                         <style>
                             .plyr {
