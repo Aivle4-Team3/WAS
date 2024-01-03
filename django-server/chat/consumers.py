@@ -1,6 +1,6 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from lecture.models import Lecture
+from lecture.models import Video
 from .models import Message
 from config.settings import chatbot
 
@@ -24,10 +24,10 @@ class ChatConsumer(WebsocketConsumer):
         print("answer", answer)
 
         # 데이터베이스에 저장
-        lecture_id = self.scope['url_route']['kwargs']['room_name']
-        lecture = Lecture.objects.get(id=lecture_id)
+        video_id = self.scope['url_route']['kwargs']['room_name']
+        video = Video.objects.get(id=video_id)
         instance = Message(
-            lecture=lecture, user_message=message, bot_message=answer, user_message_embedded=chatbot.get_embedding(message), bot_message_embedded=chatbot.get_embedding(answer))
+            video=video, user_message=message, bot_message=answer, user_message_embedded=chatbot.get_embedding(message), bot_message_embedded=chatbot.get_embedding(answer))
         instance.save()
 
         self.send(text_data=json.dumps({"message": answer}))

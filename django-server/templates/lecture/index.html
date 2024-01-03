@@ -1,10 +1,10 @@
-{% extends "../base.html" %} {% block contents %}
+{% extends "../base.html" %}{% load static %} {% block contents %}
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="pt-3 mb-0"><span class="text-muted fw-light">Academy /</span> Course Details</h4>
 
     <div class="card g-3 mt-5">
         <div class="card-body row g-3" id="courseBody">
-            <div class="col-lg-8">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center flex-wrap mb-2 gap-1">
                     <div class="me-1">
                         <h5 class="mb-1">{{ lecture.title }}</h5>
@@ -70,31 +70,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <div class="accordion stick-top accordion-bordered course-content-fixed" id="courseContent">
-                    <form
-                        action="{% url 'chat' lecture.title %}"
-                        method="POST"
-                        class="row"
-                        style="margin: 10px 0"
-                        >
-                        {% csrf_token %}
-                        <button
-                            class="bg-lighter border"
-                            style="padding: 5px; color: #566a7f; font-weight: bold"
-                            type="submit"
-                        >
-                            Chat 연결
-                        </button>
-                        <input type="hidden" name="lecture_id" value="{{ lecture.id }}" />
-                    </form>
                     <ul id="video-list" style="list-style-type: none; padding-left:0;">
                         {% for video in videos %}
                             <li class="accordion-item shadow-none border border-bottom-0 mb-0">
                                 <label class="rounded-0 accordion-button collapsed" :class="{ 'bg-lighter': picked_video_url === '{{ video.file.url }}' }" style="cursor: pointer">
                                     {{ video.name }}
-                                    <input type="radio" value="{{ video.file.url }}" v-model="picked_video_url" style="display:none;">
+                                    <input class="video-list--input" type="radio" value="{{ video.file.url }}" v-model="picked_video_url" style="display:none;">
                                 </label>
+                                <form action="{% url 'chat' lecture.title video.name %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="video_id" value="{{ video.id }}" />
+                                    <button class="bg-lighter border accordion-item" v-show="picked_video_url === '{{ video.file.url }}'" type="submit">
+                                        <img src="{% static '/lecture/img/converse_with_ai.png' %}" style="width: 100%; padding: 25px">
+                                            Chat 연결
+                                    </button>
+                                </form>
                             </li>
                         {% endfor %}
                     </ul>
@@ -115,7 +107,7 @@
             delimiters: ["[[", "]]"],
             el: '#courseBody',
             data: {
-                picked_video_url: $('#video-list').find('input').eq(0).attr('value'),
+                picked_video_url: $('#video-list .video-list--input').eq(0).attr('value'),
             },
         });
 
