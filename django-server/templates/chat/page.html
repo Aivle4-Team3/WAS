@@ -93,6 +93,30 @@
                     </div>
                     <div class="chat-history-body ps ps--active-y" ref="chatHistoryBody">
                         <ul class="list-unstyled chat-history mb-0">
+                            {% for statement in history %}
+                                <li class="chat-message {% if statement.type == 'bot' %} chat-message-right {% endif %}">
+                                    <div class="d-flex overflow-hidden">
+                                        <div class="user-avatar flex-shrink-0 me-3">
+                                            <div class="avatar avatar-sm">
+                                                {% if statement.type == 'user' %}
+                                                    <img title="{{ user }}" src="{{ user.avatar.url }}" alt="Avatar" class="rounded-circle" />
+                                                {% elif statement.type == 'bot' %}
+                                                    <img title="학생" src="{% static '/chat/img/gpt_logo.svg' %}" alt="Avatar" class="rounded-circle" />
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="chat-message-wrapper flex-grow-1">
+                                            <div class="chat-message-text">
+                                                <p class="mb-0">{{ statement.message }}</p>
+                                            </div>
+                                            <div class="text-end text-muted mt-1">
+                                                <i class="bx bx-check-double"></i>
+                                                <small>{{ statement.time }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
                             <li class="chat-message" :class="{'chat-message-right': statement.type == 'querry'}" v-for="(statement, index) in statements">
                                 <div class="d-flex overflow-hidden">
                                     <div class="user-avatar flex-shrink-0 me-3">
