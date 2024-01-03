@@ -147,7 +147,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'  # or email, userusername_email
 # 로그인 후 리디렉션할 페이지
 LOGIN_REDIRECT_URL = 'home'
 # 가입 후 리디렉션할 페이지
-ACCOUNT_SIGNUP_REDIRECT_URL = 'account_login'
+ACCOUNT_SIGNUP_REDIRECT_URL = 'frontdoor'
 # 로그아웃 후 리디렉션할 페이지
 ACCOUNT_LOGOUT_REDIRECT_URL = 'frontdoor'
 # 로그아웃 버튼 클릭 시 자동 로그아웃

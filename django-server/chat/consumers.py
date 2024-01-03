@@ -27,7 +27,7 @@ class ChatConsumer(WebsocketConsumer):
         lecture_id = self.scope['url_route']['kwargs']['room_name']
         lecture = Lecture.objects.get(id=lecture_id)
         instance = Message(
-            lecture=lecture, user_message=message, bot_message=answer)
+            lecture=lecture, user_message=message, bot_message=answer, user_message_embedded=chatbot.get_embedding(message), bot_message_embedded=chatbot.get_embedding(answer))
         instance.save()
 
         self.send(text_data=json.dumps({"message": answer}))
