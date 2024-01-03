@@ -6,6 +6,8 @@ from pgvector.django import VectorField
 
 class Message(models.Model):
     lecture = models.ForeignKey(Lecture, on_delete=models.DO_NOTHING)
+    user_time = models.DateTimeField(null=True)
+    bot_time = models.DateTimeField(null=True)
     user_message = models.TextField()
     bot_message = models.TextField()
     user_message_embedded = VectorField(dimensions=1536)
