@@ -11,7 +11,7 @@
                         <div class="me-5 ms-n2 pe-5">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                 <form action="{% url 'board:board' %}" method="get">
-                                    <label><input name="q" type="search" class="form-control" placeholder="{{ search_key|default:'Search' }}" aria-controls="DataTables_Table_0" v-model="searchQuery"/></label>
+                                    <label><input name="q" type="search" class="form-control" placeholder="{{ q|default:'Search' }}" aria-controls="DataTables_Table_0" v-model="searchQuery"/></label>
                                 </form>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                                 <td class="control" style="" tabindex="0"></td>
                                 <td class="sorting_1">
                                     <div class="d-flex align-items-center">
-                                        <a class="d-flex flex-column justify-content-center" :href="/board/[[ post.id ]]">
+                                        <a class="d-flex flex-column justify-content-center" :href="'/board/'+post.id">
                                             <span class="text-body text-wrap fw-medium">[[ post.title ]]</span><span class="text-muted text-truncate mb-0 d-none d-sm-block"><small>Tag</small></span>
                                         </a>
                                     </div>
@@ -104,6 +104,8 @@
             },
             {% endfor %}
         ]
+
+        console.log(post_all)
 
         new Vue({
             delimiters: ["[[", "]]"],
