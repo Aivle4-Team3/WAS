@@ -8,8 +8,8 @@ from .forms import *
 
 # 전체 목록 보기
 def board(request):
-    search_key = request.GET.get('q')
-    post_list = Post.objects.filter(title__contains=search_key) if search_key else Post.objects.all()
+    search_key = request.GET.get('q','')
+    post_list = Post.objects.filter(title__contains=search_key)
     post_list = post_list.order_by('-id')
 
     page = int(request.GET.get('page', 1))
