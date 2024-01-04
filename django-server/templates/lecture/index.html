@@ -1,17 +1,27 @@
 {% extends "../base.html" %}{% load static %} {% block contents %}
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="pt-3 mb-0"><span class="text-muted fw-light">Academy /</span> Course Details</h4>
+    <h4 class="pt-3 mb-0">
+        <span class="text-muted fw-light">Academy /</span> Course Details
+    </h4>
 
     <div class="card g-3 mt-5">
         <div class="card-body row g-3" id="courseBody">
             <div class="col-lg-10">
-                <div class="d-flex justify-content-between align-items-center flex-wrap mb-2 gap-1">
+                <div
+                    class="d-flex justify-content-between align-items-center flex-wrap mb-2 gap-1"
+                >
                     <div class="me-1">
                         <h5 class="mb-1">{{ lecture.title }}</h5>
-                        <p class="mb-1"><span class="fw-medium"> {{ lecture.teacher }} </span></p>
+                        <p class="mb-1">
+                            <span class="fw-medium">
+                                {{ lecture.teacher }}
+                            </span>
+                        </p>
                     </div>
                     <div class="d-flex align-items-center">
-                        <span class="badge bg-label-danger">{{ lecture.subject }}</span>
+                        <span class="badge bg-label-danger"
+                            >{{ lecture.subject }}</span
+                        >
                         <i class="bx bx-share-alt bx-sm mx-4"></i>
                         <i class="bx bx-bookmarks bx-sm"></i>
                     </div>
@@ -19,8 +29,16 @@
                 <div class="card academy-content shadow-none border">
                     <div class="p-2">
                         <div class="cursor-pointer">
-                            <video class="player" :key="picked_video_url" controls style="width:100%">
-                                <source :src="picked_video_url" type="video/mp4" />
+                            <video
+                                class="player"
+                                :key="picked_video_url"
+                                controls
+                                style="width: 100%"
+                            >
+                                <source
+                                    :src="picked_video_url"
+                                    type="video/mp4"
+                                />
                             </video>
                         </div>
                     </div>
@@ -31,64 +49,146 @@
                         <h5>By the numbers</h5>
                         <div class="d-flex flex-wrap">
                             <div class="me-5">
-                                <p class="text-nowrap"><i class="bx bx-check-double bx-sm me-2"></i>Skill level: All Levels</p>
-                                <p class="text-nowrap"><i class="bx bx-user bx-sm me-2"></i>수강생 수: {{ lecture.student_count }}</p>
-                                <p class="text-nowrap"><i class="bx bxs-flag-alt bx-sm me-2"></i>언어: 한국어</p>
-                                <p class="text-nowrap"><i class="bx bx-file bx-sm me-2"></i>자막: 없음</p>
+                                <p class="text-nowrap">
+                                    <i class="bx bx-check-double bx-sm me-2"></i
+                                    >Skill level: All Levels
+                                </p>
+                                <p class="text-nowrap">
+                                    <i class="bx bx-user bx-sm me-2"></i>수강생
+                                    수: {{ lecture.student_count }}
+                                </p>
+                                <p class="text-nowrap">
+                                    <i class="bx bxs-flag-alt bx-sm me-2"></i
+                                    >언어: 한국어
+                                </p>
+                                <p class="text-nowrap">
+                                    <i class="bx bx-file bx-sm me-2"></i>자막:
+                                    없음
+                                </p>
                             </div>
                             <div>
-                                <p class="text-nowrap"><i class="bx bx-pencil bx-sm me-2"></i>Lectures: 19</p>
-                                <p class="text-nowrap"><i class="bx bxs-watch bx-sm me-2"></i>Video: 1.5 total hours</p>
+                                <p class="text-nowrap">
+                                    <i class="bx bx-pencil bx-sm me-2"></i
+                                    >Lectures: 19
+                                </p>
+                                <p class="text-nowrap">
+                                    <i class="bx bxs-watch bx-sm me-2"></i
+                                    >Video: 1.5 total hours
+                                </p>
                             </div>
                         </div>
                         <hr class="mb-4 mt-2" />
-                        <h5>Description</h5>
+                        <h5>정렬</h5>
                         <p class="mb-4">
-                            The material of this course is also covered in my other course about web design and development with HTML5 &amp; CSS3. Scroll to the bottom of this page to check out that
-                            course, too! If you're already taking my other course, you already have all it takes to start designing beautiful websites today!
+                            정렬(Sorting)은 데이터 요소들을 특정 순서대로
+                            배열하는 프로세스입니다. 이 순서는 숫자의
+                            오름차순이나 내림차순, 문자열의 사전식 배열 등이 될
+                            수 있습니다.
                         </p>
                         <p class="mb-4">
-                            "Best web design course: If you're interested in web design, but want more than just a "how to use WordPress" course,I highly recommend this one." — Florian Giusti
+                            정렬은 데이터를 더 쉽게 이해하고 분석할 수 있도록
+                            도와주는 기본적이지만 중요한 컴퓨터 과학의
+                            개념입니다. 정렬 알고리즘의 종류는 매우 다양하며, 각
+                            알고리즘은 특정 상황과 데이터 세트에 적합합니다.
                         </p>
                         <p>
-                            "Very helpful to us left-brained people: I am familiar with HTML, CSS, JQuery, and Twitter Bootstrap, but I needed instruction in web design. This course gave me practical,
-                            impactful techniques for making websites more beautiful and engaging." — Susan Darlene Cain
+                            가장 일반적인 정렬 알고리즘은 버블 정렬, 선택 정렬,
+                            삽입 정렬, 병합 정렬, 퀵 정렬, 힙 정렬 등이
+                            있습니다. 이들은 각기 다른 시간 복잡도와 공간
+                            복잡도를 가지며, 정렬의 안정성, 알고리즘의 구현
+                            복잡성 등에 따라 선택됩니다.
+                        </p>
+                        <p class="mb-4">
+                            정렬 알고리즘을 이해하고 적절하게 사용하는 것은 웹
+                            개발, 데이터베이스 관리, 컴퓨터 프로그래밍 등 다양한
+                            분야에서 매우 중요합니다. 데이터를 효율적으로
+                            정렬하고 관리하는 능력은 정보를 더 빠르고 정확하게
+                            처리하고 분석하는 데 필수적입니다.
                         </p>
                         <hr class="my-4" />
                         <h5>강사</h5>
-                        <div class="d-flex justify-content-start align-items-center user-name">
+                        <div
+                            class="d-flex justify-content-start align-items-center user-name"
+                        >
                             <div class="avatar-wrapper">
                                 <div class="avatar avatar-sm me-2">
-                                    <img src="" alt="Avatar" class="rounded-circle" />
+                                    <img
+                                        src="https://ktaivle-team3-bucket.s3.ap-northeast-2.amazonaws.com/media/uploads/2024/01/04/2024-01-04-113442.png"
+                                        alt="Avatar"
+                                        class="rounded-circle"
+                                    />
                                 </div>
                             </div>
                             <div class="d-flex flex-column">
-                                <span class="fw-medium">{{ lecture.teacher }}</span>
-                                <small class="text-muted">Web Developer, Designer, and Teacher</small>
+                                <span class="fw-medium"
+                                    >{{ lecture.teacher }}</span
+                                >
+                                <small class="text-muted"
+                                    >2017년 한양대 물리학과 수석입학 <br />
+                                    2018년 컴퓨터 공학과 복수전공<br />
+                                    2023년 한양대 수석졸업 <br />
+                                    2024년 samsung 입사
+                                </small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-2">
-                <div class="accordion stick-top accordion-bordered course-content-fixed" id="courseContent">
-                    <ul id="video-list" style="list-style-type: none; padding-left:0;">
+                <div
+                    class="accordion stick-top accordion-bordered course-content-fixed"
+                    id="courseContent"
+                >
+                    <ul
+                        id="video-list"
+                        style="list-style-type: none; padding-left: 0"
+                    >
                         {% for video in videos %}
-                            <li class="accordion-item shadow-none border border-bottom-0 mb-0">
-                                <label class="rounded-0 accordion-button collapsed" :class="{ 'bg-lighter': picked_video_url === '{{ video.file.url }}' }" style="cursor: pointer">
-                                    {{ video.name }}
-                                    <input class="video-list--input" type="radio" value="{{ video.file.url }}" v-model="picked_video_url" style="display:none;">
-                                </label>
-                                <form action="{% url 'chat' lecture.title video.name %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="video_id" value="{{ video.id }}" />
-                                    <input type="hidden" name="user_id" value="{{ user.id }}" />
-                                    <button class="bg-lighter border accordion-item" v-show="picked_video_url === '{{ video.file.url }}'" type="submit">
-                                        <img src="{% static '/lecture/img/converse_with_ai.png' %}" style="width: 100%; padding: 25px">
-                                            Chat 연결
-                                    </button>
-                                </form>
-                            </li>
+                        <li
+                            class="accordion-item shadow-none border border-bottom-0 mb-0"
+                        >
+                            <label
+                                class="rounded-0 accordion-button collapsed"
+                                :class="{ 'bg-lighter': picked_video_url === '{{ video.file.url }}' }"
+                                style="cursor: pointer"
+                            >
+                                {{ video.name }}
+                                <input
+                                    class="video-list--input"
+                                    type="radio"
+                                    value="{{ video.file.url }}"
+                                    v-model="picked_video_url"
+                                    style="display: none"
+                                />
+                            </label>
+                            <form
+                                action="{% url 'chat' lecture.title video.name %}"
+                                method="POST"
+                            >
+                                {% csrf_token %}
+                                <input
+                                    type="hidden"
+                                    name="video_id"
+                                    value="{{ video.id }}"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="user_id"
+                                    value="{{ user.id }}"
+                                />
+                                <button
+                                    class="bg-lighter border accordion-item"
+                                    v-show="picked_video_url === '{{ video.file.url }}'"
+                                    type="submit"
+                                >
+                                    <img
+                                        src="{% static '/lecture/img/converse_with_ai.png' %}"
+                                        style="width: 100%; padding: 25px"
+                                    />
+                                    Chat 연결
+                                </button>
+                            </form>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -106,12 +206,13 @@
         //});
         new Vue({
             delimiters: ["[[", "]]"],
-            el: '#courseBody',
+            el: "#courseBody",
             data: {
-                picked_video_url: $('#video-list .video-list--input').eq(0).attr('value'),
+                picked_video_url: $("#video-list .video-list--input")
+                    .eq(0)
+                    .attr("value"),
             },
         });
-
     </script>
 </div>
 {% endblock %}
