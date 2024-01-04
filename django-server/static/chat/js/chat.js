@@ -53,7 +53,9 @@ window.addEventListener("DOMContentLoaded", function () {
         },
     });
     const video_id = this.document.querySelector('#app-history').dataset.videoId;
-    const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + video_id + "/");
+    const user_id = this.document.querySelector('#app-history').dataset.userId;
+
+    const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + user_id + "/?video_id="+video_id);
 
     // 서버에서 메시지 수용
     chatSocket.onmessage = function (e) {
