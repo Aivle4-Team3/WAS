@@ -6,7 +6,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class User(AbstractUser):
-    organization = models.CharField(max_length=15, null=True)
     country = models.CharField(max_length=15, null=True)
     phone_number = PhoneNumberField(null=True, region='KR')
     avatar = models.ImageField(upload_to="avatar/", default="default_avatar.jpg")
