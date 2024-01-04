@@ -83,6 +83,7 @@
                             <div class="d-flex align-items-center">
                                 <form action="{% url 'evaluation' lecture_name video_name %}" method="POST" class="btn p-2">
                                     {% csrf_token %}
+                                    <input type="hidden" name="user_id" value="{{ user.id }}" />
                                     <input type="hidden" name="video_id" value="{{ video_id }}" />
                                     <button class="text-grey" style="background-color: transparent; border: none; color: #566a7f" type="submit" onclick="getElementById('loader').style.display = 'flex'">성취도평가 하기</button>
                                 </form>
