@@ -58,7 +58,7 @@
                         <li class="nav-item"><a class="nav-link" href="/accounts/login/">로그인</a></li>
                         <li class="nav-item"><a class="nav-link" href="/accounts/consent/">회원가입</a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="#news">A+에듀 소식</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#news">A+EDU 소식</a></li>
                         <li class="nav-item"><a class="nav-link" href="/accounts/faq/">FAQ</a></li>
                     </ul>
                 </div>
@@ -78,12 +78,12 @@
                     <div class="col-lg-8 align-self-baseline" style="display: flex; flex-direction: column">
                         {% if user.is_authenticated %}
                         <a class="avatar" href="{% url 'realhome' %}">
-                            <img src="{{ user.avatar.url }}" alt="{{ user }}" onerror=this.src="{% static 'frontdoor/img/다현.jpg' %}" />
+                            <img src="{{ user.avatar.url }}" alt="{{ user }}" onerror=this.src="{% static 'frontdoor/img/blank profile.jpg' %}" />
                             <div class="enter">입장하세요!</div>
                         </a>
                         {% else %}
                         <p class="text-white-75 mb-5" style="color: wheat">
-                            AI EDU는 교사가 되어 AI '학생'에게 지식을 전달하고, 이를 통해 교육 방법의 효과를 직접 평가할 수 있는 공간을 제공합니다. 사용자는 다양한 교육 내용을 AI에게 가르치며, AI는
+                            AI EDU는 교사가 되어 AI 학생에게 지식을 전달하고, 이를 통해 교육 방법의 효과를 직접 평가할 수 있는 공간을 제공합니다. 사용자는 다양한 교육 내용을 AI에게 가르치며, AI는
                             학습 과정을 거쳐 해당 과목에 대한 성취도 평가 시험을 치르게 됩니다.
                         </p>
                         <a class="btn btn-primary btn-xl" href="{% url 'account_login' %}"> Start </a>
