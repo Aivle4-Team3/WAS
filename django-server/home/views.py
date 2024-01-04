@@ -12,6 +12,10 @@ def index(request):
 
     return render(request, './home/index.html', context)
 
+def realhome(request):
+
+    return render(request, './home/fullcalendar.html')
+
 def calpark(request):
     if request.method == 'POST':
         form = CalendarModelForm(request.POST)
