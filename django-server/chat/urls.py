@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('<str:lecture_name>', views.chatpage, name='chat'),
+    path('<str:lecture_name>/<str:video_name>', views.chatpage, name='chat'),
 
 ]

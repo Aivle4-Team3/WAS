@@ -1,7 +1,10 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from lecture.models import Lecture
-from .models import Message
+from datetime import datetime
+from lecture.models import Video
+from accounts.models import User
+from .models import Message, UserAndVideoRelation
+import urllib.parse
 from config.settings import chatbot
 
 
@@ -17,17 +20,35 @@ class ChatConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json["message"]
+        message_time = datetime.now()
 
         answer = chatbot.chat(message, self.history)
+        answer_time = datetime.now()
 
         print("query", message)
         print("answer", answer)
 
-        # 데이터베이스에 저장
-        lecture_id = self.scope['url_route']['kwargs']['room_name']
-        lecture = Lecture.objects.get(id=lecture_id)
+        # 쿼리 문자열 파싱 /?key=value
+        query_string = self.scope['query_string'].decode('utf8')
+        params = urllib.parse.parse_qs(query_string)
+        # 쿼리 파라미터 추출
+        video_id = params.get('video_id', [None])[0]
+        # 방 파라미터 추출
+        user_id = self.scope['url_route']['kwargs']['room_name']
+
+        # 참조 객체들
+        video = Video.objects.get(id=video_id)
+        user = User.objects.get(id=user_id)
+
+        # Message 생성
         instance = Message(
-            lecture=lecture, user_message=message, bot_message=answer, user_message_embedded=chatbot.get_embedding(message), bot_message_embedded=chatbot.get_embedding(answer))
+            user_message=message, bot_message=answer, user_time=message_time, bot_time=answer_time,
+            user_message_embedded=chatbot.get_embedding(message), bot_message_embedded=chatbot.get_embedding(answer))
+        # 데이터베이스에 저장
         instance.save()
+        # 관계 연관
+        user_video_relation, created = UserAndVideoRelation.objects.get_or_create(
+            user=user, video=video, message=instance)
+        instance.user_and_video.add(user_video_relation)
 
         self.send(text_data=json.dumps({"message": answer}))

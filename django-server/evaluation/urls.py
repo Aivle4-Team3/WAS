@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    path('<str:lecture_name>', views.evaluation, name='evaluation'),
+    path('<str:lecture_name>/<str:video_name>', views.evaluation, name='evaluation'),
 ]

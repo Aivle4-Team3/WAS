@@ -1,13 +1,30 @@
 from django.shortcuts import render
-
+from .models import Message, UserAndVideoRelation
+from accounts.models import User
+from lecture.models import Video
 # Create your views here.
 
 
-def chatpage(request, lecture_name):
-    lecture_id = request.POST['lecture_id'] if request.method == 'POST' else None
+def chatpage(request, lecture_name, video_name):
+    # user, video id를 POST로 전송 받음
+    user_id = request.POST['user_id'] if request.method == 'POST' else None
+    video_id = request.POST['video_id'] if request.method == 'POST' else None
+    user = User.objects.get(id=user_id)
+
+    # 관계검색
+    user_video_relations = UserAndVideoRelation.objects.filter(user_id=user_id, video_id=video_id)
+    # 메시지검색
+    messages = Message.objects.filter(user_and_video__in=user_video_relations)
+
+    # 기록 읽기
+    history = [[{'type': 'user', 'message': message.user_message, 'time': message.user_time},
+                {'type': 'bot',  'message': message.bot_message,  'time': message.bot_time}] for message in messages]
 
     context = {
         'lecture_name': lecture_name,
-        'lecture_id': lecture_id,
+        'video_name': video_name,
+        'video_id': video_id,
+        'user': user,
+        'history': history,
     }
     return render(request, "./chat/page.html", context)

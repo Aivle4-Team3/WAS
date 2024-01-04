@@ -1,24 +1,25 @@
 from django.shortcuts import render
 from .models import Test
-from lecture.models import Lecture
-from chat.models import Message
+from lecture.models import Video
+from chat.models import Message, UserAndVideoRelation
 from threading import Thread
 from config.settings import chatbot
 
 # Create your views here.
 
 
-def evaluation(request, lecture_name):
+def evaluation(request, lecture_name, video_name):
     if request.method == 'POST':
-        lecture_id = request.POST['lecture_id']
+        user_id = request.POST['user_id']
+        video_id = request.POST['video_id']
 
-        # 채팅 메시지 기록
-        chat_messages = Message.objects.filter(
-            lecture_id=lecture_id).values_list('user_message', 'bot_message')
+        # 관계검색
+        user_video_relations = UserAndVideoRelation.objects.filter(user_id=user_id, video_id=video_id)
+        # 메시지검색
+        chat_messages = Message.objects.filter(user_and_video__in=user_video_relations).values_list('user_message', 'bot_message')
 
         # 문제지 & 정답지
-        lecture = Lecture.objects.get(id=lecture_id)
-        video = lecture.video
+        video = Video.objects.get(id=video_id)
         statements = Test.objects.filter(video=video)
 
         # 결과 저장할 가변 리스트
@@ -42,6 +43,7 @@ def evaluation(request, lecture_name):
 
         context = {
             'lecture_name': lecture_name,
+            'video_name': video_name,
             'num_correct': checklist.count('1'),
             'num_wrong': checklist.count('0'),
             'checklist': checklist,

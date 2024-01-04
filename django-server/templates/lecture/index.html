@@ -1,10 +1,10 @@
-{% extends "../base.html" %} {% block contents %}
+{% extends "../base.html" %}{% load static %} {% block contents %}
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="pt-3 mb-0"><span class="text-muted fw-light">Academy /</span> Course Details</h4>
 
     <div class="card g-3 mt-5">
-        <div class="card-body row g-3">
-            <div class="col-lg-8">
+        <div class="card-body row g-3" id="courseBody">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center flex-wrap mb-2 gap-1">
                     <div class="me-1">
                         <h5 class="mb-1">{{ lecture.title }}</h5>
@@ -19,20 +19,10 @@
                 <div class="card academy-content shadow-none border">
                     <div class="p-2">
                         <div class="cursor-pointer">
-                            <video id="player" controls>
-                                <source src="{{ lecture.video.file.url }}" type="video/mp4" />
+                            <video class="player" :key="picked_video_url" controls style="width:100%">
+                                <source :src="picked_video_url" type="video/mp4" />
                             </video>
                         </div>
-                        <style>
-                            .plyr {
-                                border-radius: 7px;
-                            }
-                        </style>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                const player = new Plyr("#player");
-                            });
-                        </script>
                     </div>
                     <div class="card-body">
                         <h5 class="mb-2">강좌 요약</h5>
@@ -80,181 +70,48 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <div class="accordion stick-top accordion-bordered course-content-fixed" id="courseContent">
-                    <form
-                        action="{% url 'chat' lecture.title %}"
-                        method="POST"
-                        class="row"
-                        style="margin: 10px 0"
-                        >
-                        {% csrf_token %}
-                        <button
-                            class="bg-lighter border"
-                            style="padding: 5px; color: #566a7f; font-weight: bold"
-                            type="submit"
-                        >
-                            Chat 연결
-                        </button>
-                        <input type="hidden" name="lecture_id" value="{{ lecture.id }}" />
-                    </form>
-                    <div class="accordion-item shadow-none border border-bottom-0 mb-0">
-                        <div class="accordion-header" id="headingTwo">
-                            <button
-                                type="button"
-                                class="bg-lighter rounded-0 accordion-button collapsed"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#chapterTwo"
-                                aria-expanded="false"
-                                aria-controls="chapterTwo"
-                            >
-                                <span class="d-flex flex-column">
-                                    <span class="h5 mb-1">Web Design for Web Developers</span>
-                                    <span class="fw-normal">1 / 4 | 4.4 min</span>
-                                </span>
-                            </button>
-                        </div>
-                        <div id="chapterTwo" class="accordion-collapse collapse" data-bs-parent="#courseContent">
-                            <div class="accordion-body py-3 border-top">
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck1" checked="checked" />
-                                    <label for="defCheck1" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">1. How to use Pages in Figma</span>
-                                        <span class="text-muted d-block">8:31 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck2" />
-                                    <label for="defCheck2" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">2. What is Lo Fi Wireframe</span>
-                                        <span class="text-muted d-block">2 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck3" />
-                                    <label for="defCheck3" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">3. How to use color in Figma</span>
-                                        <span class="text-muted d-block">5.9 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center">
-                                    <input class="form-check-input" type="checkbox" id="defCheck4" />
-                                    <label for="defCheck4" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">4. Frames vs Groups in Figma</span>
-                                        <span class="text-muted d-block">3.6 min</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item shadow-none border border-bottom-0 mb-0">
-                        <div class="accordion-header" id="headingThree">
-                            <button
-                                type="button"
-                                class="bg-lighter rounded-0 accordion-button collapsed"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#chapterThree"
-                                aria-expanded="false"
-                                aria-controls="chapterThree"
-                            >
-                                <span class="d-flex flex-column">
-                                    <span class="h5 mb-1">Build Beautiful Websites!</span>
-                                    <span class="fw-normal">0 / 6 | 4.4 min</span>
-                                </span>
-                            </button>
-                        </div>
-                        <div id="chapterThree" class="accordion-collapse collapse" data-bs-parent="#courseContent">
-                            <div class="accordion-body py-3 border-top">
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-01" />
-                                    <label for="defCheck-01" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">1. Section &amp; Div Block</span>
-                                        <span class="text-muted d-block">8:31 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-02" />
-                                    <label for="defCheck-02" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">2. Read-Only Version of Chat App</span>
-                                        <span class="text-muted d-block">8 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-03" />
-                                    <label for="defCheck-03" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">3. Webflow Autosave</span>
-                                        <span class="text-muted d-block">2.9 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-04" />
-                                    <label for="defCheck-04" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">4. Canvas Settings</span>
-                                        <span class="text-muted d-block">7.6 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-05" />
-                                    <label for="defCheck-05" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">5. HTML Tags</span>
-                                        <span class="text-muted d-block">10 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-06" />
-                                    <label for="defCheck-06" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">6. Footer (Chat App)</span>
-                                        <span class="text-muted d-block">9.10 min</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item shadow-none border mb-0">
-                        <div class="accordion-header" id="headingFour">
-                            <button
-                                type="button"
-                                class="bg-lighter rounded-0 accordion-button collapsed"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#chapterFour"
-                                aria-expanded="false"
-                                aria-controls="chapterFour"
-                            >
-                                <span class="d-flex flex-column">
-                                    <span class="h5 mb-1">Final Project</span>
-                                    <span class="fw-normal">2 / 3 | 4.4 min</span>
-                                </span>
-                            </button>
-                        </div>
-                        <div id="chapterFour" class="accordion-collapse collapse" data-bs-parent="#courseContent">
-                            <div class="accordion-body py-3 border-top">
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-101" checked="checked" />
-                                    <label for="defCheck-101" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">1. Responsive Blog Site</span>
-                                        <span class="text-muted d-block">10:0 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-102" checked="checked" />
-                                    <label for="defCheck-102" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">2. Responsive Portfolio</span>
-                                        <span class="text-muted d-block">13:00 min</span>
-                                    </label>
-                                </div>
-                                <div class="form-check d-flex align-items-center mb-3">
-                                    <input class="form-check-input" type="checkbox" id="defCheck-103" />
-                                    <label for="defCheck-103" class="form-check-label ms-3">
-                                        <span class="mb-0 h6">3. Responsive eCommerce Website</span>
-                                        <span class="text-muted d-block">15 min</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ul id="video-list" style="list-style-type: none; padding-left:0;">
+                        {% for video in videos %}
+                            <li class="accordion-item shadow-none border border-bottom-0 mb-0">
+                                <label class="rounded-0 accordion-button collapsed" :class="{ 'bg-lighter': picked_video_url === '{{ video.file.url }}' }" style="cursor: pointer">
+                                    {{ video.name }}
+                                    <input class="video-list--input" type="radio" value="{{ video.file.url }}" v-model="picked_video_url" style="display:none;">
+                                </label>
+                                <form action="{% url 'chat' lecture.title video.name %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="video_id" value="{{ video.id }}" />
+                                    <input type="hidden" name="user_id" value="{{ user.id }}" />
+                                    <button class="bg-lighter border accordion-item" v-show="picked_video_url === '{{ video.file.url }}'" type="submit">
+                                        <img src="{% static '/lecture/img/converse_with_ai.png' %}" style="width: 100%; padding: 25px">
+                                            Chat 연결
+                                    </button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+        .plyr {
+            border-radius: 7px;
+        }
+    </style>
+    <script>
+        //document.addEventListener("DOMContentLoaded", () => {
+        //    const player = new Plyr(".player");
+        //});
+        new Vue({
+            delimiters: ["[[", "]]"],
+            el: '#courseBody',
+            data: {
+                picked_video_url: $('#video-list .video-list--input').eq(0).attr('value'),
+            },
+        });
+
+    </script>
 </div>
 {% endblock %}

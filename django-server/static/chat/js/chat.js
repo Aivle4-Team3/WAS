@@ -52,9 +52,10 @@ window.addEventListener("DOMContentLoaded", function () {
             i.scrollTo(0, i.scrollHeight);
         },
     });
+    const video_id = this.document.querySelector('#app-history').dataset.videoId;
+    const user_id = this.document.querySelector('#app-history').dataset.userId;
 
-    const lecture = this.document.querySelector('#app-history').dataset.lectureId;
-    const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + lecture + "/");
+    const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + user_id + "/?video_id="+video_id);
 
     // 서버에서 메시지 수용
     chatSocket.onmessage = function (e) {
