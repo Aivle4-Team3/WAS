@@ -6,7 +6,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("chat", "0001_initial"),
+        ("chat", "0002_message_bot_time_message_user_time"),
         ("lecture", "__first__"),
     ]
 

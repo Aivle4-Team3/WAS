@@ -82,6 +82,7 @@
                                 <form action="{% url 'chat' lecture.title video.name %}" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="video_id" value="{{ video.id }}" />
+                                    <input type="hidden" name="user_id" value="{{ user.id }}" />
                                     <button class="bg-lighter border accordion-item" v-show="picked_video_url === '{{ video.file.url }}'" type="submit">
                                         <img src="{% static '/lecture/img/converse_with_ai.png' %}" style="width: 100%; padding: 25px">
                                             Chat 연결
