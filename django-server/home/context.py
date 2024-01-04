@@ -1,4 +1,5 @@
 from config.settings import BASE_DIR
+from lecture.models import Lecture
 
 
 def context_processor(request):
@@ -7,6 +8,9 @@ def context_processor(request):
     with open(dir, 'r', encoding='utf-8') as f:
         lifeQuotes = f.readlines()
 
+    reg_subjects = Lecture.objects.values_list('subject', flat=True).distinct()
+
     return {
-        'phrase_list': lifeQuotes
+        'phrase_list': lifeQuotes,
+        'reg_subjects': reg_subjects,
     }

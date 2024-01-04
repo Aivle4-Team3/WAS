@@ -5,8 +5,10 @@ from .forms import CalendarModelForm
 
 
 def index(request):
+    subject = request.GET.get('subject')
 
-    lectures = Lecture.objects.order_by('-student_count')
+    lectures = Lecture.objects.filter(subject=subject) if subject else Lecture.objects.all()
+    lectures = lectures.order_by('-student_count') 
     for lecture in lectures:
         videos = Video.objects.filter(lecture=lecture)
         for video in videos:

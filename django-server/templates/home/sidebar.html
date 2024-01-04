@@ -17,11 +17,21 @@
         </a>
     </li>
 
-    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %} open">
         <a href="{% url 'home' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-book"></i>
             <div class="text-truncate">강의실</div>
         </a>
+        <ul class="menu-sub">
+            {% for subject in reg_subjects%}
+                <li class="menu-item">
+                    <a href="{% url 'home' %}?subject={{subject}}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-book"></i>
+                        <div class="text-truncate">{{subject}}</div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
     </li>
     
     <li class="menu-item {% if request.resolver_match.url_name == 'board' %}active{% endif %}">
