@@ -10,6 +10,7 @@ s3_storage = asset_storage.MediaStorage()
 
 class Lecture(models.Model):    
     title = models.CharField(max_length=100, default="")
+    title_info = models.CharField(max_length=1000, default="")
     subject = models.CharField(max_length=10, default="")
     teacher = models.CharField(max_length=10, default="")
     thumbnail = models.ImageField(upload_to="images/", default="default_thumbnail.jpg", storage=s3_storage)
@@ -26,6 +27,7 @@ class Video(models.Model):
     name = models.CharField(max_length=100)
     file = models.FileField(upload_to='videos/', null=True,
                             verbose_name="", storage=s3_storage)
+    video_duration = models.DurationField(default=timedelta)
 
     def __str__(self):
         return self.name
