@@ -139,7 +139,7 @@
   <div class="signup-container">
     <h2>추가 정보 기입</h2>
 
-    <form method="post" action="{% url 'account_signup' %}" class="signup">
+    <form method="post" action="." class="signup">
       {% csrf_token %}
 
       {% if form.errors %}
