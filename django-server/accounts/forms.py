@@ -6,9 +6,18 @@ from .models import User
 
 # 기본 가입 폼 추가
 class CustomSignupForm(SignupForm):
-    first_name = forms.CharField(required=False)
+    first_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Placeholder Text'}))
     last_name = forms.CharField(required=False)
     avatar = forms.ImageField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(CustomSignupForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].label = '이름'
+        self.fields['last_name'].label = '성'
+        self.fields['avatar'].label = '프로필 이미지'
+
+        for key, field in self.fields.items():
+            field.widget.attrs.update({'placeholder': field.label })
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
@@ -17,7 +26,8 @@ class CustomSignupForm(SignupForm):
 
 # 소셜로그인 후 가입 폼 추가
 class CustomSocialSignupForm(SocialSignupForm):
-    first_name = forms.CharField(required=False)
+    first_name = forms.CharField(required=False,
+                                 widget=forms.TextInput(attrs={'placeholder': 'Placeholder Text'}))
     last_name = forms.CharField(required=False)
     avatar = forms.ImageField(required=False)
 

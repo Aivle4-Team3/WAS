@@ -18,6 +18,8 @@
     <link rel="icon" type="image/x-icon" href="{% static 'frontdoor/img/EDU.png' %}" />
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
@@ -25,101 +27,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap) -->
     <link href="{% static '/frontdoor/css/styles.css' %}" rel="stylesheet" />
-    <link href="{% static '/frontdoor/css/avatar.css' %}" rel="stylesheet" />
-    <style>
-      /* 직접 CSS를 추가합니다 */
-      body {
-        background-color: #f5f5f5;
-        font-family: 'Arial', sans-serif;
-
-        justify-content: center;
-        height: 100vh; /* Ensure the container takes full height of the viewport */
-        margin: 0;
-        display: grid;
-        place-items: center;
-      }
-      
-      .signup-container {
-        max-width: 9000px;
-        width:600px;
-        padding: 40px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        color: black; /* Text color */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-top: 100;
-        margin-bottom:200;
-      }
-      
-      .signup-container h2 {
-        color: black;
-        font-size: 28px;
-        margin-bottom: 20px;
-      }
-      
-      .signup-container form {
-        display: flex;
-        flex-direction: column;
-      }
-      
-      .signup-container label {
-        margin-bottom: 8px;
-        color: black; /* Text color */
-      }
-      
-      .signup-container input {
-        padding: 10px;
-        margin-bottom: 16px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        box-sizing: border-box;
-      }
-      
-      .signup-container button {
-        padding: 12px;
-        background-color: gray;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-      
-      .signup-container button:hover {
-        background-color:slategray;
-      }
-      
-      .signup-container p {
-        margin-top: 10px;
-        color: black; /* Text color */
-      }
-      
-      a {
-        color: black;
-        text-decoration: none;
-        font-style: normal;
-      }
-      
-      a:hover {
-        text-decoration: underline;
-      }
-      .btn-github:hover {
-          color: #fafafa;
-          background-color: #333 !important;
-      }
-      .btn-google:hover {
-          color: white;
-          background-color: orange !important;
-          border: none;
-      }
-      .btn-naver:hover {
-          color: white;
-          background-color: #2DB400 !important;
-      }
-      .btn-kakao:hover {
-          color: #FAE300;
-          background-color: #371D1E !important;
-      }
-    </style>
+    <link href="{% static '/accounts/css/signup.css' %}" rel="stylesheet" />
   </head>
   <body id="page-top">
     <!-- Navigation -->
@@ -165,34 +73,60 @@
       {% if form.errors %}
         <p style="color:red;">양식에 맞게 작성해주세요.</p>
       {% endif %}
-      <!-- User-specific fields -->
-      {{ form.as_table }}
-
-      <!-- Other form fields can be added if needed -->
+      <div class="full-forms">
+        <!-- User-specific fields -->
+        <div class="avatar-form">
+          <label for="id_avatar" style="width:100%; height:100%">
+            <img id="uploadedAvatar" src="{% static 'frontdoor/img/blank profile.png' %}" style="width:100%; height:100%" placeholder="이미지">
+          </label>
+        </div>
+        <div class="basic-forms">
+          {{ form.as_table }}
+        </div>
+        <!-- Other form fields can be added if needed -->
+      </div>
 
       <button type="submit">{% trans 'Sign Up' %}</button>
     </form>
+    <script>
+        const fileDOM = document.querySelector('#id_avatar');
+        const preview = document.querySelector('#uploadedAvatar');
 
-    <hr /><hr /><hr />
+        fileDOM.addEventListener('change', () => {
+            const reader = new FileReader();
+            reader.onload = ({ target }) => {
+                preview.src = target.result;
+            };
+            reader.readAsDataURL(fileDOM.files[0]);
+        });
+
+        const originalAvatarUrl = preview.src;
+        const resetDom = document.querySelector('#resetAvatar');
+        resetDom.addEventListener('click', () => {
+            preview.src = originalAvatarUrl;
+        })
+    </script>
+
+    <hr />
     
-    <div>
+    <div class="login-button-container">
       <form class="user" action="{% provider_login_url 'github' %}" method="post">
           {% csrf_token %}
-          <button class="btn btn-github btn-user btn-block"><i class="fab fa-github fa-fw"></i>Sign up with Github</button>
+          <button class="btn btn-github btn-user"><i class="fab fa-github fa-fw"></i></button>
       </form>
       <form class="user" action="{% provider_login_url 'google' %}" method="post">
           {% csrf_token %}
-          <button class="btn btn-google btn-user btn-block"><i class="fab fa-google fa-fw"></i>Sign up with Google</button>
+          <button class="btn btn-google btn-user"><i class="fab fa-google fa-fw"></i></button>
       </form>
       <form class="user" action="{% provider_login_url 'naver' %}" method="post">
           {% csrf_token %}
-          <button class="btn btn-naver btn-user btn-block"><i class="xi-naver"></i>Sign up with Naver</button>
+          <button class="btn btn-naver btn-user"><i class="xi-naver"></i></button>
       </form>
       <form class="user" action="{% provider_login_url 'kakao' %}" method="post">
           {% csrf_token %}
-          <button class="btn btn-kakao btn-user btn-block"><i class="xi-kakaotalk"></i>Sign up with Kakao</button>
+          <button class="btn btn-kakao btn-user"><i class="xi-kakaotalk"></i></button>
       </form>
-    </div>
+  </div>
 
     <p>
       {% trans '이미 계정이 있으신가요?' %} <a href="{% url 'account_login' %}">{% trans 'Log in' %}</a>
