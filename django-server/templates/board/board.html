@@ -11,6 +11,7 @@
                         <div class="me-5 ms-n2 pe-5">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                 <form action="{% url 'board:board' %}" method="get">
+                                    {% csrf_token %}
                                     <label><input name="q" type="search" class="form-control" placeholder="{{ q|default:'Search' }}" aria-controls="DataTables_Table_0" v-model="searchQuery"/></label>
                                 </form>
                             </div>
@@ -20,6 +21,7 @@
                                 <div class="dataTables_length mt-0" id="DataTables_Table_0_length">
                                     <label>
                                         <form action="{% url 'board:board' %}" method="get">
+                                            {% csrf_token %}
                                             <select name="per" aria-controls="DataTables_Table_0" class="form-select" onchange="this.form.submit();">
                                                 {% for i in per_list %}
                                                     <option value="{{i}}" {% if i == per %}selected{% endif %}>{{i}}</option>
