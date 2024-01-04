@@ -6,4 +6,4 @@ from ckeditor.widgets import CKEditorWidget
 class CalendarModelForm(forms.ModelForm):
     class Meta:
         model = Calendar
-        fields = ['title', 'label', 'startdate','enddate']
+        fields = ['author','title', 'label', 'startdate','enddate']

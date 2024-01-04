@@ -5,7 +5,7 @@ from accounts.models import User
 class Calendar(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
-    label = models.TextField()
-    startdate = models.TextField()
-    enddate = models.TextField()
+    label = models.CharField(max_length=250)
+    startdate = models.DateTimeField()
+    enddate = models.DateTimeField()
     
