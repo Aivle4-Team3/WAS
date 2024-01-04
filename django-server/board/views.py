@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
+from math import ceil
 from .models import *
 from .forms import *
 # Create your views here.
@@ -7,11 +8,23 @@ from .forms import *
 
 # 전체 목록 보기
 def board(request):
-    search_key = request.GET.get('keyword')
-    post_list = Post.objects.filter(
-        title__contains=search_key) if search_key else Post.objects.all()
+    search_key = request.GET.get('q')
+    post_list = Post.objects.filter(title__contains=search_key) if search_key else Post.objects.all()
     post_list = post_list.order_by('-id')
-    return render(request, 'board/board.html', {'post_all': post_list, 'q': search_key})
+
+    page = int(request.GET.get('page', 1))
+    per = int(request.GET.get('per', 10))
+    total = len(post_list)
+    last = ceil(total/per)
+    board_list = range(1, last+1)
+    per_list = [7, 10, 20, 50]
+
+    start = per*(page-1)
+    end = per*page
+
+    return render(request, 'board/board.html', {
+        'post_all': post_list[start:end], 'q': search_key, 'page': page, 'per': per,
+        'board_list': board_list, 'per_list': per_list, 'total': total, 'last': last})
 
 
 # 상세 보기

@@ -10,22 +10,23 @@
                     <div class="card-header d-flex flex-wrap py-0" style="margin: 10px 0; justify-content: space-between">
                         <div class="me-5 ms-n2 pe-5">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <label><input type="search" class="form-control" placeholder="Search" aria-controls="DataTables_Table_0" v-model="searchQuery"/></label>
+                                <form action="{% url 'board:board' %}" method="get">
+                                    <label><input name="q" type="search" class="form-control" placeholder="{{ search_key|default:'Search' }}" aria-controls="DataTables_Table_0" v-model="searchQuery"/></label>
+                                </form>
                             </div>
                         </div>
                         <div class="d-flex justify-content-start justify-content-md-end align-items-baseline">
                             <div class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-3 mb-sm-0 gap-3 pt-0">
                                 <div class="dataTables_length mt-0" id="DataTables_Table_0_length">
-                                    <label
-                                        ><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-select">
-                                            <option value="7">7</option>
-                                            <option value="10">10</option>
-                                            <option value="20">20</option>
-                                            <option value="50">50</option>
-                                            <option value="70">70</option>
-                                            <option value="100">100</option>
-                                        </select></label
-                                    >
+                                    <label>
+                                        <form action="{% url 'board:board' %}" method="get">
+                                            <select name="per" aria-controls="DataTables_Table_0" class="form-select" onchange="this.form.submit();">
+                                                {% for i in per_list %}
+                                                    <option value="{{i}}" {% if i == per %}selected{% endif %}>{{i}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </form>
+                                    </label>
                                 </div>
                                 <div class="dt-buttons">
                                     <button class="dt-button add-new btn btn-primary ms-2">
@@ -65,19 +66,20 @@
                         </tbody>
                     </table>
                     <div class="row mx-2">
-                        <div class="col-sm-12 col-md-6"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 7 of 14 entries</div></div>
+                        <div class="col-sm-12 col-md-6"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing {{page}} to {{last}} of {{total}} entries</div></div>
                         <div class="col-sm-12 col-md-6">
                             <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                 <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
-                                        <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
+                                    <li class="paginate_button page-item previous {% if page == 1 %}disabled{% endif %}" id="DataTables_Table_0_previous">
+                                        <a href="{% url 'board:board' %}?page={{page|add:'-1'}}" aria-controls="DataTables_Table_0" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
                                     </li>
-                                    <li class="paginate_button page-item active">
-                                        <a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">1</a>
+                                    {% for i in board_list %}
+                                    <li class="paginate_button page-item {% if i == page %}active{% endif %}">
+                                        <a href="{% url 'board:board' %}?page={{i}}" aria-controls="DataTables_Table_0" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">{{ i }}</a>
                                     </li>
-                                    <li class="paginate_button page-item"><a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="1" tabindex="0" class="page-link">2</a></li>
-                                    <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                        <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
+                                    {% endfor %}
+                                    <li class="paginate_button page-item next {% if page == last %}disabled{% endif %}" id="DataTables_Table_0_next">
+                                        <a href="{% url 'board:board' %}?page={{page|add:'1'}}" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
                                     </li>
                                 </ul>
                             </div>
