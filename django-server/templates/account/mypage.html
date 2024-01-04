@@ -108,7 +108,7 @@
                             <button type="reset" class="btn btn-outline-secondary">취소</button>
                         </div>
                     </div>
-                </from>
+                </form>
                 <!-- /Account -->
             </div>
             <div class="card">
@@ -120,13 +120,19 @@
                             <p class="mb-0">계정을 삭제하면 되돌릴 수 없습니다. 확실하게 해주세요.</p>
                         </div>
                     </div>
-                    <form id="formAccountDeactivation" onsubmit="return false">
+                    <form id="formAccountDeactivation" method="post" action="{% url 'delete_account' %}">
+                        {% csrf_token %}
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
                             <label class="form-check-label" for="accountActivation">내 계정 비활성화를 확인합니다</label>
                         </div>
-                        <button type="submit" class="btn btn-danger deactivate-account">계정 비활성화</button>
+                        <button id="submitDelete" type="submit" class="btn btn-danger deactivate-account" disabled>계정 비활성화</button>
                     </form>
+                    <script>
+                        document.getElementById('accountActivation').addEventListener('change', function() {
+                            document.getElementById('submitDelete').disabled = !this.checked;
+                        });
+                    </script>
                 </div>
             </div>
         </div>
