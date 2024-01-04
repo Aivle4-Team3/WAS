@@ -1,7 +1,7 @@
 {% extends "../base.html" %}{% load static %} {% block contents %}
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="pt-3 mb-0">
-        <span class="text-muted fw-light">Academy /</span> Course Details
+        <span class="text-muted fw-light">강의실 /</span> {{ lecture.title }}
     </h4>
 
     <div class="card g-3 mt-5">
@@ -44,19 +44,13 @@
                     </div>
                     <div class="card-body">
                         <h5 class="mb-2">강좌 요약</h5>
-                        <p class="mb-0 pt-1">{{ lecture.summary }}</p>
+                        <p class="mb-0 pt-1">{{ lecture.summary|safe }}</p>
                         <hr class="my-4" />
                         <h5>By the numbers</h5>
                         <div class="d-flex flex-wrap">
                             <div class="me-5">
-                                <p class="text-nowrap">
-                                    <i class="bx bx-check-double bx-sm me-2"></i
-                                    >Skill level: All Levels
-                                </p>
-                                <p class="text-nowrap">
-                                    <i class="bx bx-user bx-sm me-2"></i>수강생
-                                    수: {{ lecture.student_count }}
-                                </p>
+
+                               
                                 <p class="text-nowrap">
                                     <i class="bx bxs-flag-alt bx-sm me-2"></i
                                     >언어: 한국어
@@ -68,43 +62,15 @@
                             </div>
                             <div>
                                 <p class="text-nowrap">
-                                    <i class="bx bx-pencil bx-sm me-2"></i
-                                    >Lectures: 19
+                                    <i class="bx bx-video bx-sm me-2"></i>Videos: 2 
                                 </p>
                                 <p class="text-nowrap">
                                     <i class="bx bxs-watch bx-sm me-2"></i
-                                    >Video: 1.5 total hours
+                                    >Run Time: {{ lecture.remain_time }}
                                 </p>
                             </div>
                         </div>
-                        <hr class="mb-4 mt-2" />
-                        <h5>정렬</h5>
-                        <p class="mb-4">
-                            정렬(Sorting)은 데이터 요소들을 특정 순서대로
-                            배열하는 프로세스입니다. 이 순서는 숫자의
-                            오름차순이나 내림차순, 문자열의 사전식 배열 등이 될
-                            수 있습니다.
-                        </p>
-                        <p class="mb-4">
-                            정렬은 데이터를 더 쉽게 이해하고 분석할 수 있도록
-                            도와주는 기본적이지만 중요한 컴퓨터 과학의
-                            개념입니다. 정렬 알고리즘의 종류는 매우 다양하며, 각
-                            알고리즘은 특정 상황과 데이터 세트에 적합합니다.
-                        </p>
-                        <p>
-                            가장 일반적인 정렬 알고리즘은 버블 정렬, 선택 정렬,
-                            삽입 정렬, 병합 정렬, 퀵 정렬, 힙 정렬 등이
-                            있습니다. 이들은 각기 다른 시간 복잡도와 공간
-                            복잡도를 가지며, 정렬의 안정성, 알고리즘의 구현
-                            복잡성 등에 따라 선택됩니다.
-                        </p>
-                        <p class="mb-4">
-                            정렬 알고리즘을 이해하고 적절하게 사용하는 것은 웹
-                            개발, 데이터베이스 관리, 컴퓨터 프로그래밍 등 다양한
-                            분야에서 매우 중요합니다. 데이터를 효율적으로
-                            정렬하고 관리하는 능력은 정보를 더 빠르고 정확하게
-                            처리하고 분석하는 데 필수적입니다.
-                        </p>
+                        
                         <hr class="my-4" />
                         <h5>강사</h5>
                         <div

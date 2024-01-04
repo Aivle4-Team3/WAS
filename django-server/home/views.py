@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from lecture.models import Lecture
+from lecture.models import Lecture, Video
 from .models import Calendar
 from .forms import CalendarModelForm
 
@@ -7,6 +7,10 @@ from .forms import CalendarModelForm
 def index(request):
 
     lectures = Lecture.objects.order_by('-student_count')
+    for lecture in lectures:
+        videos = Video.objects.filter(lecture=lecture)
+        for video in videos:
+            lecture.remain_time += video.video_duration
     context = {
         'lectures': lectures,
     }
