@@ -10,7 +10,7 @@
                     <div class="card-header d-flex flex-wrap py-0" style="margin: 10px 0; justify-content: space-between">
                         <div class="me-5 ms-n2 pe-5">
                             <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <label><input type="search" class="form-control" placeholder="Search" aria-controls="DataTables_Table_0" /></label>
+                                <label><input type="search" class="form-control" placeholder="Search" aria-controls="DataTables_Table_0" v-model="searchQuery"/></label>
                             </div>
                         </div>
                         <div class="d-flex justify-content-start justify-content-md-end align-items-baseline">
@@ -45,25 +45,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for post in post_all %}
-                            <tr class="odd">
+                            <tr class="odd" v-for="post in posts">
                                 <td class="control" style="" tabindex="0"></td>
                                 <td class="sorting_1">
                                     <div class="d-flex align-items-center">
-                                        <a class="d-flex flex-column justify-content-center" href="/board/{{ post.id }}">
-                                            <span class="text-body text-wrap fw-medium">{{ post.title }}</span><span class="text-muted text-truncate mb-0 d-none d-sm-block"><small>Tag</small></span>
+                                        <a class="d-flex flex-column justify-content-center" :href="/board/[[ post.id ]]">
+                                            <span class="text-body text-wrap fw-medium">[[ post.title ]]</span><span class="text-muted text-truncate mb-0 d-none d-sm-block"><small>Tag</small></span>
                                         </a>
                                     </div>
                                 </td>
-                                <td><div class="text-sm-end">{{ post.created }}</div></td>
+                                <td><div class="text-sm-end">[[ post.created ]]</div></td>
                                 <td>
                                     <div class="fw-medium text-sm-end" style="display: flex; flex-direction: row-reverse; align-items: center">
-                                        <div class="avatar"><img src="{{ post.author.avatar.url }}" alt="" style="border-radius: 50%; width: 2.375rem; height: 2.375rem" /></div>
-                                        <div style="margin-right: 10px">{{ post.author }}</div>
+                                        <div class="avatar"><img :src="[[ post.avatar_url ]]" alt="" style="border-radius: 50%; width: 2.375rem; height: 2.375rem" /></div>
+                                        <div style="margin-right: 10px">[[ post.author ]]</div>
                                     </div>
                                 </td>
                             </tr>
-                            {% endfor %}
                         </tbody>
                     </table>
                     <div class="row mx-2">
@@ -90,5 +88,37 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        var post_all = [
+            {% for post in post_all %}
+            {
+                id: '{{ post.id }}',
+                title: '{{ post.title }}',
+                author: '{{ post.author }}',
+                created: '{{ post.created }}',
+                avatar_url: '{{ post.author.avatar.url }}',
+            },
+            {% endfor %}
+        ]
+
+        new Vue({
+            delimiters: ["[[", "]]"],
+            el: "#DataTables_Table_0_wrapper",
+            data: {
+                searchQuery: '',
+            },
+            computed: {
+                posts() {
+                    return post_all.filter(post => {
+                        return post.title.toLowerCase().includes(this.searchQuery)
+                            || post.author.toLowerCase().includes(this.searchQuery);
+                    });
+                }
+            }
+        });
+    });
+</script>
 
 {% endblock %}
