@@ -9,6 +9,7 @@ class User(AbstractUser):
     country = models.CharField(max_length=15, null=True)
     phone_number = PhoneNumberField(null=True, region='KR')
     avatar = models.ImageField(upload_to="avatar/", default="default_avatar.jpg")
+    cv = models.TextField(null=True)
 
 
 # 유저별 알림 메시지

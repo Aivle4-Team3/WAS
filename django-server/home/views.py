@@ -32,17 +32,5 @@ def realhome(request):
         calendar.enddate = request.POST['eventEndDate']
         calendar.save()
         return redirect('realhome')
-
-    return render(request, './home/Fullcalendar.html')
-    # return render(request, './home/fullcalendar.html')
-
-
-def calpark(request):
-    if request.method == 'POST':
-        form = CalendarModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('realhome')
-    else:
-        form = CalendarModelForm()
-    return render(request, './home/Fullcalendar.html', {'form': form})
+    cal = Calendar.objects.filter(author=request.user)
+    return render(request, './home/Fullcalendar.html', {'cal':cal})

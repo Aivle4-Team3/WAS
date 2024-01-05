@@ -62,7 +62,7 @@
                             </div>
                             <div>
                                 <p class="text-nowrap">
-                                    <i class="bx bx-video bx-sm me-2"></i>Videos: 2 
+                                    <i class="bx bx-video bx-sm me-2"></i>Videos: {{ video_count }} 
                                 </p>
                                 <p class="text-nowrap">
                                     <i class="bx bxs-watch bx-sm me-2"></i
@@ -79,7 +79,7 @@
                             <div class="avatar-wrapper">
                                 <div class="avatar avatar-sm me-2">
                                     <img
-                                        src="https://ktaivle-team3-bucket.s3.ap-northeast-2.amazonaws.com/media/uploads/2024/01/04/2024-01-04-113442.png"
+                                        src="{{ lecture.teacher.avatar.url }}"
                                         alt="Avatar"
                                         class="rounded-circle"
                                     />
@@ -89,11 +89,8 @@
                                 <span class="fw-medium"
                                     >{{ lecture.teacher }}</span
                                 >
-                                <small class="text-muted"
-                                    >2017년 한양대 물리학과 수석입학 <br />
-                                    2018년 컴퓨터 공학과 복수전공<br />
-                                    2023년 한양대 수석졸업 <br />
-                                    2024년 samsung 입사
+                                <small class="text-muted">
+                                    {{ lecture.teacher.cv|safe }}
                                 </small>
                             </div>
                         </div>

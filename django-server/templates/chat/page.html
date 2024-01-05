@@ -85,7 +85,7 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="user_id" value="{{ user.id }}" />
                                     <input type="hidden" name="video_id" value="{{ video_id }}" />
-                                    <button class="text-grey" style="background-color: transparent; border: none; color: #566a7f" type="submit" onclick="getElementById('loader').style.display = 'flex'">성취도평가 하기</button>
+                                    <button class="text-grey" style="background-color: #696cff;border: 10px;color: #fff;border-radius: 5px;padding: 8px;" type="submit" onclick="getElementById('loader').style.display = 'flex'">성취도평가 하기</button>
                                 </form>
                             </div>
                             {% block loading %} {% include 'chat/loading.html' %} {% endblock %}
