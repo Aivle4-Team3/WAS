@@ -24,10 +24,10 @@
         </a>
         <ul class="menu-sub">
             {% for subject in reg_subjects%}
-                <li class="menu-item">
-                    <a href="{% url 'home' %}?subject={{subject}}" class="menu-link">
+                <li class="menu-item {% if request.GET.subject == subject %}active{% endif %}">
+                    <a href="{% url 'home' %}?subject={{ subject }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-book"></i>
-                        <div class="text-truncate">{{subject}}</div>
+                        <div class="text-truncate">{{ subject }}</div>
                     </a>
                 </li>
             {% endfor %}
