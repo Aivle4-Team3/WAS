@@ -79,3 +79,4 @@ zope.interface==6.1
 boto3
 django-storages
 pgvector
+django-ckeditor
