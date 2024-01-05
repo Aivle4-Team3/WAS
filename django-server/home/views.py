@@ -29,8 +29,8 @@ def realhome(request):
         calendar.enddate = request.POST['eventEndDate']
         calendar.save()
         return redirect('realhome')
-    
-    return render(request, './home/Fullcalendar.html')
+    cal = Calendar.objects.filter(author=request.user)
+    return render(request, './home/Fullcalendar.html', {'cal':cal})
     # return render(request, './home/fullcalendar.html')
 
 def calpark(request):
