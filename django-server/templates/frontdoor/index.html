@@ -30,6 +30,33 @@
                 pointer-events: none;
                 opacity: 0.65;
             }
+            .emoji-container {
+                display: s;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 150px;
+                
+            }
+            
+            .emoji {
+                margin: -38px;
+                height:190px;
+                width: 180px;
+            }
+            .emoji:nth-child(odd) {
+            transform: translateY(130px); 
+            }
+            .title-container {
+                text-align: center; /* Center the title */
+                margin: 20px 0; /* Add some space around the title */
+                /* Other styling as needed */
+            }
+            
+            .title-container h1 {
+                font: revert; /* Adjust the size as needed */
+                color: #333;
+                margin-bottom: 50px; 
+            }
         </style>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
@@ -37,33 +64,36 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <img src="{% static '/frontdoor/img/logo.png' %}" style="height: 130px; width: auto; drop-shadow(1px 1px 1px white);" />
-                <button
-                    class="navbar-toggler navbar-toggler-right"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarResponsive"
-                    aria-controls="navbarResponsive"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="/home/">{{ user }}님 환영합니다.</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/accounts/logout/">로그아웃</a></li>
-                        {% else %}
-                        <li class="nav-item"><a class="nav-link" href="/accounts/login/">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/accounts/consent/">회원가입</a></li>
-                        {% endif %}
-                        <li class="nav-item"><a class="nav-link" href="#news">A+EDU 소식</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/accounts/faq/">FAQ</a></li>
-                    </ul>
-                </div>
+              <img src="{% static 'frontdoor/img/EDU.png' %}" style="height: 50px; width: auto; drop-shadow(1px 1px 1px white);" />
+              <a class="navbar-brand" href="/">&nbsp;&nbsp;<img src="{% static 'frontdoor/img/logoText.png' %}" /></a>
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                  {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/home/">{{ user }}님 환영합니다.</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/accounts/logout/">로그아웃</a>
+                    </li>
+                  {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/accounts/login/">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/accounts/signup/">회원가입</a>
+                    </li>
+                  {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/#news">A+에듀 소식</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="accounts/faq">FAQ</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-        </nav>
+          </nav>
       
         <!-- Masthead-->
 
@@ -77,10 +107,11 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline" style="display: flex; flex-direction: column">
                         {% if user.is_authenticated %}
-                        <a class="avatar" href="{% url 'realhome' %}">
-                            <img src="{{ user.avatar.url }}" alt="{{ user }}" onerror=this.src="{% static 'frontdoor/img/blank profile.png' %}" />
-                            <div class="enter">입장하세요!</div>
-                        </a>
+                        <p class="text-white-75 mb-5" style="color: wheat">
+                            AI EDU는 교사가 되어 AI 학생에게 지식을 전달하고, 이를 통해 교육 방법의 효과를 직접 평가할 수 있는 공간을 제공합니다. 사용자는 다양한 교육 내용을 AI에게 가르치며, AI는
+                            학습 과정을 거쳐 해당 과목에 대한 성취도 평가 시험을 치르게 됩니다.
+                        </p>
+                        <a class="btn btn-primary btn-xl" href="{% url 'account_login' %}"> Start </a>
                         {% else %}
                         <p class="text-white-75 mb-5" style="color: wheat">
                             AI EDU는 교사가 되어 AI 학생에게 지식을 전달하고, 이를 통해 교육 방법의 효과를 직접 평가할 수 있는 공간을 제공합니다. 사용자는 다양한 교육 내용을 AI에게 가르치며, AI는
@@ -96,62 +127,39 @@
         <section class="page-section bg-primary" id="news">
             <div class="carousel">
                 <div class="carousel-item active">
-                    <img src="{% static 'frontdoor/img/newjeans1.gif' %}" alt="Slide 1">
+                    <img src="{% static 'frontdoor/img/banner (1).png' %}" alt="Slide 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static 'frontdoor/img/newjeans2.gif' %}" alt="Slide 2">
+                    <img src="{% static 'frontdoor/img/banner (2).png' %}" alt="Slide 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static 'frontdoor/img/newjeans3.gif' %}" alt="Slide 3">
+                    <img src="{% static 'frontdoor/img/banner (3).png' %}" alt="Slide 3">
                 </div>
             </div>     
         </section>
         <!-- Services-->
         <img src="" style="width: 67%; position: absolute" />
-        <section class="page-section" id="services">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">At Your Service</h2>
-                <hr class="divider" />
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Ready to Publish</h3>
-                            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Made with Love</h3>
-                            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Portfolio-->
-        <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
-            </div>
-        </section>
+        <div class="title-container">
+            <h1>AIVLE TEAM 3조를 소개합니다!</h1>
+        </div>
+        <div class="emoji-container">
+            <!-- Add your emojis here using <img> tags -->
+            <img src="{% static 'frontdoor/img/robot2.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/babyRobot__5.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/babyRobot__1.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/robot4.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/Jinwoo.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/Yeongjin.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/Hyeongseop.png' %}" class="emoji">
+            <img src="{% static 'frontdoor/img/Jinsoo.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/Seungho.png' %}" class="emoji">
+            <img src="{% static 'frontdoor/img/Woncheol.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/robot5.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/babyRobot__2.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/babyRobot__3.png' %}" alt="Emoji" class="emoji">
+            <img src="{% static 'frontdoor/img/robot1.png' %}" alt="Emoji" class="emoji">
+            <!-- Add more <img> tags for each emoji you have -->
+          </div>
         
         <!-- Footer-->
         <footer class="bg-light py-5">
