@@ -29,16 +29,8 @@
                 <div class="card academy-content shadow-none border">
                     <div class="p-2">
                         <div class="cursor-pointer">
-                            <video
-                                class="player"
-                                :key="picked_video_url"
-                                controls
-                                style="width: 100%"
-                            >
-                                <source
-                                    :src="picked_video_url"
-                                    type="video/mp4"
-                                />
+                            <video id="player" :key="picked_video_url" controls style="width: 100%">
+                                <source id="videoSource" :src="picked_video_url" type="video/mp4"/>
                             </video>
                         </div>
                     </div>
@@ -159,22 +151,40 @@
         </div>
     </div>
     <style>
-        .plyr {
-            border-radius: 7px;
-        }
+        .plyr { border-radius: 7px; }
     </style>
     <script>
-        //document.addEventListener("DOMContentLoaded", () => {
-        //    const player = new Plyr(".player");
-        //});
-        new Vue({
-            delimiters: ["[[", "]]"],
-            el: "#courseBody",
-            data: {
-                picked_video_url: $("#video-list .video-list--input")
-                    .eq(0)
-                    .attr("value"),
-            },
+        document.addEventListener("DOMContentLoaded", () => {
+            new Vue({
+                delimiters: ["[[", "]]"],
+                el: '#courseBody',
+                data: {
+                    picked_video_url: $("#video-list .video-list--input").eq(0).attr("value"),
+                    player: null
+                },
+                mounted() {
+                    this.initPlyr();
+                },
+                watch: {
+                    picked_video_url() {
+                        this.initPlyr();
+                    }
+                },
+                methods: {
+                    initPlyr() {
+                        if (this.player) {
+                            this.player.destroy();
+                        }
+                        // 비디오 소스 직접 업데이트
+                        var videoElement = document.getElementById('player');
+                        var sourceElement = document.getElementById('videoSource');
+                        sourceElement.setAttribute('src', this.picked_video_url);
+                        videoElement.load();
+
+                        this.player = new Plyr(videoElement);
+                    }
+                },
+            });
         });
     </script>
 </div>
