@@ -91,8 +91,7 @@ def create_comment(request, id):
             return redirect('board:detail', id)
 
 
-def delete_comment(request, post_id, comment_id):
+def delete_comment(request, id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
-    if request.author == comment.author:
-        comment.delete()
-    return redirect('board:detail')
+    comment.delete()
+    return redirect('board:detail', id)

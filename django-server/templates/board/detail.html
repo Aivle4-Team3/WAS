@@ -77,6 +77,9 @@
                     <span class="comment-author">{{ comment.author }}</span>
                     <span class="comment-created">{{ comment.created }}</span>
                     <p class="comment-message">{{ comment.message }}</p>
+                    {% if request.user == comment.author %}
+                        <a href="{% url 'board:delete_comment' post.id comment.id %}">삭제</a>
+                    {% endif %}
                 </div>
                 {%empty%}
                 <p>댓글이 존재하지 않습니다.</p>
