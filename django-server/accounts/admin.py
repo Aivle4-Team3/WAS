@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
         (
             "추가 프로필",
             {
-                "fields": ('country', 'phone_number', 'avatar')
+                "fields": ('country', 'phone_number', 'avatar', 'cv')
             },
         ),
     )
