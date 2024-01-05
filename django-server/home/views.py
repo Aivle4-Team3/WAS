@@ -5,10 +5,12 @@ from .forms import CalendarModelForm
 
 
 def index(request):
+
     subject = request.GET.get('subject')
 
-    lectures = Lecture.objects.filter(subject=subject) if subject else Lecture.objects.all()
-    lectures = lectures.order_by('-student_count') 
+    lectures = Lecture.objects.filter(
+        subject=subject) if subject else Lecture.objects.all()
+    lectures = lectures.order_by('-student_count')
     for lecture in lectures:
         videos = Video.objects.filter(lecture=lecture)
         for video in videos:
@@ -18,6 +20,7 @@ def index(request):
     }
 
     return render(request, './home/index.html', context)
+
 
 def realhome(request):
     if request.method == 'POST':
@@ -31,14 +34,3 @@ def realhome(request):
         return redirect('realhome')
     cal = Calendar.objects.filter(author=request.user)
     return render(request, './home/Fullcalendar.html', {'cal':cal})
-    # return render(request, './home/fullcalendar.html')
-
-def calpark(request):
-    if request.method == 'POST':
-        form = CalendarModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('realhome')
-    else:
-        form = CalendarModelForm()
-    return render(request, './home/Fullcalendar.html',{'form':form})
