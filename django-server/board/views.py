@@ -63,7 +63,7 @@ def post_update(request, id):
         form = PostModelForm(request.POST, instance=post)
         if form.is_valid():
             form.save()  # 추가도 하고 수정도 가능, 구분은 새로운 데이터면 추가 디비에서 가져온거면 수정
-            return redirect('board:list')
+            return redirect('board:detail', id)
     else:
         form = PostModelForm(instance=post)
 

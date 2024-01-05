@@ -68,6 +68,12 @@
                 <br />
                 {{ post.body|safe }}
                 <br />
+                {% if request.user == post.author %}
+                
+                    <a style="background-color: rgb(105, 108, 255); border: 10px; color: rgb(255, 255, 255); border-radius: 5px; padding: 8px;" href="{% url 'board:update' post.id %}">글 수정하기</a>
+                
+                {% endif %}
+                
 
                 <hr />
                 <p>댓글</p>
