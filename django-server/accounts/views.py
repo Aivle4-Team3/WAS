@@ -4,8 +4,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django_countries import countries
 from allauth.account.views import SignupView
-from .models import User
+from .models import User, UserMessage
 from .forms import UserForm, CustomSignupForm
+from django.views.decorators.http import require_http_methods
+from django.http import JsonResponse
 
 
 class CustomSignupView(SignupView):
@@ -51,3 +53,21 @@ def delete(request):
         user.delete()
 
     return HttpResponseRedirect(reverse('frontdoor'))
+
+
+# 알림 메시지 삭제 - ajax 통신
+@require_http_methods(["POST"])
+def read_message(request):
+    read_all = request.POST.get('read_all')
+    id = request.POST.get('id')
+
+    if read_all:
+        for user in UserMessage.objects.all():
+            user.is_read = True
+            user.save()
+    else:
+        user = UserMessage.objects.get(id=id)
+        user.is_read = True
+        user.save()
+
+    return JsonResponse({'result': 'success'})

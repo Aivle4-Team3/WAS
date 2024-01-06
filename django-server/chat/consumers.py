@@ -3,7 +3,8 @@ from channels.generic.websocket import WebsocketConsumer
 from datetime import datetime
 from lecture.models import Video
 from accounts.models import User
-from .models import Message, UserAndVideoRelation
+from .models import Message
+from lecture.models import Enrollment
 import urllib.parse
 from config.settings import chatbot
 
@@ -39,16 +40,15 @@ class ChatConsumer(WebsocketConsumer):
         # 참조 객체들
         video = Video.objects.get(id=video_id)
         user = User.objects.get(id=user_id)
+        # 관계 연관
+        enrollment = Enrollment.objects.get(user=user, video=video)
 
         # Message 생성
         instance = Message(
             user_message=message, bot_message=answer, user_time=message_time, bot_time=answer_time,
-            user_message_embedded=chatbot.get_embedding(message), bot_message_embedded=chatbot.get_embedding(answer))
+            user_message_embedded=chatbot.get_embedding(message), bot_message_embedded=chatbot.get_embedding(answer),
+            enrollment=enrollment)
         # 데이터베이스에 저장
         instance.save()
-        # 관계 연관
-        user_video_relation, created = UserAndVideoRelation.objects.get_or_create(
-            user=user, video=video, message=instance)
-        instance.user_and_video.add(user_video_relation)
 
         self.send(text_data=json.dumps({"message": answer}))

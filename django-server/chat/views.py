@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Message, UserAndVideoRelation
+from .models import Message
+from lecture.models import Enrollment
 from accounts.models import User
-from lecture.models import Video
 # Create your views here.
 
 
@@ -11,10 +11,10 @@ def chatpage(request, lecture_name, video_name):
     video_id = request.POST['video_id'] if request.method == 'POST' else None
     user = User.objects.get(id=user_id)
 
-    # 관계검색
-    user_video_relations = UserAndVideoRelation.objects.filter(user_id=user_id, video_id=video_id)
+    # 관계 생성
+    enrollment, created = Enrollment.objects.get_or_create(user_id=user_id, video_id=video_id)
     # 메시지검색
-    messages = Message.objects.filter(user_and_video__in=user_video_relations)
+    messages = Message.objects.filter(enrollment=enrollment)
 
     # 기록 읽기
     history = [[{'type': 'user', 'message': message.user_message, 'time': message.user_time},
