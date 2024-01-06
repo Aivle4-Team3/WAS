@@ -40,8 +40,9 @@ class Video(models.Model):
 
 
 class Enrollment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='enrollments')
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='enrollments')
+    playback_duration = models.DurationField(default=timedelta)
 
     class Meta:
         unique_together = ('user', 'video')
