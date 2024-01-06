@@ -1,5 +1,7 @@
 {% extends "../base.html" %}{% load static %} {% block contents %}
 <div class="container-xxl flex-grow-1 container-p-y">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
     <h4 class="pt-3 mb-0">
         <span class="text-muted fw-light">강의실 /</span> {{ lecture.title }}
     </h4>
@@ -99,11 +101,12 @@
                         style="list-style-type: none; padding-left: 0"
                     >
                         {% for video in videos %}
-                        <li
-                            class="accordion-item shadow-none border border-bottom-0 mb-0"
+                        <li class="accordion-item shadow-none border border-bottom-0 mb-0 video"
+                            data-id="{{ video.id }}" data-url="{{ video.file.url }}" data-second="{{ video.second }}"
                         >
                             <label
-                                class="rounded-0 accordion-button collapsed"
+                                class="rounded-0 accordion-button collapsed video-list--second"
+                                value="{{ video.second }}"
                                 :class="{ 'bg-lighter': picked_video_url === '{{ video.file.url }}' }"
                                 style="cursor: pointer"
                             >
@@ -122,6 +125,7 @@
                             >
                                 {% csrf_token %}
                                 <input
+                                    class="video-list--id"
                                     type="hidden"
                                     name="video_id"
                                     value="{{ video.id }}"
@@ -155,15 +159,24 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            new Vue({
+            app = new Vue({
                 delimiters: ["[[", "]]"],
                 el: '#courseBody',
                 data: {
+                    picked_video_id: null,
                     picked_video_url: $("#video-list .video-list--input").eq(0).attr("value"),
+                    picked_video_second: 0,
                     player: null
                 },
                 mounted() {
+                    this.picked_video_id = this.$el.querySelector('.video').dataset.id;
+                    this.picked_video_url = this.$el.querySelector('.video').dataset.url;
+                    this.picked_video_second = this.$el.querySelector('.video').dataset.second;
+
                     this.initPlyr();
+                    this.player.on('ready', event => {
+                        this.player.currentTime = parseFloat(this.picked_video_second);
+                    });
                 },
                 watch: {
                     picked_video_url() {
@@ -184,6 +197,20 @@
                         this.player = new Plyr(videoElement);
                     }
                 },
+            });
+            window.addEventListener('beforeunload', function(event) {
+                const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+
+                $.ajax({
+                    type: 'post',
+                    async: false,
+                    headers: { 'X-CSRFToken': csrfToken },
+                    url: '{% url 'saveplayback' %}',
+                    data: {
+                        seconds: app.player.currentTime,
+                        video_id: app.picked_video_id,
+                    },
+                });
             });
         });
     </script>
