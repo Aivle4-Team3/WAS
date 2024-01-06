@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Test
-from lecture.models import Video
-from chat.models import Message, UserAndVideoRelation
+from lecture.models import Video, Enrollment
+from chat.models import Message
 from threading import Thread
 from config.settings import chatbot
 
@@ -14,9 +14,9 @@ def evaluation(request, lecture_name, video_name):
         video_id = request.POST['video_id']
 
         # 관계검색
-        user_video_relations = UserAndVideoRelation.objects.filter(user_id=user_id, video_id=video_id)
+        enrollment = Enrollment.objects.get(user_id=user_id, video_id=video_id)
         # 메시지검색
-        chat_messages = Message.objects.filter(user_and_video__in=user_video_relations).values_list('user_message', 'bot_message')
+        chat_messages = Message.objects.filter(enrollment=enrollment).values_list('user_message', 'bot_message')
 
         # 문제지 & 정답지
         video = Video.objects.get(id=video_id)
