@@ -171,7 +171,7 @@
                                         <div class="text-center">
                                             <h1 class="h4 text-gray-900 mb-4">AI 학생을 학습하고 성장시켜 보세요!</h1>
                                         </div>
-                                        <form class="user" method="post" action="{% url 'account_login' %}">
+                                        <form class="user" method="post" action="{% url 'account_login' %}?next={{request.GET.next}}">
                                             {% csrf_token %}
 
                                             <div class="form-group">
