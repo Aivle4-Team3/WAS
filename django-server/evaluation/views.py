@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import Test
 from lecture.models import Video, Enrollment
 from chat.models import Message
 from threading import Thread
@@ -19,8 +18,7 @@ def evaluation(request, lecture_name, video_name):
         chat_messages = Message.objects.filter(enrollment=enrollment).values_list('user_message', 'bot_message')
 
         # 문제지 & 정답지
-        video = Video.objects.get(id=video_id)
-        statements = Test.objects.filter(video=video)
+        statements = Video.objects.get(id=video_id).testpapers.all()
 
         # 결과 저장할 가변 리스트
         eval_results = [[0, 0, 0, 0] for i in range(len(statements))]
