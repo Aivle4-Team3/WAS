@@ -10,16 +10,19 @@ def lecture(request, lecture_name):
     if request.method == "POST":
         lecture = Lecture.objects.get(id=request.POST['lecture_id'])
         videos = lecture.videos.all()
-        enrollments = [video.enrollments.get(user=request.user) for video in videos]
+        seconds = 0
 
-        times = map(lambda enrollment: enrollment.playback_duration, enrollments)
-        seconds = list(map(lambda duration: duration.total_seconds(), times))
+        if request.user.enrollments.exists():
+            enrollments = [video.enrollments.get(user=request.user) for video in videos]
 
-        for video, second in zip(videos, seconds):
-            video.second = second
+            times = map(lambda enrollment: enrollment.playback_duration, enrollments)
+            seconds = list(map(lambda duration: duration.total_seconds(), times))
 
-        for video in videos:
-            lecture.remain_time += video.video_duration
+            for video, second in zip(videos, seconds):
+                video.second = second
+
+            for video in videos:
+                lecture.remain_time += video.video_duration
 
         context = {
             'lecture': lecture,
