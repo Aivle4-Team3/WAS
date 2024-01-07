@@ -78,7 +78,7 @@
                 <div class="d-grid">
                     <button class="btn btn-primary btn-toggle-sidebar" data-bs-toggle="offcanvas" data-bs-target="#addEventSidebar" aria-controls="addEventSidebar">
                         <i class="bx bx-plus me-1"></i>
-                        <span class="align-middle">Add Event</span>
+                        <span class="align-middle">일정 추가</span>
                     </button>
                 </div>
             </div>
@@ -178,26 +178,12 @@
                                     tabindex="-1"
                                     aria-hidden="true"
                                 >
-                                    <option data-label="primary" value="Business" selected="selected" data-select2-id="2">Business</option>
-                                    <option data-label="danger" value="Personal">Personal</option>
-                                    <option data-label="warning" value="Family">Family</option>
+                                    <option data-label="primary" value="강의" selected="selected" data-select2-id="2">강의</option>
+                                    <option data-label="success" value="복습">복습</option>
+                                    <option data-label="danger" value="휴가">휴가</option>
                                     <option data-label="success" value="Holiday">Holiday</option>
                                     <option data-label="info" value="ETC">ETC</option></select
-                                ><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="1" style="width: 352px"
-                                    ><span class="selection"
-                                        ><span
-                                            class="select2-selection select2-selection--single"
-                                            role="combobox"
-                                            aria-haspopup="true"
-                                            aria-expanded="false"
-                                            tabindex="0"
-                                            aria-disabled="false"
-                                            aria-labelledby="select2-eventLabel-container"
-                                            ><span class="select2-selection__rendered" id="select2-eventLabel-container" role="textbox" aria-readonly="true" title="Business"
-                                                ><span class="badge badge-dot bg-primary me-2"> </span>Business</span
-                                            ><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span
-                                    ><span class="dropdown-wrapper" aria-hidden="true"></span
-                                ></span>
+                                >
                             </div>
                         </div>
                         <div class="mb-3 fv-plugins-icon-container">
@@ -210,22 +196,10 @@
                             <input type="text" class="form-control flatpickr-input" id="eventEndDate" name="eventEndDate" placeholder="End Date" readonly="readonly" />
                             <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                         </div>
-                        <div class="mb-3">
-                            <label class="switch">
-                                <input type="checkbox" class="switch-input allDay-switch" />
-                                <span class="switch-toggle-slider">
-                                    <span class="switch-on"></span>
-                                    <span class="switch-off"></span>
-                                </span>
-                                <span class="switch-label">All Day</span>
-                            </label>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="eventURL">Event URL</label>
-                            <input type="url" class="form-control" id="eventURL" name="eventURL" placeholder="https://www.google.com" />
-                        </div>
+                        
+                        
                         <div class="mb-3 select2-primary">
-                            <label class="form-label" for="eventGuests">Add Guests</label>
+                            
                             <div class="position-relative">
                                 <select
                                     class="select2 select-event-guests form-select select2-hidden-accessible"
@@ -236,48 +210,16 @@
                                     tabindex="-1"
                                     aria-hidden="true"
                                 >
-                                    <option data-avatar="1.png" value="Jane Foster">Jane Foster</option>
-                                    <option data-avatar="3.png" value="Donna Frank">Donna Frank</option>
-                                    <option data-avatar="5.png" value="Gabrielle Robertson">Gabrielle Robertson</option>
-                                    <option data-avatar="7.png" value="Lori Spears">Lori Spears</option>
-                                    <option data-avatar="9.png" value="Sandy Vega">Sandy Vega</option>
-                                    <option data-avatar="11.png" value="Cheryl May">Cheryl May</option></select
-                                ><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="3" style="width: 352px"
-                                    ><span class="selection"
-                                        ><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-disabled="false"
-                                            ><ul class="select2-selection__rendered">
-                                                <li class="select2-search select2-search--inline">
-                                                    <input
-                                                        class="select2-search__field"
-                                                        type="search"
-                                                        tabindex="0"
-                                                        autocomplete="off"
-                                                        autocorrect="off"
-                                                        autocapitalize="none"
-                                                        spellcheck="false"
-                                                        role="searchbox"
-                                                        aria-autocomplete="list"
-                                                        placeholder="Select value"
-                                                        style="width: 338.667px"
-                                                    />
-                                                </li></ul></span></span
-                                    ><span class="dropdown-wrapper" aria-hidden="true"></span
-                                ></span>
+                                </select
+                                >
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="eventLocation">Location</label>
-                            <input type="text" class="form-control" id="eventLocation" name="eventLocation" placeholder="Enter Location" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="eventDescription">Description</label>
-                            <textarea class="form-control" name="eventDescription" id="eventDescription"></textarea>
-                        </div>
+                        
                         <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
                             <div>
-                              <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">Add</button>
+                              <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">추가하기</button>
                                 
-                                <button type="reset" class="btn btn-label-secondary btn-cancel me-sm-0 me-1" data-bs-dismiss="offcanvas">Cancel</button>
+                                <button type="reset" class="btn btn-label-secondary btn-cancel me-sm-0 me-1" data-bs-dismiss="offcanvas">취소</button>
                             </div>
                             <div><button class="btn btn-label-danger btn-delete-event d-none">Delete</button></div>
                         </div>
@@ -302,9 +244,12 @@
                 // 여기에 Django 템플릿 변수를 이용하여 데이터를 동적으로 추가
                 {% for c in cal %}
                     {
-                        title: '{{ c.title }}',
+                        title: '{{ c.title }} {{"("}}{{ c.startdate|date:"d" }}{{"일"}} {{ c.startdate|date:"H:i" }} {{"~"}} {{ c.enddate|date:"d"|add:"-1" }}{{"일"}} {{ c.enddate|date:"H:i" }}{{")"}}',
                         start: '{{ c.startdate|date:"Y-m-d" }}',
                         end: '{{ c.enddate|date:"Y-m-d" }}',
+                        color:'{{ c.label }}',
+                        borderColor : 'black',
+                        textColor: 'black',
                     },
                 {% endfor %}
             ]

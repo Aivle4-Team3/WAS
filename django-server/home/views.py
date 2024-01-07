@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from lecture.models import Lecture, Video
 from .models import Calendar
 from .forms import CalendarModelForm
-
+from datetime import timedelta
 
 def index(request):
 
@@ -33,4 +33,12 @@ def realhome(request):
         calendar.save()
         return redirect('realhome')
     cal = Calendar.objects.filter(author=request.user)
+    for c in cal:
+        c.enddate = c.enddate+timedelta(days=1)
+        if c.label == '강의':
+            c.label='blue'
+        elif c.label == '복습':
+            c.label = 'green'
+        elif c.label == '휴가':
+            c.label = 'red'
     return render(request, './home/Fullcalendar.html', {'cal':cal})
