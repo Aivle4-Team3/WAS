@@ -1,7 +1,7 @@
 {% load static %}
 {% block sidebar %}
 <div class="app-brand demo">
-    <a href="{% url "realhome" %}" class="app-brand-link">
+    <a href="{% url 'home' %}" class="app-brand-link">
         <img src="{% static 'frontdoor/img/logo_noname.png' %}" style="height: 50px; width: auto; filter: drop-shadow(1px 1px 1px white)">
         <span class="app-brand-text demo menu-text fw-bold ms-2">A+EDU</span>
     </a>
@@ -10,22 +10,22 @@
 <div class="menu-inner-shadow"></div>
 
 <ul class="menu-inner py-1">
-    <li class="menu-item {% if request.resolver_match.url_name == 'realhome' %}active{% endif %}">
-        <a href="{% url 'realhome' %}" class="menu-link">
+    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+        <a href="{% url 'home' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div class="text-truncate">홈</div>
         </a>
     </li>
 
-    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %} open">
-        <a href="{% url 'home' %}" class="menu-link">
+    <li class="menu-item {% if request.resolver_match.url_name == 'lecture' %}active{% endif %} open">
+        <a href="{% url 'lecture' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-book"></i>
             <div class="text-truncate">강의실</div>
         </a>
         <ul class="menu-sub">
             {% for subject in reg_subjects%}
                 <li class="menu-item {% if request.GET.subject == subject %}active{% endif %}">
-                    <a href="{% url 'home' %}?subject={{ subject }}" class="menu-link">
+                    <a href="{% url 'lecture' %}?subject={{ subject }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-book"></i>
                         <div class="text-truncate">{{ subject }}</div>
                     </a>

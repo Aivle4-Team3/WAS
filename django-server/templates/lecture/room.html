@@ -120,7 +120,7 @@
                                 />
                             </label>
                             <form
-                                action="{% url 'chat' lecture.title video.name %}"
+                                action="{% url 'chat:page' lecture.title video.name %}"
                                 method="POST"
                             >
                                 {% csrf_token %}

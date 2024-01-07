@@ -13,7 +13,7 @@
             {% if lectures %}
             <div class="row gy-4 mb-4">
                 {% for lecture in lectures %}
-                <form class="col-sm-6 col-lg-4" method="post" action="{% url 'lecture' lecture.title %}">
+                <form class="col-sm-6 col-lg-4" method="post" action="{% url 'room' lecture.title %}">
                     {% csrf_token %}
                     <input type="hidden" name="lecture_id" value="{{ lecture.id }}" />
                     <div class="card p-2 h-100 shadow-none border">

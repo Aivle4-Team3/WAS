@@ -50,4 +50,4 @@ def evaluation(request, lecture_name, video_name):
         context = {
             'lecture_name': lecture_name,
         }
-    return render(request, "./evaluation/ev.html", context=context)
+    return render(request, "./evaluation/page.html", context=context)
