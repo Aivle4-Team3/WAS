@@ -15,7 +15,7 @@ def evaluation(request, lecture_name, video_name):
         # 관계검색
         enrollment = Enrollment.objects.get(user_id=user_id, video_id=video_id)
         # 메시지검색
-        chat_messages = Message.objects.filter(enrollment=enrollment).values_list('user_message', 'bot_message')
+        chat_messages = Message.objects.filter(enrollment=enrollment)
 
         # 문제지 & 정답지
         statements = Video.objects.get(id=video_id).testpapers.all()
