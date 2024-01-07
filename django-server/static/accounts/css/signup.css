@@ -2,7 +2,6 @@
     padding: 40px 20%;
     border: 1px solid #ddd;
     border-radius: 5px;
-    color: black; /* Text color */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 100;
     margin-bottom: 200;
@@ -14,12 +13,6 @@
     margin-bottom: 20px;
 }
 
-.signup {
-    color: var(--gray-dark);
-}
-.signup .btn {
-    border: 1px solid #ccc;
-}
 .signup-container input {
     padding: 10px;
     margin-bottom: 16px;
@@ -27,41 +20,21 @@
     border-radius: 3px;
     box-sizing: border-box;
 }
-.signup .form-group {
+
+.signup-container button {
+    padding: 12px;
+    background-color: gray;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.form-group {
     display: flex;
     flex-direction: row;
 }
 
-.signup button[type="submit"] {
-    padding: 1rem;
-}
-.signup button[type="submit"]:not(:hover) {
-    color: inherit;
-}
-
-/* avatar */
-.avatar-form {
-    display: flex;
-    width: 40%;
-    height: 225px;
-    border-radius: 10px 0 0 10px;
-    border: 1px solid #ccc;
-    justify-content: center;
-    align-items: center;
-}
-.avatar-form label {
-    cursor: pointer;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-}
-.avatar-form img {
-    border-radius: 10px 0 0 10px;
-    width: 100%;
-    height: 100%;
-}
-
-/* django-auth's forms */
 .basic-forms {
     display: flex;
     flex-direction: row;
@@ -92,4 +65,24 @@
 .basic-forms #id_avatar {
     display: none;
     border-radius: 10px 0 10px 0;
+}
+.avatar-form {
+    display: flex;
+    width: 40%;
+    height: 225px;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #ccc;
+    justify-content: center;
+    align-items: center;
+}
+.avatar-form label {
+    cursor: pointer;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.avatar-form img {
+    border-radius: 10px 0 0 10px;
+    width: 100%;
+    height: 100%;
 }
