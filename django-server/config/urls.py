@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.frontdoor, name='frontdoor'),
 
     path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls_allauth')),
     path('home/', include('home.urls')),
     path('lecture/', include('lecture.urls')),
     path('chat/', include('chat.urls')),
