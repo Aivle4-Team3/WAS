@@ -134,21 +134,21 @@
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                   {% if user.is_authenticated %}
                     <li class="nav-item">
-                      <a class="nav-link" href="/home/">{{ user }}님 환영합니다.</a>
+                      <a class="nav-link" href="{% url 'home' %}">{{ user }}님 환영합니다.</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/accounts/logout/">로그아웃</a>
+                      <a class="nav-link" href="{% url 'account_logout' %}">로그아웃</a>
                     </li>
                   {% else %}
                     <li class="nav-item">
-                      <a class="nav-link" href="/accounts/login/">로그인</a>
+                      <a class="nav-link" href="{% url 'account_login' %}">로그인</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/accounts/signup/">회원가입</a>
+                      <a class="nav-link" href="{% url 'account_signup' %}">회원가입</a>
                     </li>
                   {% endif %}
                   <li class="nav-item">
-                    <a class="nav-link" href="/#news">A+에듀 소식</a>
+                    <a class="nav-link" href="{% url 'frontdoor' %}#news">A+에듀 소식</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'faq' %}">FAQ</a>
