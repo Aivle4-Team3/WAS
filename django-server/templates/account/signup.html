@@ -1,66 +1,69 @@
-{% extends "../frontdoor/base.html" %} 
-{% load socialaccount %}{% load static %}{% load i18n %}{% block contents %}
-<link href="{% static '/accounts/css/signup.css' %}" rel="stylesheet" />
-<div class="signup-container">
+{% extends '../frontdoor/base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% load i18n %}
+{% block contents %}
+  <link href="{% static '/accounts/css/signup.css' %}" rel="stylesheet" />
+  <div class="signup-container">
     <h2>{% trans 'Sign Up' %}</h2>
 
     <form method="post" action="{% url 'account_signup' %}" class="signup">
-        {% csrf_token %} {% if form.errors %}
+      {% csrf_token %} {% if form.errors %}
         <p style="color: red">양식에 맞게 작성해주세요.</p>
-        {% endif %}
-        <div class="full-forms">
-            <!-- User-specific fields -->
-            <div class="avatar-form">
-                <label for="id_avatar" style="width: 100%; height: 100%">
-                    <img id="uploadedAvatar" src="{% static 'frontdoor/img/blank profile.png' %}" style="width: 100%; height: 100%" placeholder="이미지" />
-                </label>
-            </div>
-            <div class="basic-forms">{{ form.as_table }}</div>
-            <!-- Other form fields can be added if needed -->
+      {% endif %}
+      <div class="full-forms">
+        <!-- User-specific fields -->
+        <div class="avatar-form">
+          <label for="id_avatar" style="width: 100%; height: 100%"><img id="uploadedAvatar" src="{% static 'frontdoor/img/blank profile.png' %}" style="width: 100%; height: 100%" placeholder="이미지" /></label>
         </div>
+        <div class="basic-forms">{{ form.as_table }}</div>
+        <!-- Other form fields can be added if needed -->
+      </div>
 
-        <button type="submit">{% trans 'Sign Up' %}</button>
+      <button type="submit">{% trans 'Sign Up' %}</button>
     </form>
     <script>
-        const fileDOM = document.querySelector("#id_avatar");
-        const preview = document.querySelector("#uploadedAvatar");
-
-        fileDOM.addEventListener("change", () => {
-            const reader = new FileReader();
-            reader.onload = ({ target }) => {
-                preview.src = target.result;
-            };
-            reader.readAsDataURL(fileDOM.files[0]);
-        });
-
-        const originalAvatarUrl = preview.src;
-        const resetDom = document.querySelector("#resetAvatar");
-        resetDom.addEventListener("click", () => {
-            preview.src = originalAvatarUrl;
-        });
+      const fileDOM = document.querySelector('#id_avatar')
+      const preview = document.querySelector('#uploadedAvatar')
+      
+      fileDOM.addEventListener('change', () => {
+        const reader = new FileReader()
+        reader.onload = ({ target }) => {
+          preview.src = target.result
+        }
+        reader.readAsDataURL(fileDOM.files[0])
+      })
+      
+      const originalAvatarUrl = preview.src
+      const resetDom = document.querySelector('#resetAvatar')
+      resetDom.addEventListener('click', () => {
+        preview.src = originalAvatarUrl
+      })
     </script>
 
     <hr />
 
     <div class="login-button-container">
-        <form class="user" action="{% provider_login_url 'github' %}" method="post">
-            {% csrf_token %}
-            <button class="btn btn-github btn-user"><i class="fab fa-github fa-fw"></i></button>
-        </form>
-        <form class="user" action="{% provider_login_url 'google' %}" method="post">
-            {% csrf_token %}
-            <button class="btn btn-google btn-user"><i class="fab fa-google fa-fw"></i></button>
-        </form>
-        <form class="user" action="{% provider_login_url 'naver' %}" method="post">
-            {% csrf_token %}
-            <button class="btn btn-naver btn-user"><i class="xi-naver"></i></button>
-        </form>
-        <form class="user" action="{% provider_login_url 'kakao' %}" method="post">
-            {% csrf_token %}
-            <button class="btn btn-kakao btn-user"><i class="xi-kakaotalk"></i></button>
-        </form>
+      <form class="user" action="{% provider_login_url 'github' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-github btn-user"><i class="fab fa-github fa-fw"></i></button>
+      </form>
+      <form class="user" action="{% provider_login_url 'google' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-google btn-user"><i class="fab fa-google fa-fw"></i></button>
+      </form>
+      <form class="user" action="{% provider_login_url 'naver' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-naver btn-user"><i class="xi-naver"></i></button>
+      </form>
+      <form class="user" action="{% provider_login_url 'kakao' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-kakao btn-user"><i class="xi-kakaotalk"></i></button>
+      </form>
     </div>
 
-    <p>{% trans '이미 계정이 있으신가요?' %} <a href="{% url 'account_login' %}">{% trans 'Log in' %}</a></p>
-</div>
+    <p>
+      {% trans '이미 계정이 있으신가요?' %} <a href="{% url 'account_login' %}">{% trans 'Log in' %}</a>
+    </p>
+  </div>
 {% endblock %}

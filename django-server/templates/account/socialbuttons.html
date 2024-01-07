@@ -1,0 +1,19 @@
+{% load socialaccount %}
+<div class="login-button-container">
+  <form class="user" action="{% provider_login_url 'github' %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-github btn-user"><i class="fab fa-github fa-fw"></i></button>
+  </form>
+  <form class="user" action="{% provider_login_url 'google' %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-google btn-user"><i class="fab fa-google fa-fw"></i></button>
+  </form>
+  <form class="user" action="{% provider_login_url 'naver' %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-naver btn-user"><i class="xi-naver"></i></button>
+  </form>
+  <form class="user" action="{% provider_login_url 'kakao' %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-kakao btn-user"><i class="xi-kakaotalk"></i></button>
+  </form>
+</div>

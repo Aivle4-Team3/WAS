@@ -1,49 +1,53 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <base href="/home/" />
-        <title>A+EDU</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta name="description" content="에이쁠 에듀의 홈페이지입니다." />
-        <meta name="keywords" content="aivle, aivle school, django, django admin, dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{% static '/frontdoor/img/EDU.png' %}" />
+  <head>
+    <base href="/home/" />
+    <title>A+EDU</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="에이쁠 에듀의 홈페이지입니다." />
+    <meta name="keywords" content="aivle, aivle school, django, django admin, dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static '/frontdoor/img/EDU.png' %}" />
 
-        
-        <!-- Icons-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" type="text/css" />
-        <link href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" rel="stylesheet" >
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static '/frontdoor/css/styles.css' %}" rel="stylesheet" />
-        <link href="{% static '/frontdoor/css/avatar.css' %}" rel="stylesheet" />
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- SimpleLightbox plugin CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap) -->
+    <link href="{% static '/frontdoor/css/styles.css' %}" rel="stylesheet" />
+    <link href="{% static '/frontdoor/css/avatar.css' %}" rel="stylesheet" />
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body id="page-top" style="display: flex;flex-direction: column;">
+    <!-- Navigation -->
+    {% include 'frontdoor/topbar.html' %}
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    </head>
-    <body id="page-top">
-        <!-- Navigation -->
-        {% block topbar %} {% include 'frontdoor/topbar.html' %} {% endblock %}
-        <!-- Masthead-->
+    <!-- Content: Start -->
+    {% block contents %}
 
-        {% block contents %} {% endblock %}
+    {% endblock %}
+    <!-- Content: End -->
 
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">© 2023 'KT AIVLE SCHOOL TEAM 3' All rights reserved.</div></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- SimpleLightbox plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script src="{% static 'frontdoor/js/frontdoor.js' %}"></script>
-    </body>
+    <!-- Footer -->
+    <footer class="bg-light py-5">
+      <div class="container px-4 px-lg-5">
+        <div class="small text-center text-muted">© 2023 'KT AIVLE SCHOOL TEAM 3' All rights reserved.</div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SimpleLightbox plugin JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="{% static 'frontdoor/js/frontdoor.js' %}"></script>
+  </body>
 </html>

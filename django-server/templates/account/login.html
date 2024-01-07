@@ -1,169 +1,59 @@
-{% extends "../frontdoor/base.html" %} 
-{% load socialaccount %}{% load static %} {% block contents %}
+{% extends '../frontdoor/base.html' %}
+{% load static %}
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<link href="{% static '/accounts/css/sb-admin-2.css' %}" rel="stylesheet" />
-<style>
-    .bt{
-        color: black !important;
-        background-color: white !important;
-        border-color: gray !important;
-    }
-    .h4.text-gray-900.mb-4{
-        font-size: 20px;
-    }
-    .container.login-box{
-        margin-top: 70px;
-    }
-    .btn-github:hover {
-        color: #fafafa;
-        background-color: #333;
-    }
-    .btn-google:hover {
-        color: #858796;
-        background-color: orange;
-        border: none;
-    }
-    .btn-naver:hover {
-        color: white;
-        background-color: #2DB400;
-    }
-    .btn-kakao:hover {
-        color: #FAE300;
-        background-color: #371D1E;
-    }
+{% block contents %}
+  <link href="{% static '/accounts/css/sb-admin-2.css' %}" rel="stylesheet" />
+  <link href="{% static '/accounts/css/social-btn.css' %}" rel="stylesheet" />
+  <link href="{% static '/accounts/css/login.css' %}" rel="stylesheet" />
 
-    .btn.btn-github.btn-user.btn-block{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px; /* Adjust the size as needed */
-        height: 40px; /* Ensure width and height are equal for a perfect circle */
-        border-radius: 50%; /* This creates the circular shape */
-        background-color: #f1f1f1;    
-    }
-    .btn.btn-google.btn-user.btn-block{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px; /* Adjust the size as needed */
-        height: 40px; /* Ensure width and height are equal for a perfect circle */
-        border-radius: 50%; /* This creates the circular shape */
-        background-color: #f1f1f1;
-    }
-    .btn.btn-naver.btn-user.btn-block{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px; /* Adjust the size as needed */
-        height: 40px; /* Ensure width and height are equal for a perfect circle */
-        border-radius: 50%; /* This creates the circular shape */
-        background-color: #f1f1f1;
-    }
-    .btn.btn-kakao.btn-user.btn-block{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px; /* Adjust the size as needed */
-        height: 40px; /* Ensure width and height are equal for a perfect circle */
-        border-radius: 50%; /* This creates the circular shape */
-        background-color: #f1f1f1;
-    }
-   
-    .login-button-container {
-        display: flex;
-        justify-content: center; /* Center the buttons horizontally */
-        align-items: center; /* Center the buttons vertically */
-        gap: 10px; /* Space between each form */
-    }
-    .user {
-        margin: 0; /* Remove any default margin */
-    }
-    
-    .btn-user {
-        display: flex; /* Flex layout for the button */
-        align-items: center; /* Align items vertically in the center */
-        justify-content: center; /* Center the icon horizontally */
-        /* Add more styles as needed */
-    }
-    .body{
-        margin: 0 !important; /* Removes default margin */
-        padding: 0 !important; /* Removes default padding */
-        overflow-y: hidden !important; /* Prevents vertical scrolling */
-        height: 100vh !important; 
-    }
-</style>
-<div class="container login-box">
+  <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-10 col-lg-12 col-md-9">
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">AI 학생을 학습하고 성장시켜 보세요!</h1>
-                                </div>
-                                <form class="user" method="post" action="{% url 'account_login' %}?next={{request.GET.next}}">
-                                    {% csrf_token %}
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h5 text-gray-900 mb-4">AI 학생을 학습하고 성장시켜 보세요!</h1>
+                  </div>
+                  <form class="user" method="post" action="{% url 'account_login' %}?next={{ request.GET.next }}">
+                    {% csrf_token %}
 
-                                    <div class="form-group">
-                                        <input
-                                            type="text"
-                                            class="form-control form-control-user"
-                                            id="exampleInputEmail"
-                                            aria-describedby="emailHelp"
-                                            placeholder="아이디를 입력해주세요"
-                                            name="login"
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력해주세요." name="password" />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck" />
-                                            <label class="custom-control-label" for="customCheck">로그인 상태 유지</label>
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-primary btn-user btn-block bt">로그인</button> 
-                                    
-                                </form>
-                                <hr />
-                                <div class="login-button-container">
-                                    <form class="user" action="{% provider_login_url 'github' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-github btn-user"><i class="fab fa-github fa-fw"></i></button>
-                                    </form>
-                                    <form class="user" action="{% provider_login_url 'google' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-google btn-user"><i class="fab fa-google fa-fw"></i></button>
-                                    </form>
-                                    <form class="user" action="{% provider_login_url 'naver' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-naver btn-user"><i class="xi-naver"></i></button>
-                                    </form>
-                                    <form class="user" action="{% provider_login_url 'kakao' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-kakao btn-user"><i class="xi-kakaotalk"></i></button>
-                                    </form>
-                                </div>
-                                <hr />
-                                <div class="text-center">
-                                    <a class="small" href="{% url 'accounts:reset_password' %}">비밀번호를 잊어버렸나요?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="{% url 'accounts:consent' %}">계정을 만들어보세요!</a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="아이디를 입력해주세요" name="login" />
                     </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력해주세요." name="password" />
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" />
+                        <label class="custom-control-label" for="customCheck">로그인 상태 유지</label>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-user btn-block bt">로그인</button>
+                  </form>
+                  <hr />
+
+                  {% include 'account/socialbuttons.html' %}
+                  <hr />
+
+                  <div class="text-center">
+                    <a class="small" href="{% url 'accounts:reset_password' %}">비밀번호를 잊어버렸나요?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="{% url 'accounts:consent' %}">계정을 만들어보세요!</a>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}
