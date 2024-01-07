@@ -1,28 +1,27 @@
 {% extends "../home/base.html" %} {% load static %} {% block contents %}
+<link href="{% static '/board/css/board.css' %}" rel="stylesheet" />
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="py-3 mb-4"><span class="text-muted fw-light">게시판 /</span> 게시판</h4>
 
-    <div class="app-ecommerce-category">
+    <div class="board">
         <!-- Category List Table -->
         <div class="card">
             <div class="card-datatable table-responsive">
-                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                    <div class="card-header d-flex flex-wrap py-0" style="margin: 10px 0; justify-content: space-between">
+                <div id="board" class="dt-bootstrap5 no-footer">
+                    <div class="card-header d-flex flex-wrap py-0 justify-content-sm-between">
                         <div class="me-5 ms-n2 pe-5">
-                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <form action="{% url 'board:board' %}" method="get">
-                                    {% csrf_token %}
-                                    <label><input name="q" type="search" class="form-control" placeholder="{{ q|default:'Search' }}" aria-controls="DataTables_Table_0" v-model="searchQuery"/></label>
-                                </form>
-                            </div>
+                            <form action="{% url 'board:board' %}" method="get">
+                                {% csrf_token %}
+                                <label><input name="q" type="search" class="form-control" placeholder="{{ q|default:'Search' }}" v-model="searchQuery"/></label>
+                            </form>
                         </div>
                         <div class="d-flex justify-content-start justify-content-md-end align-items-baseline">
                             <div class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-3 mb-sm-0 gap-3 pt-0">
-                                <div class="dataTables_length mt-0" id="DataTables_Table_0_length">
+                                <div class="mt-0" >
                                     <label>
                                         <form action="{% url 'board:board' %}" method="get">
                                             {% csrf_token %}
-                                            <select name="per" aria-controls="DataTables_Table_0" class="form-select" onchange="this.form.submit();">
+                                            <select name="per" class="form-select" onchange="this.form.submit();">
                                                 {% for i in per_list %}
                                                     <option value="{{i}}" {% if i == per %}selected{% endif %}>{{i}}</option>
                                                 {% endfor %}
@@ -32,24 +31,24 @@
                                 </div>
                                 <div class="dt-buttons">
                                     <button class="dt-button add-new btn btn-primary ms-2">
-                                        <a href="{% url 'board:create' %}" style="color: white"><i class="bx bx-plus me-0 me-sm-1"></i>새 글 쓰기</a>
+                                        <a href="{% url 'board:create' %}"><i class="bx bx-plus me-0 me-sm-1"></i>새 글 쓰기</a>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <table class="datatables-category-list table border-top dataTable no-footer dtr-column collapsed" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                    <table class="table border-top dataTable no-footer dtr-column collapsed">
                         <thead>
                             <tr>
-                                <th class="control sorting_disabled" style="width: 4px" aria-label=""></th>
+                                <th class="control sorting_disabled title"></th>
                                 <th>제목</th>
-                                <th class="text-nowrap text-sm-end sorting_disabled" aria-label="Total Earning" style="width: 250px">작성 시간</th>
-                                <th class="text-nowrap text-sm-end sorting" style="width: 100px">작성자</th>
+                                <th class="text-nowrap text-sm-end sorting_disabled created">작성 시간</th>
+                                <th class="text-nowrap text-sm-end sorting author">작성자</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="odd" v-for="post in posts">
-                                <td class="control" style="" tabindex="0"></td>
+                                <td class="control" tabindex="0"></td>
                                 <td class="sorting_1">
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex flex-column justify-content-center" :href="'/board/'+post.id">
@@ -59,29 +58,29 @@
                                 </td>
                                 <td><div class="text-sm-end">[[ post.created ]]</div></td>
                                 <td>
-                                    <div class="fw-medium text-sm-end" style="display: flex; flex-direction: row-reverse; align-items: center">
-                                        <div class="avatar"><img :src="[[ post.avatar_url ]]" alt="" style="border-radius: 50%; width: 2.375rem; height: 2.375rem" /></div>
-                                        <div style="margin-right: 10px">[[ post.author ]]</div>
+                                    <div class="fw-medium text-sm-end flex-row-reverse d-sm-flex align-items-sm-center">
+                                        <div class="avatar"><img :src="[[ post.avatar_url ]]"/></div>
+                                        <div class="author">[[ post.author ]]</div>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="row mx-2">
-                        <div class="col-sm-12 col-md-6"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing {{page}} to {{last}} of {{total}} entries</div></div>
+                        <div class="col-sm-12 col-md-6"><div role="status">Showing {{page}} to {{last}} of {{total}} entries</div></div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                            <div class="paging_simple_numbers">
                                 <ul class="pagination">
-                                    <li class="paginate_button page-item previous {% if page == 1 %}disabled{% endif %}" id="DataTables_Table_0_previous">
-                                        <a href="{% url 'board:board' %}?page={{page|add:'-1'}}" aria-controls="DataTables_Table_0" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
+                                    <li class="paginate_button page-item previous {% if page == 1 %}disabled{% endif %}">
+                                        <a href="{% url 'board:board' %}?page={{page|add:'-1'}}" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
                                     </li>
                                     {% for i in board_list %}
                                     <li class="paginate_button page-item {% if i == page %}active{% endif %}">
-                                        <a href="{% url 'board:board' %}?page={{i}}" aria-controls="DataTables_Table_0" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">{{ i }}</a>
+                                        <a href="{% url 'board:board' %}?page={{i}}" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">{{ i }}</a>
                                     </li>
                                     {% endfor %}
-                                    <li class="paginate_button page-item next {% if page == last %}disabled{% endif %}" id="DataTables_Table_0_next">
-                                        <a href="{% url 'board:board' %}?page={{page|add:'1'}}" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
+                                    <li class="paginate_button page-item next {% if page == last %}disabled{% endif %}" >
+                                        <a href="{% url 'board:board' %}?page={{page|add:'1'}}" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
                                     </li>
                                 </ul>
                             </div>
@@ -111,7 +110,7 @@
 
         new Vue({
             delimiters: ["[[", "]]"],
-            el: "#DataTables_Table_0_wrapper",
+            el: "#board",
             data: {
                 searchQuery: '',
             },
