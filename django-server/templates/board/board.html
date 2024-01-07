@@ -52,11 +52,15 @@
                                 <td class="sorting_1">
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex flex-column justify-content-center" :href="'/board/'+post.id">
-                                            <span class="text-body text-wrap fw-medium">[[ post.title ]]</span><span class="text-muted text-truncate mb-0 d-none d-sm-block"><small>Tag</small></span>
+                                            <div>
+                                                <span class="text-body text-wrap fw-medium">[[ post.title ]]</span>
+                                                <span class="comments-count"> [[ post.comments_count ]]</span>
+                                            </div>
+                                            <span class="text-muted text-truncate mb-0 d-none d-sm-block"><small>Tag</small></span>
                                         </a>
                                     </div>
                                 </td>
-                                <td><div class="text-sm-end">[[ post.created ]]</div></td>
+                                <td><div class="text-sm-end created">[[ post.created ]]</div></td>
                                 <td>
                                     <div class="fw-medium text-sm-end flex-row-reverse d-sm-flex align-items-sm-center">
                                         <div class="avatar"><img :src="[[ post.avatar_url ]]"/></div>
@@ -66,6 +70,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <br/>
                     <div class="row mx-2">
                         <div class="col-sm-12 col-md-6"><div role="status">Showing {{page}} to {{last}} of {{total}} entries</div></div>
                         <div class="col-sm-12 col-md-6">
@@ -102,11 +107,10 @@
                 author: '{{ post.author }}',
                 created: '{{ post.created }}',
                 avatar_url: '{{ post.author.avatar.url }}',
+                comments_count: '{{ post.comments.count }}',
             },
             {% endfor %}
         ]
-
-        console.log(post_all)
 
         new Vue({
             delimiters: ["[[", "]]"],
