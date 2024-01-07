@@ -22,24 +22,7 @@
 
       <button type="submit">{% trans 'Sign Up' %}</button>
     </form>
-    <script>
-      const fileDOM = document.querySelector('#id_avatar')
-      const preview = document.querySelector('#uploadedAvatar')
-      
-      fileDOM.addEventListener('change', () => {
-        const reader = new FileReader()
-        reader.onload = ({ target }) => {
-          preview.src = target.result
-        }
-        reader.readAsDataURL(fileDOM.files[0])
-      })
-      
-      const originalAvatarUrl = preview.src
-      const resetDom = document.querySelector('#resetAvatar')
-      resetDom.addEventListener('click', () => {
-        preview.src = originalAvatarUrl
-      })
-    </script>
+    <script src="{% static '/accounts/js/read-image.js' %}"></script>
 
     <hr />
 
