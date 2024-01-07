@@ -1,61 +1,75 @@
 {% load static %}
 {% block sidebar %}
-<div class="app-brand demo">
+  <div class="app-brand demo">
     <a href="{% url 'home' %}" class="app-brand-link">
-        <img src="{% static 'frontdoor/img/logo_noname.png' %}" style="height: 50px; width: auto; filter: drop-shadow(1px 1px 1px white)">
-        <span class="app-brand-text demo menu-text fw-bold ms-2">A+EDU</span>
+      <img src="{% static 'frontdoor/img/logo_noname.png' %}" style="height: 50px; width: auto; filter: drop-shadow(1px 1px 1px white)" />
+      <span class="app-brand-text demo menu-text fw-bold ms-2">A+EDU</span>
     </a>
-</div>
+  </div>
 
-<div class="menu-inner-shadow"></div>
+  <div class="menu-inner-shadow"></div>
 
-<ul class="menu-inner py-1">
-    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
-        <a href="{% url 'home' %}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div class="text-truncate">홈</div>
-        </a>
+  <ul class="menu-inner py-1">
+    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}{% endif %}">
+      <a href="{% url 'home' %}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div class="text-truncate">홈</div>
+      </a>
     </li>
 
-    <li class="menu-item {% if request.resolver_match.url_name == 'lecture' %}active{% endif %} open">
-        <a href="{% url 'lecture' %}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-book"></i>
-            <div class="text-truncate">강의실</div>
-        </a>
-        <ul class="menu-sub">
-            {% for subject in reg_subjects%}
-                <li class="menu-item {% if request.GET.subject == subject %}active{% endif %}">
-                    <a href="{% url 'lecture' %}?subject={{ subject }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-book"></i>
-                        <div class="text-truncate">{{ subject }}</div>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+    <li class="menu-item {% if request.resolver_match.url_name == 'lecture' %}{% endif %} open">
+      <a href="{% url 'lecture' %}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-slideshow"></i>
+        <div class="text-truncate">강의실</div>
+      </a>
+      <ul class="menu-sub">
+        {% for subject in reg_subjects %}
+          <li class="menu-item {% if request.GET.subject == subject %}{% endif %}">
+            <a href="{% url 'lecture' %}?subject={{ subject }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-book"></i>
+              <div class="text-truncate">{{ subject }}</div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </li>
-    
-    <li class="menu-item {% if request.resolver_match.url_name == 'board' %}active{% endif %}">
-        <a href="{% url 'board:board' %}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-envelope"></i>
-            <div class="text-truncate">게시판</div>
-        </a>
+
+    <li class="menu-item {% if request.resolver_match.url_name == 'board' %}{% endif %}">
+      <a href="{% url 'board:board' %}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-comment-detail"></i>
+        <div class="text-truncate">게시판</div>
+      </a>
     </li>
-</ul>
+
+    <li class="menu-item {% if request.resolver_match.url_name == 'qna' %}{% endif %}">
+      <a href="{% url 'qna:board' %}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-search"></i>
+        <div class="text-truncate">질문게시판</div>
+      </a>
+    </li>
+
+    <li class="menu-item {% if request.resolver_match.url_name == 'notice' %}{% endif %}">
+      <a href="{% url 'notice:board' %}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-info-circle"></i>
+        <div class="text-truncate">공지사항</div>
+      </a>
+    </li>
+  </ul>
 {% endblock %}
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(function(item) {
-            item.addEventListener('click', function() {
-                // 모든 메뉴 항목에서 'active' 클래스 제거
-                menuItems.forEach(function(i) {
-                    i.classList.remove('active');
-                });
-    
-                // 클릭된 메뉴 항목에 'active' 클래스 추가
-                this.classList.add('active');
-            });
-        });
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+    var menuItems = document.querySelectorAll('.menu-item')
+    menuItems.forEach(function (item) {
+      item.addEventListener('click', function () {
+        // 모든 메뉴 항목에서 'active' 클래스 제거
+        menuItems.forEach(function (i) {
+          i.classList.remove('active')
+        })
+  
+        // 클릭된 메뉴 항목에 'active' 클래스 추가
+        this.classList.add('active')
+      })
+    })
+  })
 </script>

@@ -1,7 +1,9 @@
-{% extends "../home/base.html" %} {% load static %} {% block contents %}
+{% extends "../home/base.html" %} {% load static %} {% load namespace_tags %} {% block contents %}
+{% namespaced_url namespace 'board' as board %}
+{% namespaced_url namespace 'create' as create %}
 <link href="{% static '/board/css/board.css' %}" rel="stylesheet" />
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">게시판 /</span> 게시판</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">게시판 /</span> {{ namespace }}</h4>
 
     <div class="board">
         <!-- Category List Table -->
@@ -10,7 +12,7 @@
                 <div id="board" class="dt-bootstrap5 no-footer">
                     <div class="card-header d-flex flex-wrap py-0 justify-content-sm-between">
                         <div class="me-5 ms-n2 pe-5">
-                            <form action="{% url 'board:board' %}" method="get">
+                            <form action="{% url board %}" method="get">
                                 {% csrf_token %}
                                 <label><input name="q" type="search" class="form-control" placeholder="{{ q|default:'Search' }}" v-model="searchQuery"/></label>
                             </form>
@@ -19,7 +21,7 @@
                             <div class="dt-action-buttons d-flex align-items-start align-items-md-center justify-content-sm-center mb-3 mb-sm-0 gap-3 pt-0">
                                 <div class="mt-0" >
                                     <label>
-                                        <form action="{% url 'board:board' %}" method="get">
+                                        <form action="{% url board %}" method="get">
                                             {% csrf_token %}
                                             <select name="per" class="form-select" onchange="this.form.submit();">
                                                 {% for i in per_list %}
@@ -29,11 +31,13 @@
                                         </form>
                                     </label>
                                 </div>
-                                <div class="dt-buttons">
-                                    <button class="dt-button add-new btn btn-primary ms-2">
-                                        <a href="{% url 'board:create' %}"><i class="bx bx-plus me-0 me-sm-1"></i>새 글 쓰기</a>
-                                    </button>
-                                </div>
+                                {% if not namespace == 'notice' or user.is_superuser %}
+                                    <div class="dt-buttons">
+                                        <button class="dt-button add-new btn btn-primary ms-2">
+                                            <a href="{% url create %}"><i class="bx bx-plus me-0 me-sm-1"></i>새 글 쓰기</a>
+                                        </button>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -53,7 +57,7 @@
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex flex-column justify-content-center" :href="'/board/'+post.id">
                                             <div>
-                                                <span class="text-body text-wrap fw-medium">[[ post.title ]]</span>
+                                                <span class="text-body text-wrap fw-medium" :class="{'notice': post.is_notice}">[[ post.title ]]</span>
                                                 <span class="comments-count"> [[ post.comments_count ]]</span>
                                             </div>
                                             <span class="text-muted text-truncate mb-0 d-none d-sm-block"><small>Tag</small></span>
@@ -77,15 +81,15 @@
                             <div class="paging_simple_numbers">
                                 <ul class="pagination">
                                     <li class="paginate_button page-item previous {% if page == 1 %}disabled{% endif %}">
-                                        <a href="{% url 'board:board' %}?page={{page|add:'-1'}}" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
+                                        <a href="{% url board %}?page={{page|add:'-1'}}" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
                                     </li>
                                     {% for i in board_list %}
                                     <li class="paginate_button page-item {% if i == page %}active{% endif %}">
-                                        <a href="{% url 'board:board' %}?page={{i}}" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">{{ i }}</a>
+                                        <a href="{% url board %}?page={{i}}" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">{{ i }}</a>
                                     </li>
                                     {% endfor %}
                                     <li class="paginate_button page-item next {% if page == last %}disabled{% endif %}" >
-                                        <a href="{% url 'board:board' %}?page={{page|add:'1'}}" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
+                                        <a href="{% url board %}?page={{page|add:'1'}}" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
                                     </li>
                                 </ul>
                             </div>
@@ -108,6 +112,7 @@
                 created: '{{ post.created }}',
                 avatar_url: '{{ post.author.avatar.url }}',
                 comments_count: '{{ post.comments.count }}',
+                is_notice: '{{ post.is_notice }}',
             },
             {% endfor %}
         ]

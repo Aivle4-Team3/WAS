@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
-from .models import Post
-from .forms import PostModelForm
+from .models import QnA
+from .forms import QnAModelForm
 
 
-app_name = 'board'
-view = views.Which(Post, PostModelForm, app_name)
+app_name = 'qna'
+view = views.Which(QnA, QnAModelForm, app_name)
 
 
 urlpatterns = [

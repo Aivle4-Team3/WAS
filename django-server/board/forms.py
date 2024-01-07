@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment
+from .models import *
 from ckeditor.widgets import CKEditorWidget
 
 
@@ -11,6 +11,26 @@ class PostForm(forms.Form):
 class PostModelForm(forms.ModelForm):
     class Meta:
         model = Post
+        fields = ['title', 'body']
+        labels = {
+            'title': '제목',
+            'body': '내용',
+        }
+
+
+class QnAModelForm(forms.ModelForm):
+    class Meta:
+        model = QnA
+        fields = ['title', 'body']
+        labels = {
+            'title': '제목',
+            'body': '내용',
+        }
+
+
+class NoticeModelForm(forms.ModelForm):
+    class Meta:
+        model = Notice
         fields = ['title', 'body']
         labels = {
             'title': '제목',

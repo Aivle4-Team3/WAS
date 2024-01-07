@@ -25,6 +25,14 @@ class Post(models.Model):
         return reverse("board:detail", args=[self.id])
 
 
+class QnA(Post):
+    pass
+
+
+class Notice(Post):
+    pass
+
+
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(
