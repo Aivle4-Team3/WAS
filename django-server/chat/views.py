@@ -5,7 +5,7 @@ from accounts.models import User
 # Create your views here.
 
 
-def chatpage(request, lecture_name, video_name):
+def chat(request, lecture_name, video_name):
     # user, video id를 POST로 전송 받음
     user_id = request.POST['user_id'] if request.method == 'POST' else None
     video_id = request.POST['video_id'] if request.method == 'POST' else None

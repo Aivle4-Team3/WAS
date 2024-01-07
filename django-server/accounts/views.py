@@ -38,10 +38,6 @@ def mypage(request):
     return render(request, './account/mypage.html', context=context)
 
 
-def faq(request):
-    return render(request, './home/faq.html')
-
-
 def consent(request):
     return render(request, 'account/consent.html')
 

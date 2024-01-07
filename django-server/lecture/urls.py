@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import lecture, save_playback
+from . import views
 
 
 urlpatterns = [
-    path('saveplayback/', save_playback, name='saveplayback'),
-    path('<str:lecture_name>/', lecture, name='lecture'),
+    path('', views.showcase, name='lecture'),
+    path('saveplayback/', views.save_playback, name='saveplayback'),
+    path('<str:lecture_name>/', views.room, name='room'),
 ]

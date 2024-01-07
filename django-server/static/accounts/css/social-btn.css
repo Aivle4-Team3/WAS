@@ -1,0 +1,28 @@
+.login-button-container {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
+    gap: 10px; /* Space between each form */
+}
+
+.btn-github:hover {
+    color: white;
+    background-color: #333;
+}
+.btn-google {
+    color: #858796;
+    background-color: transparent;
+    border: none;
+}
+.btn-google:hover {
+    color: white;
+    background-color: #ea4335;
+}
+.btn-naver:hover {
+    color: white;
+    background-color: #2db400;
+}
+.btn-kakao:hover {
+    color: #fae300;
+    background-color: #371d1e;
+}

@@ -1,0 +1,58 @@
+.detail {
+    background: white;
+    padding: 30px;
+}
+.dt-buttons a {
+    color: white;
+}
+.author {
+    font-size: 14px;
+}
+.author img {
+    margin-right: 10px;
+}
+.author .created {
+    padding: 3px 0;
+    opacity: 0.8;
+}
+
+/* 댓글 입력 폼에 대한 스타일 변경 */
+form[action^="{% url 'board:create_comment' post.id %}"] {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 배치 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    width: 100%; /* 가로 크기를 80%로 설정 */
+}
+
+/* 메시지 입력창 크기 조정 */
+form[action^="{% url 'board:create_comment' post.id %}"] textarea#id_message {
+    width: 100%; /* 가로로 꽉 채우기 */
+    height: 50px; /* 원하는 세로 높이로 조정 */
+    resize: vertical; /* 세로로만 조절 가능하도록 설정 */
+}
+
+/* 버튼 스타일 변경 */
+form[action^="{% url 'board:create_comment' post.id %}"] button.btn-primary {
+    margin-left: auto; /* 버튼을 오른쪽으로 정렬 */
+    margin-top: 10px; /* 위쪽 여백 추가 */
+}
+
+/* 댓글 컨테이너 스타일 */
+.comment-container {
+    border: 1px solid #696cff;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.comment-container .author {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/* 메시지 스타일 */
+.comment-container .message {
+    font-size: 16px;
+}

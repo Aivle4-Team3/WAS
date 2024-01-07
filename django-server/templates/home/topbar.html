@@ -68,7 +68,7 @@
                                                     $.ajax({
                                                         type: 'post',
                                                         headers: { 'X-CSRFToken': csrfToken },
-                                                        url: '{% url 'read_message' %}',
+                                                        url: '{% url "accounts:readmessage" %}',
                                                         data: { id : {{ m.message.id }} },
                                                         success(data, status, xhr) { $('#message-{{ m.message.id }}').hide(); }
                                                     });
@@ -88,7 +88,7 @@
                                 $.ajax({
                                     type: 'post',
                                     headers: { 'X-CSRFToken': csrfToken },
-                                    url: '{% url 'read_message' %}',
+                                    url: '{% url "accounts:readmessage" %}',
                                     data: { read_all : 'true' },
                                     success(data, status, xhr) { $('.message').hide(); }
                                 });
@@ -108,7 +108,7 @@
 
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="{% url 'mypage' %}">
+                            <a class="dropdown-item" href="{% url 'accounts:mypage' %}">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
@@ -129,7 +129,7 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'mypage' %}">
+                            <a class="dropdown-item" href="{% url 'accounts:mypage' %}">
                                 <i class="bx bx-user me-2"></i>
                                 <span class="align-middle">My Profile</span>
                             </a>
@@ -142,14 +142,14 @@
                         </li>
                         {% if user.is_superuser %}
                         <li>
-                            <a class="dropdown-item" href="/admin/">
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">
                                 <i class="bx bx-lock me-2"></i>
                                 <span class="align-middle">Admin</span>
                             </a>
                         </li>
                         {% endif %}
                         <li>
-                            <a class="dropdown-item" href="/accounts/logout/">
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">
                                 <i class="bx bx-power-off me-2"></i>
                                 <span class="align-middle">Sign out</span>
                             </a>

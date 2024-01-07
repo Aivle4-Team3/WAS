@@ -67,7 +67,7 @@ def post_update(request, id):
     else:
         form = PostModelForm(instance=post)
 
-    return render(request, 'board/post_update.html', {'form': form})
+    return render(request, 'board/post_form.html', {'form': form})
 
 
 # Data 삭제 작업
