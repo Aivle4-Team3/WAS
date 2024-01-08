@@ -82,12 +82,9 @@ class Which:
 
     def post_delete(self, request, id):
         post = get_object_or_404(self.BoardModel, id=id)
-        if request.method == 'POST':
-            post.delete()
-            return redirect('board:list')
-        else:
-            return render(request, 'board/post_delete.html', {'namespace': self.app_name, 'post': post})
-
+        post.delete()
+        return redirect('board:board')
+    
     def create_comment(self, request, id):
         if request.method == 'POST':
             form = CommentForm(request.POST)

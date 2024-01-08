@@ -1,76 +1,101 @@
 {% extends '../home/base.html' %} {% load static %} {% block contents %}
   <link href="{% static '/board/css/detail.css' %}" rel="stylesheet" />
 
-  <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><a href="{% url 'board:board' %}">게시글</a></h4>
-
-    <div class="detail">
-      <div>
-        <h1>{{ post.title }}</h1>
-        <div class="author d-md-flex align-items-md-center">
-          <img class="w-px-40 rounded-circle" src="{{ post.author.avatar.url }}" />
-          <div class="d-md-flex flex-lg-column author">
-            <span>{{ post.author }}</span>
-            <span class="created">{{ post.created }}</span>
-          </div>
+ <div class="container-xxl flex-grow-1 container-p-y">
+    
+    <div class="app-ecommerce-category">
+        <!-- Category List Table -->
+        <div class="card">
+            <div class="card-datatable table-responsive"></div>
         </div>
-      </div>
-      <hr /><br />
-      <div>
-        <br />
-        {{ post.body|safe }}
-        <br />
-        {% if request.user == post.author %}
-          <div class="d-md-flex">
-            <div class="dt-buttons">
-              <button class="dt-button add-new btn btn-primary ms-2"><a href="{% url 'board:update' post.id %}"><i class="bx bx-plus me-0 me-sm-1"></i>글 수정하기</a></button>
-            </div>
-          </div>
-        {% endif %}
-
-        <hr />
-        <p>댓글</p>
-        <!-- 댓글 템플릿 -->
-        {% for comment in comment_all %}
-          <div class="comment-container">
-            <div class="author d-md-flex align-items-md-center">
-                <img class="w-px-40 rounded-circle" src="{{ comment.author.avatar.url }}">
-                <div class="d-md-flex flex-lg-column">
-                  <span>{{ comment.author }}</span>
-                  <span class="created">{{ comment.created }}</span>
+        <table id="DataTables_Table_0" class="table table-bordered">
+            <tbody>
+                <div class="container">
+                    <div class="row-mt-5">
+                        <div class="col-12">
+                            <!--본문-->
+                            <div class="card" style="width: 100%;">
+                                <!--제목,분류,작성일-->
+                                <div class="card-header">
+                                    <strong style="font-size: 18px;">{{ post.title }}</strong>&nbsp;&nbsp;<span style="font-size: 18px; color: gray;"></span>
+                                    <span style="float:right;">{{ post.created }}</span>
+                                </div>
+                                <div class="card-body" style="min-height: 400px; color:black;">
+                                    <!--작성자, 조회수-->
+                                    <hr>
+                                    <div>
+                                        <img src="{{ post.author.avatar.url }}" alt="프로필" class="w-px-40 rounded-circle" />
+                                        <span><i class="fas fa-user-edit"></i>&nbsp;{{ post.author }}</span>
+                                        {% comment %} <span style="float:right;">조회수 : {{ notice.hits }}</span> {% endcomment %}
+                                    </div>
+                                    <hr>
+                                    
+                                    <!--내용-->
+                                    <div>
+                                        {{ post.body | safe }}
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                {% if request.user == post.author %}
+                <div style="text-align: right;">
+                    <a style="display: inline-block; background-color: rgb(105, 108, 255); border: 10px; color: rgb(255, 255, 255); border-radius: 5px; padding: 8px;" href="{% url 'board:update' post.id %}">글 수정하기</a>
+                    <a onclick="fn_del_qna();" style="display: inline-block; background-color: rgb(105, 108, 255); border: 10px; color: rgb(255, 255, 255); border-radius: 5px; padding: 8px;">글 삭제하기</a>
+                </div>
+                {% endif %}
 
-            <p class="message">{{ comment.message }}</p>
-            {% if request.user == comment.author %}
-              <a href="{% url 'board:delete_comment' post.id comment.id %}">삭제</a>
-            {% endif %}
-          </div>
-          {% empty %}
-          <p>댓글이 존재하지 않습니다.</p>
-        {% endfor %}
-        <hr />
+<script>
+function fn_del_qna(){
+      var res = confirm('게시글을 정말로 삭제하시겠습니까?');
+      if(res){
+        window.location.href = "{% url 'board:delete' post.id %}"
+        alert("성공적으로 삭제되었습니다.");
+      }
+    }
+</script>
 
-        <form action="{% url 'board:create_comment' post.id %}" method="POST">
-          {% csrf_token %}
+                <hr />
+                <p>댓글</p>
+                <!-- 댓글 템플릿 -->
+                {% for comment in comment_all %}
+                <div class="comment-container">
+                    <img src="{{ comment.author.avatar.url }}" alt="프로필" class="w-px-40 rounded-circle" />
+                    <span class="comment-author">{{ comment.author }}</span>
+                    <span class="comment-created">{{ comment.created }}</span>
+                    <p class="comment-message">{{ comment.message }}</p>
+                    {% if request.user == comment.author %}
+                        <a href="{% url 'board:delete_comment' post.id comment.id %}">삭제</a>
+                    {% endif %}
+                </div>
+                {%empty%}
+                <p>댓글이 존재하지 않습니다.</p>
+                {% endfor %}
+                <hr />
 
-          <label for="{{ comment_form.message.id_for_label }}">댓글 입력</label>
-            <textarea name="{{ comment_form.message.name }}" id="{{ comment_form.message.id_for_label }}"
-                placeholder="여러분들의 소중한 댓글을 입력해주세요."
-                cols="{{ comment_form.message.widget.attrs.cols }}"
-                rows="{{ comment_form.message.widget.attrs.rows }}"
-                {% if comment_form.message.disabled %}disabled{% endif %}
-                {% if comment_form.message.required %}required{% endif %}>
-                {{ comment_form.message.value|default:'' }}
-            </textarea>
-            <button type="submit" class="btn btn-primary">제출</button>
-        </form>
-        <hr />
+                <form action="{% url 'board:create_comment' post.id %}" method="POST">
+                    {% csrf_token %}
+                    <label for="{{ comment_form.message.id_for_label }}">댓글 입력</label>
+                    <textarea
+                        name="{{ comment_form.message.name }}"
+                        id="{{ comment_form.message.id_for_label }}"
+                        placeholder="여러분들의 소중한 댓글을 입력해주세요."
+                        cols="{{ comment_form.message.widget.attrs.cols }}"
+                        rows="{{ comment_form.message.widget.attrs.rows }}"
+                        {% if comment_form.message.disabled %}disabled{% endif %}
+                        {% if comment_form.message.required %}required{% endif %}
+                    >{{ comment_form.message.value|default:'' }}</textarea>
+                    <button type="submit" class="btn btn-primary">제출</button>
+                    </form>
 
-        <a href="{% url 'board:board' %}">목록가기</a>
-      </div>
+                <hr />
+                <a href="{% url 'board:board' %}">목록가기</a>
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
 
-  <!-- / Content -->
+<!-- / Content -->
 {% endblock %}
