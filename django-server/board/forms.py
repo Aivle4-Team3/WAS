@@ -19,15 +19,18 @@ class PostModelForm(forms.ModelForm):
 
 
 class CommunityModelForm(PostModelForm):
-    pass
+    class Meta(PostModelForm.Meta):
+        model = Community
 
 
 class QnAModelForm(PostModelForm):
-    pass
+    class Meta(PostModelForm.Meta):
+        model = QnA
 
 
-class NoticeModelForm(PostForm):
-    pass
+class NoticeModelForm(PostModelForm):
+    class Meta(PostModelForm.Meta):
+        model = Notice
 
 
 class CommentForm(forms.ModelForm):
