@@ -10,21 +10,21 @@
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
-    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+    <li class="menu-item {% if request.resolver_match.url_name == 'home' %}{% endif %}">
       <a href="{% url 'home' %}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div class="text-truncate">홈</div>
       </a>
     </li>
 
-    <li class="menu-item {% if request.resolver_match.url_name == 'lecture' %}active{% endif %} open">
+    <li class="menu-item {% if request.resolver_match.url_name == 'lecture' %}{% endif %} open">
       <a href="{% url 'lecture' %}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-slideshow"></i>
         <div class="text-truncate">강의실</div>
       </a>
       <ul class="menu-sub">
         {% for subject in reg_subjects %}
-          <li class="menu-item {% if request.GET.subject == subject %}active{% endif %}">
+          <li class="menu-item {% if request.GET.subject == subject %}{% endif %}">
             <a href="{% url 'lecture' %}?subject={{ subject }}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-book"></i>
               <div class="text-truncate">{{ subject }}</div>
@@ -34,19 +34,25 @@
       </ul>
     </li>
 
-    <li class="menu-item {% if request.resolver_match.url_name == 'board' %}active{% endif %} open">
+    <li class="menu-item {% if request.resolver_match.url_name == 'board' %}{% endif %} open">
       <a href="{% url 'board:board' %}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-slideshow"></i>
         <div class="text-truncate">게시판</div>
       </a>
       <ul class="menu-sub">
-        <li class="menu-item {% if request.resolver_match.url_name == 'qna' %}active{% endif %}">
+        <li class="menu-item {% if request.resolver_match.url_name == 'community' %}{% endif %}">
+          <a href="{% url 'community:community' %}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-comment-detail"></i>
+            <div class="text-truncate">자유게시판</div>
+          </a>
+        </li>
+        <li class="menu-item {% if request.resolver_match.url_name == 'qna' %}{% endif %}">
           <a href="{% url 'qna:qna' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-search"></i>
             <div class="text-truncate">질문게시판</div>
           </a>
         </li>
-        <li class="menu-item {% if request.resolver_match.url_name == 'notice' %}active{% endif %}">
+        <li class="menu-item {% if request.resolver_match.url_name == 'notice' %}{% endif %}">
           <a href="{% url 'notice:notice' %}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-info-circle"></i>
             <div class="text-truncate">공지사항</div>
@@ -54,8 +60,6 @@
         </li>
       </ul>
     </li>
-
-    
   </ul>
 {% endblock %}
 

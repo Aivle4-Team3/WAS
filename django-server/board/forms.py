@@ -18,24 +18,19 @@ class PostModelForm(forms.ModelForm):
         }
 
 
-class QnAModelForm(forms.ModelForm):
-    class Meta:
-        model = QnA
-        fields = ['title', 'body']
-        labels = {
-            'title': '제목',
-            'body': '내용',
-        }
+class CommunityModelForm(PostForm):
+    class Meta(PostModelForm.Meta):
+        pass
 
 
-class NoticeModelForm(forms.ModelForm):
-    class Meta:
-        model = Notice
-        fields = ['title', 'body']
-        labels = {
-            'title': '제목',
-            'body': '내용',
-        }
+class QnAModelForm(PostForm):
+    class Meta(PostModelForm.Meta):
+        pass
+
+
+class NoticeModelForm(PostForm):
+    class Meta(PostModelForm.Meta):
+        pass
 
 
 class CommentForm(forms.ModelForm):

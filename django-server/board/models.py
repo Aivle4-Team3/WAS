@@ -25,6 +25,10 @@ class Post(models.Model):
         return reverse("board:detail", args=[self.id])
 
 
+class Community(Post):
+    pass
+
+
 class QnA(Post):
     pass
 
