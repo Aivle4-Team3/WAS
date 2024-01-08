@@ -9,7 +9,7 @@ view = views.Which(QnA, QnAModelForm, app_name)
 
 
 urlpatterns = [
-    path('', view.board, name='board'),
+    path('', view.board, name='qna'),
     path('<int:no>/', view.detail, name='detail'),
 
     path('new/', view.post_create, name='create'),

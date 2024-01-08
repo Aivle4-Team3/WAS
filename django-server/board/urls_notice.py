@@ -9,7 +9,7 @@ view = views.Which(Notice, NoticeModelForm, app_name)
 
 
 urlpatterns = [
-    path('', view.board, name='board'),
+    path('', view.board, name='notice'),
     path('<int:no>/', view.detail, name='detail'),
 
     path('new/', view.post_create, name='create'),
