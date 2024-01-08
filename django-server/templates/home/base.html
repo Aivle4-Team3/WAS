@@ -43,9 +43,6 @@
     <!-- Page CSS -->
     <link rel="stylesheet" href="{% static '/vendor/sneat-bootstrap/app-academy.css' %}" />
 
-    <script src="{% static '/vendor/sneat-bootstrap/config.js' %}"></script>
-    <script src="{% static '/vendor/sneat-bootstrap/helpers.js' %}"></script>
-    <script src="{% static '/home/js/main.js' %}"></script>
     {% block extra_head_content %}
 
     {% endblock %}
@@ -78,6 +75,9 @@
 
           <!-- Content wrapper: Start -->
           <div class="content-wrapper">
+            <script src="{% static '/vendor/sneat-bootstrap/config.js' %}"></script>
+            <script src="{% static '/vendor/sneat-bootstrap/helpers.js' %}"></script>
+            <script src="{% static '/home/js/main.js' %}"></script>
             <!-- Content: Start -->
             {% block contents %}
 
