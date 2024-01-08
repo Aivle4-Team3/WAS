@@ -14,7 +14,7 @@
           <div class="signup-container">
             <h2>추가 정보 기입</h2>
 
-            <form method="post" action="." class="signup">
+            <form method="post" action="" class="signup">
               {% csrf_token %}
 
               {% if form.errors %}
@@ -24,7 +24,7 @@
                 <!-- User-specific fields -->
                 <div class="avatar-form">
                   <label for="uploadAvatar">
-                    <input type="file" id="uploadAvatar" class="account-file-input" hidden="" accept="image/png, image/jpeg" name="avatar">
+                    <input type="file" id="uploadAvatar" class="account-file-input" hidden="" accept="image/png, image/jpeg" name="avatar" />
                     <img id="uploadedAvatar" src="{% static 'frontdoor/img/blank profile.png' %}" title="이미지" />
                   </label>
                 </div>
