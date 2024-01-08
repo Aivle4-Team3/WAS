@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="post",
             name="created",
-            field=models.DateField(auto_now_add=True, default=1),
+            field=models.DateField(auto_now_add=True),
             preserve_default=False,
         ),
     ]
