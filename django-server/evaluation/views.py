@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from lecture.models import Video, Enrollment
+from lecture.models import Video
 from chat.models import Message
+from .models import TestResult
 from threading import Thread
 from config.settings import chatbot
 
@@ -12,13 +13,12 @@ def evaluation(request, lecture_name, video_name):
         user_id = request.POST['user_id']
         video_id = request.POST['video_id']
 
-        # 관계검색
-        enrollment = Enrollment.objects.get(user_id=user_id, video_id=video_id)
         # 메시지검색
-        chat_messages = Message.objects.filter(enrollment=enrollment)
+        chat_messages = Message.objects.filter(video=video_id)
 
         # 문제지 & 정답지
         statements = Video.objects.get(id=video_id).testpapers.all()
+        # Video.objects.prefetch_related('testpapers').get(id=video_id).testpapers.all()
 
         # 결과 저장할 가변 리스트
         eval_results = [[0, 0, 0, 0] for i in range(len(statements))]
@@ -36,8 +36,13 @@ def evaluation(request, lecture_name, video_name):
 
         # 결과
         for er in eval_results:
-            print(*map(': '.join, zip(["문제", "답", "풀이", "정답 여부"], er)))
+            print(*map(': '.join, zip(["문제", "답", "풀이", "점수"], er)))
         checklist = [er[3] for er in eval_results]
+        
+        # Database 저장
+        instance = TestResult(score)
+        # 데이터베이스에 저장
+        instance.save()
 
         context = {
             'lecture_name': lecture_name,

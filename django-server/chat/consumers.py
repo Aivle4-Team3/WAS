@@ -4,7 +4,6 @@ from datetime import datetime
 from lecture.models import Video
 from accounts.models import User
 from .models import Message
-from lecture.models import Enrollment
 import urllib.parse
 from config.settings import chatbot
 import numpy as np
@@ -31,8 +30,6 @@ class ChatConsumer(WebsocketConsumer):
         # 참조 객체들
         video = Video.objects.get(id=video_id)
         user = User.objects.get(id=user_id)
-        # 관계 연관
-        enrollment = Enrollment.objects.get(user=user, video=video)
         
 
         text_data_json = json.loads(text_data)
@@ -45,7 +42,7 @@ class ChatConsumer(WebsocketConsumer):
         LEN_LIMIT = 10000
 
         user_message_embedded = chatbot.get_embedding(message)
-        user_messages = Message.objects.filter(enrollment=enrollment)
+        user_messages = Message.objects.get(user=user, video=video)
         if user_messages:
             embedded_user_vectors = np.array([msg.user_message_embedded for msg in user_messages])
             descent_idx = np.argsort(np.dot(embedded_user_vectors, user_message_embedded))[::-1]
@@ -64,9 +61,9 @@ class ChatConsumer(WebsocketConsumer):
 
         # Message 생성
         instance = Message(
+            user=user, video=video,
             user_message=message, bot_message=answer, user_time=message_time, bot_time=answer_time,
-            user_message_embedded=user_message_embedded, bot_message_embedded=chatbot.get_embedding(answer),
-            enrollment=enrollment)
+            user_message_embedded=user_message_embedded, bot_message_embedded=chatbot.get_embedding(answer))
         # 데이터베이스에 저장
         instance.save()
 
