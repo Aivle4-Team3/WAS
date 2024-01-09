@@ -2,4 +2,8 @@ from django.contrib import admin
 from .models import TestPaper
 
 # Register your models here.
-admin.site.register(TestPaper)
+
+class TestPaperAdmin(admin.ModelAdmin):
+    list_display = ('question', 'video')
+
+admin.site.register(TestPaper, TestPaperAdmin)
