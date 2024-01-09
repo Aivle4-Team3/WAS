@@ -1,0 +1,72 @@
+{% extends '../home/base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- Layout wrapper: Start -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="snow-wrapper back snow--behind">
+      <div class="snow layer3 a"></div>
+      <div class="snow layer3"></div>
+    </div>
+
+    <div class="layout-container">
+      <!-- Menu: Start -->
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <!-- ! Hide app brand if navbar-full -->
+        {% include 'home/sidebar.html' %}
+      </aside>
+      <!-- Menu: End -->
+
+      <!-- Layout page: Start -->
+      <div class="layout-page">
+        <!-- Navbar: Start -->
+        {% include 'home/topbar.html' %}
+        <!-- Navbar: End -->
+
+        <!-- Content wrapper: Start -->
+        <div class="content-wrapper">
+          <script src="{% static '/vendor/sneat-bootstrap/config.js' %}"></script>
+          <script src="{% static '/vendor/sneat-bootstrap/helpers.js' %}"></script>
+          <script src="{% static '/home/js/main.js' %}"></script>
+          <!-- Content: Start -->
+          {% block contents %}
+
+          {% endblock %}
+          <!-- / Content: End -->
+
+          <!-- Footer: Start -->
+          <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+              <div class="mb-2 mb-md-0">© 2023 'KT AIVLE SCHOOL TEAM 3' All rights reserved.</div>
+              <div class="d-none d-lg-inline-block">
+                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+                <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/django-introduction.html" target="_blank" class="footer-link me-4">Documentation</a>
+                <a href="https://themeselection.com/support/" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+              </div>
+            </div>
+          </footer>
+
+          <!-- Footer: End -->
+
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- / Content wrapper: End -->
+      </div>
+      <!-- / Layout page: End -->
+    </div>
+
+    <div class="snow-wrapper front">
+      <div class="snow layer1 a"></div>
+      <div class="snow layer1"></div>
+      <div class="snow layer2 a"></div>
+      <div class="snow layer2"></div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+  </div>
+{% endblock %}

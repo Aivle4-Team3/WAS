@@ -1,4 +1,8 @@
-{% extends "../home/base.html" %} {% load static %} {% load namespace_tags %} {% block contents %}
+{% extends "../home/layout.html" %}
+{% load static %}
+{% load namespace_tags %}
+
+{% block contents %}
 {% namespaced_url namespace namespace as board %}
 {% namespaced_url namespace 'create' as create %}
 <link href="{% static '/board/css/board.css' %}" rel="stylesheet" />

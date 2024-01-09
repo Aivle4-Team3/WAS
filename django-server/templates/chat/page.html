@@ -1,5 +1,7 @@
-{% extends "../home/realbase.html" %} {% load static %} {% block extra_head_content %}
+{% extends "../home/base.html" %}
+{% load static %}
 
+{% block extra_head_content %}
 <!--Page CSS-->
 <link rel="stylesheet" href="{% static '/chat/css/app-chat.css' %}" />
 
@@ -12,7 +14,7 @@
 
 <script src="{% static '/chat/js/chat.js' %}"></script>
 
-{% endblock %} {% block contents %}
+{% endblock %} {% block content %}
 <!-- Content: Start -->
 
     <div class="app-chat overflow-hidden">

@@ -1,31 +1,32 @@
-{% extends "../home/base.html" %} {% load static %} {% block contents %}
-{{ form.media }}
-<link rel="stylesheet" href="{% static '/board/css/post_form.css' %}" />
+{% extends '../home/layout.html' %}
+{% load static %}
 
-<div class="container-xxl flex-grow-1 container-p-y">
+{% block contents %}
+  {{ form.media }}
+  <link rel="stylesheet" href="{% static '/board/css/post_form.css' %}" />
+
+  <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span>게시글 등록</h4>
 
     <div class="app-ecommerce-category">
-        <!-- Category List Table -->
-        <div class="card">
-            <div class="card-datatable table-responsive"></div>
-        </div>
-        <table id="DataTables_Table_0" class="table table-bordered">
-            <tbody>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <table>
-                        {{ form.as_table }}
-                    </table>
-                    <input type="submit" value="등록" />
-                </form>
+      <!-- Category List Table -->
+      <div class="card">
+        <div class="card-datatable table-responsive"></div>
+      </div>
+      <table id="DataTables_Table_0" class="table table-bordered">
+        <tbody>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <table>{{ form.as_table }}</table>
+            <input type="submit" value="등록" />
+          </form>
 
-                <hr />
-                <a href="{% url 'board:board' %}">목록가기</a>
-            </tbody>
-        </table>
+          <hr />
+          <a href="{% url 'board:board' %}">목록가기</a>
+        </tbody>
+      </table>
     </div>
-</div>
+  </div>
 
-<!-- / Content -->
+  <!-- / Content -->
 {% endblock %}
