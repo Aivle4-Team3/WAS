@@ -1,4 +1,5 @@
 {% extends "../home/base.html" %} {% load static %} {% block contents %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">성취도 평가 / </span>{{ lecture_name }} / {{ video_name }}
@@ -46,58 +47,16 @@
             <div class="card h-100">
                 <div class="card-header">
                     <div class="card-title mb-0">
-                        <h5 class="m-0">여기 제미나이 or CHAT GPT 연결할 거임 해줘 철님 - ???</h5>
+                        <h5 class="m-0">평가</h5>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="d-none d-lg-flex vehicles-progress-labels mb-3">
-                        <div class="vehicles-progress-label on-the-way-text" style="width: 39.7%">On the way</div>
-                        <div class="vehicles-progress-label unloading-text" style="width: 28.3%">Unloading</div>
-                        <div class="vehicles-progress-label loading-text" style="width: 17.4%">Loading</div>
-                        <div class="vehicles-progress-label waiting-text" style="width: 14.6%">Waiting</div>
-                    </div>
-                    <div class="vehicles-overview-progress progress rounded-2 mb-3" style="height: 46px">
-                        <div
-                            class="progress-bar fs-big fw-medium text-start bg-lighter text-body px-1 px-lg-3 rounded-start shadow-none"
-                            role="progressbar"
-                            style="width: 39.7%"
-                            aria-valuenow="39.7"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                        >
-                            39.7%
-                        </div>
-                        <div
-                            class="progress-bar fs-big fw-medium text-start bg-primary px-1 px-lg-3 shadow-none"
-                            role="progressbar"
-                            style="width: 28.3%"
-                            aria-valuenow="28.3"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                        >
-                            28.3%
-                        </div>
-                        <div
-                            class="progress-bar fs-big fw-medium text-start text-bg-info px-1 px-lg-3 shadow-none"
-                            role="progressbar"
-                            style="width: 17.4%"
-                            aria-valuenow="17.4"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                        >
-                            17.4%
-                        </div>
-                        <div
-                            class="progress-bar fs-big fw-medium text-start bg-gray-900 px-1 px-lg-3 rounded-end shadow-none"
-                            role="progressbar"
-                            style="width: 14.6%"
-                            aria-valuenow="14.6"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                        >
-                            14.6%
+                    <div class="chart-wrapper">
+                        <div class="gender-chart" style="height: 200px; width: 100%;">
+                            <canvas id="evaluationBar"></canvas>
                         </div>
                     </div>
+                    
                     <div class="table-responsive">
                         <table class="table card-table">
                             <tbody class="table-border-bottom-0">
@@ -177,38 +136,13 @@
             <div class="card h-100">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <div class="card-title mb-0">
-                        <h5 class="m-0 me-2">여기는 뭐 그래프 그릴거면 남겼음 - ???</h5>
+                        <h5 class="m-0 me-2">정답 기록 추이</h5>
                         <small class="text-muted">Total number of deliveries 23.8k</small>
                     </div>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-label-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">January</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="javascript:void(0);">January</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">February</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">March</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">April</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">May</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">June</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">July</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">August</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">September</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">October</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">November</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0);">December</a></li>
-                        </ul>
-                    </div>
                 </div>
-                <div class="card-body" style="position: relative">
-                    <div id="shipmentStatisticsChart" style="min-height: 415px">
-                        <div id="apexchartsav6or6ki" class="apexcharts-canvas apexchartsav6or6ki apexcharts-theme-light" style="width: 474px; height: 415px"></div>
-                    </div>
-                    <div class="resize-triggers">
-                        <div class="expand-trigger"><div style="width: 592px; height: 295px"></div></div>
-                        <div class="contract-trigger"></div>
-                    </div>
-                    <div class="resize-triggers">
-                        <div class="expand-trigger"><div style="width: 523px; height: 440px"></div></div>
-                        <div class="contract-trigger"></div>
+                <div class="chart-wrapper">
+                    <div class="gender-chart" style="height: 200px; width: 100%;">
+                        <canvas id='historyChart'></canvas>
                     </div>
                 </div>
             </div>
@@ -216,5 +150,95 @@
     </div>
     <!-- / Content -->
     <!-- Content wrapper -->
+    <script>
+        //const num_correct = {{ num_correct }};
+        //const num_wrong = {{ num_wrong }};
+
+        const rate_correct = 30 // num_correct/(num_correct + num_wrong)
+        const rate_wrong = 70 //num_wrong/(num_correct + num_wrong)
+
+        var ctx = document.getElementById('evaluationBar').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['오늘의 평가'],
+                datasets: [
+                    {
+                        label: '정답',
+                        data: [rate_correct],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    },
+                    {
+                        label: '오답',
+                        data: [rate_wrong],
+                        backgroundColor: 'blue',
+                    },
+                ]
+            },
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                },
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+
+        labels = ['1회', '2회', '3회', '4회', '5회'];
+        data = [30, 50, 30, 90, 30]
+
+        
+        var historyChart = document.getElementById('historyChart').getContext('2d');
+        var myChart = new Chart(historyChart, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: '정답률',
+                        data,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2
+                    },
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                },
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: '회'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: '정답률'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                    }
+                }
+            }
+        });
+    </script>
     {% endblock %}
 </div>
