@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.http import require_http_methods
 from .models import Message
 from accounts.models import User
 from lecture.models import Video
@@ -29,3 +30,7 @@ def chat(request, lecture_name, video_name):
         'history': history,
     }
     return render(request, "./chat/page.html", context)
+
+@require_http_methods(["POST"])
+def voice(request):
+    print(request.FILES)

@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
     // 녹음 데이터 저장 배열
     const audioArray = [];
 
-    $btn.addEventListener('click', async function (event) {
+    $btn.addEventListener("click", async function (event) {
         if (!isRecording) {
             // 마이크 mediaStream 생성: Promise를 반환하므로 async/await 사용
             const mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -30,6 +30,22 @@ window.addEventListener("DOMContentLoaded", function () {
                 const blob = new Blob(audioArray, { type: "audio/ogg codecs=opus" });
                 audioArray.splice(0); // 기존 오디오 데이터들은 모두 비워 초기화한다.
 
+                const csrfToken = $("[name=csrfmiddlewaretoken]").val();
+                const audioFile = new File([blob], "filename.wav", { type: blob.type });
+
+                const formData = new FormData();
+                formData.append("audioFile", audioFile);
+
+                $.ajax({
+                    type: "post",
+                    async: false,
+                    headers: { "X-CSRFToken": csrfToken },
+                    url: "/chat/voice/",
+                    data: formData,
+                    processData: false, // FormData를 사용할 때 필요
+                    contentType: false,
+                });
+
                 // Blob 데이터에 접근할 수 있는 주소를 생성한다.
                 const blobURL = window.URL.createObjectURL(blob);
 
@@ -47,5 +63,4 @@ window.addEventListener("DOMContentLoaded", function () {
             isRecording = false;
         }
     });
-
 });
