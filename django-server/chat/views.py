@@ -1,3 +1,6 @@
+import io
+import tempfile
+import whisper
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.clickjacking import xframe_options_exempt
@@ -31,6 +34,18 @@ def chat(request, lecture_name, video_name):
     }
     return render(request, "./chat/page.html", context)
 
+
 @require_http_methods(["POST"])
 def voice(request):
-    print(request.FILES)
+    audio_file = request.FILES['audioFile']
+    audio_data = io.BytesIO(audio_file.read())
+
+    # 임시 파일에 오디오 데이터를 쓰기
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as tmp_file:
+        tmp_file.write(audio_data.read())
+        temp_file_path = tmp_file.name
+
+    # 모델 로드 및 트랜스크립션 수행
+    model = whisper.load_model("base")
+    result = model.transcribe(temp_file_path)
+    print(result["text"])
