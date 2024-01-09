@@ -52,15 +52,14 @@ def evaluation(request, lecture_name, video_name):
             point = int(point)
             scores.append(point)
 
-        score = sum(scores)/len(scores)*100
+        mean_score = sum(scores)/len(scores)
         correct_count = sum(1 for score in scores if score >= 70)
         wrong_count = len(scores) - correct_count
 
-        # TestResult 평가지당 개별 점수로 저장
-        for testpaper, score in zip(statements, scores):
-            instance = TestResult(user=user, video=video, score=score)
-            # 데이터베이스에 저장
-            instance.save()
+        # TestResult 종합 점수로 저장
+        instance = TestResult(user=user, video=video, score=mean_score)
+        # 데이터베이스에 저장
+        instance.save()
 
         # 이번 평가의 점수와 설명
         evals = [{'score': score, 'explation': explation}
@@ -73,7 +72,7 @@ def evaluation(request, lecture_name, video_name):
         json_result = json.dumps(fields_data, cls=DjangoJSONEncoder)
 
         context = {
-            'score': score,
+            'score': mean_score,
             'lecture_name': lecture_name,
             'video_name': video_name,
             'num_correct': correct_count,
