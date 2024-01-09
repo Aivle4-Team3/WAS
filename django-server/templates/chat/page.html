@@ -1,4 +1,4 @@
-{% extends "../home/base.html" %} {% load static %} {% block extra_head_content %}
+{% extends "../home/realbase.html" %} {% load static %} {% block extra_head_content %}
 
 <!--Page CSS-->
 <link rel="stylesheet" href="{% static '/chat/css/app-chat.css' %}" />
@@ -15,9 +15,8 @@
 {% endblock %} {% block contents %}
 <!-- Content: Start -->
 
-<div class="container-xxl flex-grow-1 container-p-y">
-    <div class="app-chat overflow-hidden card">
-        <div class="row g-0">
+    <div class="app-chat overflow-hidden">
+        <div class="row g-0" style="height:100%">
             <!-- Chat & Contacts -->
             <div class="col app-chat-contacts app-sidebar flex-grow-0 overflow-hidden border-end" id="app-chat-contacts">
                 <div class="sidebar-header pt-3 px-3 mx-1">
@@ -176,6 +175,5 @@
             <!-- /Chat History -->
         </div>
     </div>
-</div>
 <!-- / Content: End -->
 {% endblock %}

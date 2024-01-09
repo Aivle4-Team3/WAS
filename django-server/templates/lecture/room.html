@@ -1,11 +1,18 @@
 {% extends "../home/base.html" %}{% load static %} {% block contents %}
+<link href="{% static '/lecture/css/modal.css' %}" rel="stylesheet" />
 <div class="container-xxl flex-grow-1 container-p-y">
     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
     <h4 class="pt-3 mb-0">
         <span class="text-muted fw-light">강의실 /</span> {{ lecture.title }}
     </h4>
-
+    <div id="myModal" class="modalx">
+        <div class="modalx-content">
+          <span class="close">&times;</span>
+          <iframe id="myIframe" name="myIframe"></iframe>
+        </div>
+    </div>
+    <script src="{% static '/lecture/js/modal.js' %}"></script>
     <div class="card g-3 mt-5">
         <div class="card-body row g-3" id="courseBody">
             <div class="col-lg-10">
@@ -120,6 +127,7 @@
                                 />
                             </label>
                             <form
+                                target="myIframe" 
                                 action="{% url 'chat:page' lecture.title video.name %}"
                                 method="POST"
                             >
@@ -139,6 +147,7 @@
                                     class="bg-lighter border accordion-item"
                                     v-show="picked_video_url === '{{ video.file.url }}'"
                                     type="submit"
+                                    onclick="openModal()"
                                 >
                                     <img
                                         src="{% static '/lecture/img/converse_with_ai.png' %}"

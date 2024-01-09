@@ -13,6 +13,7 @@
 
 /* 모달 콘텐츠 스타일 */
 .modalx-content {
+    position: relative;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -22,6 +23,9 @@
 
 /* 닫기 버튼 스타일 */
 .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     color: #aaa;
     float: right;
     font-size: 28px;
