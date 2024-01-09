@@ -57,8 +57,10 @@
                                     <div class="d-flex align-items-center">
                                         <a class="d-flex flex-column justify-content-center" :href="'/board/'+post.id">
                                             <div>
-                                                <span v-if="post.is_notice">[공지]</span>
-                                                <span class="text-body text-wrap fw-medium" :class="{'notice': post.is_notice}">[[ post.title ]]</span>
+                                                <span v-if="post.category=='Notice'">[공지]</span>
+                                                <span v-if="post.category=='QnA'">[질문]</span>
+                                                <span v-if="post.category=='Community'">[자유]</span>
+                                                <span class="text-body text-wrap fw-medium" :class="{'notice': post.category=='Notice'}">[[ post.title ]]</span>
                                                 <span class="comments-count">[[ post.comments_count ]]</span>
                                             </div>
                                             <span class="text-muted text-truncate mb-0 d-none d-sm-block"><small>Tag</small></span>
@@ -113,7 +115,7 @@
                 created: '{{ post.created }}',
                 avatar_url: '{{ post.author.avatar.url }}',
                 comments_count: '{{ post.comments.count }}',
-                is_notice: '{{ post.is_notice }}',
+                category: '{{ post.category }}',
             },
             {% endfor %}
         ]

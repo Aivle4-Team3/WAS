@@ -17,8 +17,7 @@ class Which:
         post_list = self.BoardModel.objects.filter(title__contains=search_key)
         post_list = post_list.order_by('-id')
         for post in post_list:
-            if hasattr(post, 'notice'):
-                post.is_notice = True
+            post.category = post.__class__.__name__
 
         page = int(request.GET.get('page', 1))
         per = int(request.GET.get('per', 10))
