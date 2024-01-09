@@ -24,8 +24,7 @@ def chat(request, lecture_name, video_name):
 
     context = {
         'lecture_name': lecture_name,
-        'video_name': video_name,
-        'video_id': video_id,
+        'video': video,
         'user': user,
         'history': history,
     }
