@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="chart-wrapper">
-                    <div class="gender-chart" style="height: 200px; width: 100%;">
+                    <div class="gender-chart" style="height: 700px; width: 100%;">
                         <canvas id='historyChart'></canvas>
                     </div>
                 </div>
@@ -239,18 +239,17 @@
         });
 
 
-        history = {{ history|safe }}
-        console.log(history)
+        history_evals = {{ history_evals|safe }}
 
-
-        labels = ['1회', '2회', '3회', '4회', '5회'];
-        data = history.map(({score, explation})=> score)
+        labels = history_evals.map(()=> '회');
+        data = history_evals.map(({score, explation})=> score)
 
         
         var historyChart = document.getElementById('historyChart').getContext('2d');
         var myChart = new Chart(historyChart, {
             type: 'line',
             data: {
+                labels,
                 datasets: [
                     {
                         label: '정답률',

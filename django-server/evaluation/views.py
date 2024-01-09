@@ -72,7 +72,7 @@ def evaluation(request, lecture_name, video_name):
             'num_correct': correct_count,
             'num_wrong': wrong_count,
             'detail_eval': json.dumps(evals),
-            'history': json_result,
+            'history_evals': json_result,
         }
     else:
         context = {
