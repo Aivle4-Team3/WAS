@@ -14,4 +14,4 @@ class TestResult(models.Model):
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
     testpaper = models.ForeignKey(TestPaper, null=False, on_delete=models.CASCADE)
     evaluation_date = models.DateField(auto_now_add=True)
-    scrore = models.IntegerField(default=0)
+    score = models.IntegerField(default=0)
