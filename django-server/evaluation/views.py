@@ -35,9 +35,19 @@ def evaluation(request, lecture_name, video_name):
             th.join()
 
         # 결과
+        score, correct_count, wrong_count = 0, 0, 0
+        explanations = []
         for er in eval_results:
-            print(*map(': '.join, zip(["문제", "답", "풀이", "점수"], er)))
-        checklist = [er[3] for er in eval_results]
+            print(*map(': '.join, zip(["문제", "답", "풀이", "점수 및 보완할 부분"], er)))
+            idx = er[3].find(':')
+            point, explain = er[3][:idx], er[3][idx+1:]
+            explanations.append(explain)
+            # gpt가 다른 대답 뱉으면 문제 생길 소지 있음.
+            point = int(point)
+            if point >= 70: correct_count += 1
+            else: wrong_count += 1
+            score += point
+        score //= len(eval_results)
         
         # Database 저장
         instance = TestResult(score)
@@ -47,9 +57,9 @@ def evaluation(request, lecture_name, video_name):
         context = {
             'lecture_name': lecture_name,
             'video_name': video_name,
-            'num_correct': checklist.count('1'),
-            'num_wrong': checklist.count('0'),
-            'checklist': checklist,
+            'num_correct': correct_count,
+            'num_wrong': wrong_count,
+            'checklist': explanations,
         }
     else:
         context = {
