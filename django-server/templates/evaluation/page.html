@@ -13,7 +13,18 @@
             </div>
             <h4 class="ms-1 mb-0">등급</h4>
         </div>
-        <h1 id="grade"></h1>
+        <h1 id="grade" style="position: absolute; right: 20px; z-index: 99; top: 20px;">
+            {% if score >= 80 %}
+                <img src="{% static 'evaluation\img\A.png' %}" style="width:150px">
+            {% elif score >= 60 % %}
+                <img src="{% static 'evaluation\img\B.png' %}" style="width:150px">
+            {% elif score >= 40 % %}
+                <img src="{% static 'evaluation\img\C.png' %}" style="width:150px">
+            {% elif score >= 20 % %}
+                <img src="{% static 'evaluation\img\D.png' %}" style="width:150px">
+            {% else %}
+                <img src="{% static 'evaluation\img\F.png' %}" style="width:150px">
+            {% endif %}
     </div>
     <div class="row">
         <div class="col-sm-6 col-lg-6 mb-4">
@@ -118,10 +129,6 @@
 
         const rate_correct = num_correct/(num_correct + num_wrong)*100
         const rate_wrong = num_wrong/(num_correct + num_wrong)*100
-
-        if (rate_correct >= 50) {
-            $('#grade').text("C등급");
-        }
 
         var todayEvalsBar = document.getElementById('todayEvalsBar').getContext('2d');
         var myChart = new Chart(todayEvalsBar, {

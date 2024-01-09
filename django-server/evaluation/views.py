@@ -49,13 +49,11 @@ def evaluation(request, lecture_name, video_name):
             explanations.append(explain)
             # gpt가 다른 대답 뱉으면 문제 생길 소지 있음.
             point = int(point)
-            if point >= 70:
-                correct_count += 1
-            else:
-                wrong_count += 1
-            score += point
             scores.append(point)
-        score //= len(eval_results)
+
+        score = sum(scores)/len(scores)*100
+        correct_count = sum(1 for score in scores if score >= 70)
+        wrong_count = len(scores) - correct_count
 
         # TestResult 평가지당 개별 점수로 저장
         for testpaper, score in zip(statements, scores):
@@ -74,6 +72,7 @@ def evaluation(request, lecture_name, video_name):
         json_result = json.dumps(fields_data, cls=DjangoJSONEncoder)
 
         context = {
+            'score': score,
             'lecture_name': lecture_name,
             'video_name': video_name,
             'num_correct': correct_count,
