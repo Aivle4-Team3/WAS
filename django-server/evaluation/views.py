@@ -56,14 +56,14 @@ def evaluation(request, lecture_name, video_name):
         correct_count = sum(1 for score in scores if score >= 70)
         wrong_count = len(scores) - correct_count
 
-        # TestResult 종합 점수로 저장
+        # TestResult 종합 점수로 데이터베이스에 저장
         instance = TestResult(user=user, video=video, score=mean_score)
-        # 데이터베이스에 저장
         instance.save()
 
         # 이번 평가의 점수와 설명
-        evals = [{'score': score, 'explation': explation}
-                 for score, explation in zip(scores, explanations)]
+        evals = [{'score': score, 'explation': explation, 
+                  'student_saying': er[2],}
+                 for score, explation, er in zip(scores, explanations, eval_results)]
 
         # 유저당 점수의 기록
         test_results = TestResult.objects.filter(user=user, video=video)

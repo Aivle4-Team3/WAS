@@ -1,6 +1,6 @@
 {% extends "../home/base.html" %} {% load static %} {% block contents %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-<div class="container-xxl flex-grow-1 container-p-y">
+<div class="container-xxl flex-grow-1 container-p-y" style="position: relative;">
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">성취도 평가 / </span>{{ lecture_name }} / {{ video_name }}
     </h4>
@@ -81,21 +81,23 @@
                             <canvas id="eachEvalsBar"></canvas>
                         </div>
                     </div>
-                    
+
                     <ul class="table-border-bottom-0">
                         {% for detail_eval in detail_evals %}
                             <li class="d-flex justify-content-between" style="padding: 20px">
-                                <td class="ps-0">
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <div class="me-2">
-                                            <i class="bx bx-down-arrow-circle"></i>
-                                        </div>
-                                        <h6 class="mb-0 fw-normal">{{ detail_eval.explation }}</h6>
+                                <div>
+                                    <div class="ps-0" style="display: flex; padding: 10px;">
+                                        <span style="min-width: 90px; opacity: .7;"><i class="bx bx-message-square-dots"></i>학생 대답: </span>
+                                        <span class="mb-0 fw-normal">{{ detail_eval.student_saying }}</span>
                                     </div>
-                                </td>
-                                <td class="text-end pe-0">
+                                    <div class="ps-0" style="display: flex; padding: 10px;">
+                                        <span style="min-width: 90px; opacity: .7;"><i class="bx bx-down-arrow-circle"></i>평가: </span>
+                                        <span class="mb-0 fw-normal">{{ detail_eval.explation }}</span>
+                                    </div>
+                                </div>
+                                <div class="text-end pe-0" style="display: flex; padding: 10px; min-width: 50px; align-items: center">
                                     <span class="fw-medium">{{ detail_eval.score }}점</span>
-                                </td>
+                                </div>
                             </li>
                         {% endfor %}
                     </ul>
