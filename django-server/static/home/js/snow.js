@@ -17,6 +17,6 @@ $(window).ready((e) => {
             }
         }
     });
-    snowDiv.toggle(localStorage.getItem("snow") != "off");
+    snowDiv.toggle(localStorage.getItem("snow") == "on");
     snowDiv.filter(".front").toggleClass("snow--behind", localStorage.getItem("snow") == "quit");
 });

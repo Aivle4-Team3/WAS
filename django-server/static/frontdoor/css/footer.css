@@ -1,0 +1,71 @@
+.d-none {
+    display: none;
+}
+.invalid-feedback {
+    display: none;
+}
+.btn.disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+.emoji-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 150px;
+}
+
+.emoji {
+    margin: 0px;
+    height: 190px;
+    width: 180px;
+}
+.emoji:nth-child(odd) {
+}
+.title-container {
+    text-align: center; /* Center the title */
+    margin: 20px 0; /* Add some space around the title */
+    /* Other styling as needed */
+}
+
+.title-container h1 {
+    font: revert; /* Adjust the size as needed */
+    color: #333;
+    margin-bottom: 50px;
+}
+.emoji-wrapper {
+    position: relative;
+    display: inline-block; /* Adjust as necessary */
+}
+
+.speech-bubble {
+    height: auto;
+    position: absolute;
+    top: calc(100% - 40px); /* Position above the emoji */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    display: none; /* Hide initially */
+    z-index: 10; /* Ensure it's above other elements */
+    transition: all 0.3s ease;
+    min-width: 100px; /* Minimum width */
+    width: auto; /* Width adjusts to content */
+    white-space: nowrap; /* Keep text in a single line */
+    overflow: visible;
+}
+
+.emoji-wrapper:hover .speech-bubble {
+    display: block;
+}
+@media (max-width: 600px) {
+    .speech-bubble {
+        max-width: 100%; /* Full width on small screens */
+        white-space: normal; /* Allow wrapping on small screens */
+    }
+}

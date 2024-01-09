@@ -1,81 +1,7 @@
 {% extends '../frontdoor/base.html' %} {% load static %} {% block contents %}
-  <style>
-    .d-none {
-      display: none;
-    }
-    .invalid-feedback {
-      display: none;
-    }
-    .btn.disabled {
-      pointer-events: none;
-      opacity: 0.65;
-    }
-    .emoji-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 150px;
-    }
-    
-    .emoji {
-      margin: 0px;
-      height: 190px;
-      width: 180px;
-    }
-    .emoji:nth-child(odd) {
-    }
-    .title-container {
-      text-align: center; /* Center the title */
-      margin: 20px 0; /* Add some space around the title */
-      /* Other styling as needed */
-    }
-    
-    .title-container h1 {
-      font: revert; /* Adjust the size as needed */
-      color: #333;
-      margin-bottom: 50px;
-    }
-    .emoji-wrapper {
-      position: relative;
-      display: inline-block; /* Adjust as necessary */
-    }
-    
-    .speech-bubble {
-      height:auto;
-      position: absolute;
-      top: calc(100% - 40px); /* Position above the emoji */
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      font-weight: bold;
-      border: 3px solid black;
-      border-radius: 10px;
-      padding: 10px;
-      display: none; /* Hide initially */
-      z-index: 10; /* Ensure it's above other elements */
-      transition: all 0.3s ease;
-      min-width: 100px; /* Minimum width */
-      width: auto; /* Width adjusts to content */
-      white-space: nowrap; /* Keep text in a single line */
-      overflow: visible;
-    }
-    
-    .emoji-wrapper:hover .speech-bubble {
-      display: block;
-    }
-    @media (max-width: 600px) {
-      .speech-bubble {
-          max-width: 100%; /* Full width on small screens */
-          white-space: normal; /* Allow wrapping on small screens */
-      }  
-  }
-  
-  </style>
+  <link href="{% static '/frontdoor/css/footer.css' %}" rel="stylesheet" />
 
   <header class="masthead">
-    {% include 'frontdoor/happynewyear.html' %}
     <div class="container px-4 px-lg-5 h-100" style="margin-right: 0; width: 50%">
       <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-8 align-self-end">
@@ -109,52 +35,46 @@
     </div>
   </section>
   <!-- Services -->
-  <img src="" style="width: 67%; position: absolute" />
-  <div class="title-container">
-    <h1>AIVLE TEAM 3조를 소개합니다!</h1>
-  </div>
-  <div class="emoji-container">
-    <!-- Add your emojis here using <img> tags -->
-    <img src="{% static 'frontdoor/img/robot2.png' %}" alt="Emoji" class="emoji" />
-    <div class="emoji-wrapper">
-      <img src="{% static 'frontdoor/img/Jinsoo.png' %}" alt="Emoji" class="emoji" />
-      <span class="speech-bubble">저는 우리 조 귀염둥이 안진수입니다!</span>
-      
+  <footer>
+    <div class="title-container">
+      <h1>AIVLE TEAM 3조를 소개합니다!</h1>
     </div>
+    <div class="emoji-container">
+      <!-- Add your emojis here using <img> tags -->
+      <img src="{% static 'frontdoor/img/robot2.png' %}" alt="Emoji" class="emoji" />
+      <div class="emoji-wrapper">
+        <img src="{% static 'frontdoor/img/Jinsoo.png' %}" alt="Emoji" class="emoji" />
+        <span class="speech-bubble">저는 우리 조 귀염둥이 안진수입니다!</span>
+      </div>
 
-    <div class="emoji-wrapper">
-      <img src="{% static 'frontdoor/img/Yeongjin.png' %}" alt="Emoji" class="emoji" />
-      <span class="speech-bubble">연준러버 김영진입니다!</span>
-      
+      <div class="emoji-wrapper">
+        <img src="{% static 'frontdoor/img/Yeongjin.png' %}" alt="Emoji" class="emoji" />
+        <span class="speech-bubble">연준러버 김영진입니다!</span>
+      </div>
+      <div class="emoji-wrapper">
+        <img src="{% static 'frontdoor/img/Seungho.png' %}" alt="Emoji" class="emoji" />
+        <span class="speech-bubble">삼성SDS 신입사원 유승호입니다!</span>
+      </div>
+      <div class="emoji-wrapper">
+        <img src="{% static 'frontdoor/img/Jinwoo.png' %}" alt="Emoji" class="emoji" />
+        <span class="speech-bubble">에이블 조각미남 김진우입니다!</span>
+      </div>
+      <div class="emoji-wrapper">
+        <img src="{% static 'frontdoor/img/Woncheol.png' %}" alt="Emoji" class="emoji" />
+        <span class="speech-bubble">코딩박사 정원철입니다!</span>
+      </div>
+      <div class="emoji-wrapper">
+        <img src="{% static 'frontdoor/img/Hyeongseop.png' %}" alt="Emoji" class="emoji" />
+        <span class="speech-bubble">리무~~</span>
+      </div>
+      <img src="{% static 'frontdoor/img/babyRobot__5.png' %}" alt="Emoji" class="emoji" />
+      <img src="{% static 'frontdoor/img/robot4.png' %}" alt="Emoji" class="emoji" />
+      <img src="{% static 'frontdoor/img/babyRobot__1.png' %}" alt="Emoji" class="emoji" />
+      <img src="{% static 'frontdoor/img/robot5.png' %}" alt="Emoji" class="emoji" />
+      <img src="{% static 'frontdoor/img/babyRobot__2.png' %}" alt="Emoji" class="emoji" />
+      <img src="{% static 'frontdoor/img/babyRobot__3.png' %}" alt="Emoji" class="emoji" />
+      <img src="{% static 'frontdoor/img/robot1.png' %}" alt="Emoji" class="emoji" />
+      <!-- Add more <img> tags for each emoji you have -->
     </div>
-    <div class="emoji-wrapper">
-      <img src="{% static 'frontdoor/img/Seungho.png' %}" alt="Emoji" class="emoji" />
-      <span class="speech-bubble">삼성SDS 신입사원 유승호입니다!</span>
-      
-    </div>
-    <div class="emoji-wrapper">
-      <img src="{% static 'frontdoor/img/Jinwoo.png' %}" alt="Emoji" class="emoji" />
-      <span class="speech-bubble">에이블 조각미남 김진우입니다!</span>
-      
-    </div>
-    <div class="emoji-wrapper">
-      <img src="{% static 'frontdoor/img/Woncheol.png' %}" alt="Emoji" class="emoji" />
-      <span class="speech-bubble">코딩박사 정원철입니다!</span>
-      
-    </div>
-    <div class="emoji-wrapper">
-      <img src="{% static 'frontdoor/img/Hyeongseop.png' %}" alt="Emoji" class="emoji" />
-      <span class="speech-bubble">리무~~</span>
-      
-    </div>
-    <img src="{% static 'frontdoor/img/babyRobot__5.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/robot4.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/babyRobot__1.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/robot5.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/babyRobot__2.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/babyRobot__3.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/robot1.png' %}" alt="Emoji" class="emoji" />
-    <!-- Add more <img> tags for each emoji you have -->
-  </div>
+  </footer>
 {% endblock %}
-
