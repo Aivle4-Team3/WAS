@@ -61,83 +61,33 @@
                 </div>
                 <div class="card-body">
                     <div class="chart-wrapper">
-                        <div class="gender-chart" style="height: 200px; width: 100%;">
-                            <canvas id="evaluationBar"></canvas>
+                        <div class="gender-chart" style="height: 200px; width: 100%; magin:20px 0">
+                            <canvas id="todayEvalsBar"></canvas>
                         </div>
                     </div>
                     <div class="chart-wrapper">
-                        <div class="gender-chart" style="height: 300px; width: 100%;">
-                            <canvas id="chart2"></canvas>
+                        <div class="gender-chart" style="height: 300px; width: 100%; magin:20px 0">
+                            <canvas id="eachEvalsBar"></canvas>
                         </div>
                     </div>
                     
-                    <div class="table-responsive">
-                        <table class="table card-table">
-                            <tbody class="table-border-bottom-0">
-                                <tr>
-                                    <td class="w-50 ps-0">
-                                        <div class="d-flex justify-content-start align-items-center">
-                                            <div class="me-2">
-                                                <i class="bx bxs-truck"></i>
-                                            </div>
-                                            <h6 class="mb-0 fw-normal">On the way</h6>
+                    <ul class="table-border-bottom-0">
+                        {% for detail_eval in detail_evals %}
+                            <li class="d-flex justify-content-between" style="padding: 20px">
+                                <td class="ps-0">
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <div class="me-2">
+                                            <i class="bx bx-down-arrow-circle"></i>
                                         </div>
-                                    </td>
-                                    <td class="text-end pe-0 text-nowrap">
-                                        <h6 class="mb-0">2hr 10min</h6>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-50 ps-0">
-                                        <div class="d-flex justify-content-start align-items-center">
-                                            <div class="me-2">
-                                                <i class="bx bx-down-arrow-circle"></i>
-                                            </div>
-                                            <h6 class="mb-0 fw-normal">Unloading</h6>
-                                        </div>
-                                    </td>
-                                    <td class="text-end pe-0 text-nowrap">
-                                        <h6 class="mb-0">3hr 15min</h6>
-                                    </td>
-                                    <td class="text-end pe-0">
-                                        <span class="fw-medium">28.3%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-50 ps-0">
-                                        <div class="d-flex justify-content-start align-items-center">
-                                            <div class="me-2">
-                                                <i class="bx bx-up-arrow-circle"></i>
-                                            </div>
-                                            <h6 class="mb-0 fw-normal">Loading</h6>
-                                        </div>
-                                    </td>
-                                    <td class="text-end pe-0 text-nowrap">
-                                        <h6 class="mb-0">1hr 24min</h6>
-                                    </td>
-                                    <td class="text-end pe-0">
-                                        <span class="fw-medium">17.4%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-50 ps-0">
-                                        <div class="d-flex justify-content-start align-items-center">
-                                            <div class="me-2">
-                                                <i class="bx bx-time-five"></i>
-                                            </div>
-                                            <h6 class="mb-0 fw-normal">Waiting</h6>
-                                        </div>
-                                    </td>
-                                    <td class="text-end pe-0 text-nowrap">
-                                        <h6 class="mb-0">5hr 19min</h6>
-                                    </td>
-                                    <td class="text-end pe-0">
-                                        <span class="fw-medium">14.6%</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                        <h6 class="mb-0 fw-normal">{{ detail_eval.explation }}</h6>
+                                    </div>
+                                </td>
+                                <td class="text-end pe-0">
+                                    <span class="fw-medium">{{ detail_eval.score }}점</span>
+                                </td>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
@@ -164,11 +114,7 @@
     <script>
         const num_correct = {{ num_correct }};
         const num_wrong = {{ num_wrong }};
-        const detail_eval = {{ detail_eval|safe }}
-        console.log(detail_eval)
-
-        ppp = detail_eval.map(({score, detail})=> ({ label: '', data: [score], backgroundColor: '#6464ff', }))
-        console.log(ppp)
+        const detail_evals = {{ detail_evals|safe }}
 
         const rate_correct = num_correct/(num_correct + num_wrong)*100
         const rate_wrong = num_wrong/(num_correct + num_wrong)*100
@@ -177,8 +123,8 @@
             $('#grade').text("C등급");
         }
 
-        var ctx = document.getElementById('evaluationBar').getContext('2d');
-        var myChart = new Chart(ctx, {
+        var todayEvalsBar = document.getElementById('todayEvalsBar').getContext('2d');
+        var myChart = new Chart(todayEvalsBar, {
             type: 'bar',
             data: {
                 labels: ['오늘의 평가'],
@@ -213,14 +159,21 @@
         });
 
 
-        var chart2 = document.getElementById('chart2').getContext('2d');
-        var myChart = new Chart(chart2, {
+
+        eachScores = detail_evals.map(({score, detail})=> ({ label: '', data: [score], backgroundColor: '#FEBE98', }))
+
+        var eachEvalsBar = document.getElementById('eachEvalsBar').getContext('2d');
+        var myChart = new Chart(eachEvalsBar, {
             type: 'bar',
-            data: {labels: [''],
-                datasets: ppp
+            data: {
+                labels: [''],
+                datasets: eachScores
             },
             options: {
                 plugins: {
+                },
+                legend: {
+                    display: false,
                 },
                 maintainAspectRatio: false,
                 responsive: true,
@@ -241,10 +194,10 @@
 
         history_evals = {{ history_evals|safe }}
 
-        labels = history_evals.map(()=> '회');
-        data = history_evals.map(({score, explation})=> score)
+        labels = history_evals.map(({score, evaluation_date})=> evaluation_date)
+        data = history_evals.map(({score, evaluation_date})=> score)
 
-        
+
         var historyChart = document.getElementById('historyChart').getContext('2d');
         var myChart = new Chart(historyChart, {
             type: 'line',
@@ -273,7 +226,7 @@
                         display: true,
                         title: {
                             display: true,
-                            text: '회'
+                            text: '시간'
                         }
                     },
                     y: {
