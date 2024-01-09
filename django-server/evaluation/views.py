@@ -1,12 +1,12 @@
 import re
 import json
 from django.shortcuts import render
-from lecture.models import Video
-from chat.models import Message
 from .models import TestResult
 from threading import Thread
 from config.settings import chatbot
 from accounts.models import User
+from lecture.models import Video
+from chat.models import Message
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 # Create your views here.
@@ -17,6 +17,7 @@ def evaluation(request, lecture_name, video_name):
         user_id = request.POST['user_id']
         user = User.objects.get(id=user_id)
         video_id = request.POST['video_id']
+        video = Video.objects.get(id=video_id)
 
         # 메시지검색
         chat_messages = Message.objects.filter(user=user_id, video=video_id)
@@ -57,7 +58,7 @@ def evaluation(request, lecture_name, video_name):
 
         # TestResult 평가지당 개별 점수로 저장
         for testpaper, score in zip(statements, scores):
-            instance = TestResult(testpaper=testpaper, score=score, user=user)
+            instance = TestResult(user=user, video=video, score=score)
             # 데이터베이스에 저장
             instance.save()
 
@@ -66,7 +67,7 @@ def evaluation(request, lecture_name, video_name):
                  for score, explation in zip(scores, explanations)]
 
         # 유저당 점수의 기록
-        test_results = TestResult.objects.filter(user=user)
+        test_results = TestResult.objects.filter(user=user, video=video)
         fields_data = [{'evaluation_date': obj.evaluation_date,
                         'score': obj.score} for obj in test_results]
         json_result = json.dumps(fields_data, cls=DjangoJSONEncoder)

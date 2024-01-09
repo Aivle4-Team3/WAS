@@ -12,6 +12,6 @@ class TestPaper(models.Model):
     
 class TestResult(models.Model):
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
-    testpaper = models.ForeignKey(TestPaper, null=False, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, null=False, on_delete=models.CASCADE)
     evaluation_date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=0)

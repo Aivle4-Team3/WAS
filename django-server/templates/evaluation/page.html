@@ -16,11 +16,11 @@
         <h1 id="grade" style="position: absolute; right: 20px; z-index: 99; top: 20px;">
             {% if score >= 80 %}
                 <img src="{% static 'evaluation\img\A.png' %}" style="width:150px">
-            {% elif score >= 60 % %}
+            {% elif score >= 60 %}
                 <img src="{% static 'evaluation\img\B.png' %}" style="width:150px">
-            {% elif score >= 40 % %}
+            {% elif score >= 40 %}
                 <img src="{% static 'evaluation\img\C.png' %}" style="width:150px">
-            {% elif score >= 20 % %}
+            {% elif score >= 20 %}
                 <img src="{% static 'evaluation\img\D.png' %}" style="width:150px">
             {% else %}
                 <img src="{% static 'evaluation\img\F.png' %}" style="width:150px">
