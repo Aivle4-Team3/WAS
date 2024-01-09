@@ -1,6 +1,6 @@
 from django.db import models
 from lecture.models import Video
-from chat.models import Message
+from accounts.models import User
 
 # Create your models here.
 
@@ -11,6 +11,7 @@ class TestPaper(models.Model):
     answer = models.TextField(default="")
     
 class TestResult(models.Model):
-    message = models.ForeignKey(Message, null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    testpaper = models.ForeignKey(TestPaper, null=False, on_delete=models.CASCADE)
     evaluation_date = models.DateField(auto_now_add=True)
     scrore = models.IntegerField(default=0)
