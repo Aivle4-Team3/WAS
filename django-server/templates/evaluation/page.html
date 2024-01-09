@@ -6,6 +6,15 @@
     </h4>
 
     <!-- Card Border Shadow -->
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+            <div class="avatar me-2">
+                <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck"></i></span>
+            </div>
+            <h4 class="ms-1 mb-0">등급</h4>
+        </div>
+        <h1 id="grade"></h1>
+    </div>
     <div class="row">
         <div class="col-sm-6 col-lg-6 mb-4">
             <div class="card card-border-shadow-primary h-100">
@@ -56,6 +65,11 @@
                             <canvas id="evaluationBar"></canvas>
                         </div>
                     </div>
+                    <div class="chart-wrapper">
+                        <div class="gender-chart" style="height: 300px; width: 100%;">
+                            <canvas id="chart2"></canvas>
+                        </div>
+                    </div>
                     
                     <div class="table-responsive">
                         <table class="table card-table">
@@ -71,9 +85,6 @@
                                     </td>
                                     <td class="text-end pe-0 text-nowrap">
                                         <h6 class="mb-0">2hr 10min</h6>
-                                    </td>
-                                    <td class="text-end pe-0">
-                                        <span class="fw-medium">39.7%</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -151,11 +162,20 @@
     <!-- / Content -->
     <!-- Content wrapper -->
     <script>
-        //const num_correct = {{ num_correct }};
-        //const num_wrong = {{ num_wrong }};
+        const num_correct = {{ num_correct }};
+        const num_wrong = {{ num_wrong }};
+        const detail_eval = {{ detail_eval|safe }}
+        console.log(detail_eval)
 
-        const rate_correct = 30 // num_correct/(num_correct + num_wrong)
-        const rate_wrong = 70 //num_wrong/(num_correct + num_wrong)
+        ppp = detail_eval.map(({score, detail})=> ({ label: '', data: [score], backgroundColor: '#6464ff', }))
+        console.log(ppp)
+
+        const rate_correct = num_correct/(num_correct + num_wrong)*100
+        const rate_wrong = num_wrong/(num_correct + num_wrong)*100
+
+        if (rate_correct >= 50) {
+            $('#grade').text("C등급");
+        }
 
         var ctx = document.getElementById('evaluationBar').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -166,12 +186,12 @@
                     {
                         label: '정답',
                         data: [rate_correct],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        backgroundColor: '#6464ff',
                     },
                     {
                         label: '오답',
                         data: [rate_wrong],
-                        backgroundColor: 'blue',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     },
                 ]
             },
@@ -192,15 +212,45 @@
             }
         });
 
+
+        var chart2 = document.getElementById('chart2').getContext('2d');
+        var myChart = new Chart(chart2, {
+            type: 'bar',
+            data: {labels: [''],
+                datasets: ppp
+            },
+            options: {
+                plugins: {
+                },
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: '개별 정답퍼센트'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                    }
+                }
+            }
+        });
+
+
+        history = {{ history|safe }}
+        console.log(history)
+
+
         labels = ['1회', '2회', '3회', '4회', '5회'];
-        data = [30, 50, 30, 90, 30]
+        data = history.map(({score, explation})=> score)
 
         
         var historyChart = document.getElementById('historyChart').getContext('2d');
         var myChart = new Chart(historyChart, {
             type: 'line',
             data: {
-                labels,
                 datasets: [
                     {
                         label: '정답률',
