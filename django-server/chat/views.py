@@ -13,7 +13,7 @@ def chat(request, lecture_name, video_name):
     video = Video.objects.get(id=video_id)
     
     # 메시지검색
-    messages = Message.objects.get(user=user, video=video)
+    messages = Message.objects.filter(user=user, video=video)
 
     # 기록 읽기
     history = [[{'type': 'user', 'message': message.user_message, 'time': message.user_time},
