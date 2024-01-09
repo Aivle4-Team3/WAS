@@ -10,9 +10,12 @@ from lecture.models import Video
 from chat.models import Message
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
+from django.views.decorators.clickjacking import xframe_options_exempt
 # Create your views here.
 
 
+@xframe_options_exempt
 def evaluation(request, lecture_name, video_name):
     if request.method == 'POST':
         user_id = request.POST['user_id']
