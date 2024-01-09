@@ -1,5 +1,6 @@
 import re
 import json
+from itertools import groupby
 from django.shortcuts import render
 from .models import TestResult
 from threading import Thread
@@ -44,7 +45,8 @@ def evaluation(request, lecture_name, video_name):
         explanations = []
         scores = []
         for er in eval_results:
-            print(*map(': '.join, zip(["문제", "답", "풀이", "점수 및 보완할 부분"], er)), sep='\n')
+            print(
+                *map(': '.join, zip(["문제", "답", "풀이", "점수 및 보완할 부분"], er)), sep='\n')
             idx = er[3].find(':')
             point, explain = er[3][:idx], er[3][idx+1:]
             explanations.append(explain)
@@ -61,8 +63,8 @@ def evaluation(request, lecture_name, video_name):
         instance.save()
 
         # 이번 평가의 점수와 설명
-        evals = [{'score': score, 'explation': explation, 
-                  'student_saying': er[2],}
+        evals = [{'score': score, 'explation': explation,
+                  'student_saying': er[2], }
                  for score, explation, er in zip(scores, explanations, eval_results)]
 
         # 유저당 점수의 기록
@@ -85,3 +87,19 @@ def evaluation(request, lecture_name, video_name):
             'lecture_name': lecture_name,
         }
     return render(request, "./evaluation/page.html", context=context)
+
+
+def my_evaluation(request):
+    user = request.user
+
+    # 유저의 테스트 결과를 그룹화
+    instances = TestResult.objects.filter(user=user).order_by('video_id')
+    groups = {k: list(g) for k, g in groupby(instances, lambda x: x.video_id)}
+    grouped_scores = {
+        Video.objects.get(id=k).name: [instance.score for instance in g]
+        for k, g in groups.items()}
+
+    context = {
+        'grouped_scores': grouped_scores,
+    }
+    return render(request, "./evaluation/my.html", context=context)

@@ -34,6 +34,13 @@
       </ul>
     </li>
 
+    <li class="menu-item {% if request.resolver_match.url_name == 'evaluation' %}active{% endif %}">
+        <a href="{% url 'my_evaluation' %}" class="menu-link">
+          <i class="menu-icon tf-icons bx bxs-graduation"></i>
+          <div class="text-truncate">성취도평가</div>
+        </a>
+    </li>
+
     <li class="menu-item {% if request.resolver_match.url_name == 'board' %}active{% endif %} open">
       <a href="{% url 'board:board' %}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-slideshow"></i>
