@@ -21,7 +21,7 @@ def evaluation(request, lecture_name, video_name):
         # Video.objects.prefetch_related('testpapers').get(id=video_id).testpapers.all()
 
         # 결과 저장할 가변 리스트
-        eval_results = [[0, 0, 0, 0] for i in range(len(statements))]
+        eval_results = [['', '', '', ''] for i in range(len(statements))]
 
         # 쓰레딩
         threads = []

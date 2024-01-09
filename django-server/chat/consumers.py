@@ -42,7 +42,7 @@ class ChatConsumer(WebsocketConsumer):
         LEN_LIMIT = 10000
 
         user_message_embedded = chatbot.get_embedding(message)
-        user_messages = Message.objects.get(user=user, video=video)
+        user_messages = Message.objects.filter(user=user, video=video)
         if user_messages:
             embedded_user_vectors = np.array([msg.user_message_embedded for msg in user_messages])
             descent_idx = np.argsort(np.dot(embedded_user_vectors, user_message_embedded))[::-1]
