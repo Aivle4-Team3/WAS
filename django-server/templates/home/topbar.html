@@ -101,8 +101,8 @@
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
                             <!-- Moke condition for displaying user avatar -->
-                            <span>{{ user }} 님 환영합니다 😊　</span>
-                            <img src="{{ user.avatar.url }}" alt="프로필" class="w-px-40 rounded-circle" />
+                            <span>{{ user }}　</span>
+                            <img src="{% static '/frontdoor/img/profile.png' %}" alt="프로필" class="w-px-40 rounded-circle" />
                         </div>
                     </a>
 
@@ -114,7 +114,7 @@
                                         <div class="avatar avatar-online">
                                             <!-- Moke condition for displaying user avatar -->
 
-                                            <img src="{{ user.avatar.url }}" alt="프로필" class="w-px-40 rounded-circle" />
+                                            <img src="{% static '/frontdoor/img/profile.png' %}" alt="프로필" class="w-px-40 rounded-circle" />
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
@@ -131,7 +131,7 @@
                         <li>
                             <a class="dropdown-item" href="{% url 'accounts:mypage' %}">
                                 <i class="bx bx-user me-2"></i>
-                                <span class="align-middle">My Profile</span>
+                                <span class="align-middle">내 프로필</span>
                             </a>
                         </li>
                         <li>
@@ -151,7 +151,7 @@
                         <li>
                             <a class="dropdown-item" href="{% url 'account_logout' %}">
                                 <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">Sign out</span>
+                                <span class="align-middle">로그아웃</span>
                             </a>
                         </li>
                     </ul>

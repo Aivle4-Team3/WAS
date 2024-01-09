@@ -3,7 +3,7 @@
 {% namespaced_url namespace 'create' as create %}
 <link href="{% static '/board/css/board.css' %}" rel="stylesheet" />
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">게시판 /</span> {{ namespace }}</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">게시판</span></h4>
 
     <div class="board">
         <!-- Category List Table -->
@@ -79,12 +79,12 @@
                     </table>
                     <br/>
                     <div class="row mx-2">
-                        <div class="col-sm-12 col-md-6"><div role="status">Showing {{page}} to {{last}} of {{total}} entries</div></div>
+                        <div class="col-sm-12 col-md-6"><div role="status"></div></div>
                         <div class="col-sm-12 col-md-6">
                             <div class="paging_simple_numbers">
                                 <ul class="pagination">
                                     <li class="paginate_button page-item previous {% if page == 1 %}disabled{% endif %}">
-                                        <a href="{% url board %}?page={{page|add:'-1'}}" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">Previous</a>
+                                        <a href="{% url board %}?page={{page|add:'-1'}}" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0" class="page-link">이전</a>
                                     </li>
                                     {% for i in board_list %}
                                     <li class="paginate_button page-item {% if i == page %}active{% endif %}">
@@ -92,7 +92,7 @@
                                     </li>
                                     {% endfor %}
                                     <li class="paginate_button page-item next {% if page == last %}disabled{% endif %}" >
-                                        <a href="{% url board %}?page={{page|add:'1'}}" role="link" data-dt-idx="next" tabindex="0" class="page-link">Next</a>
+                                        <a href="{% url board %}?page={{page|add:'1'}}" role="link" data-dt-idx="next" tabindex="0" class="page-link">다음</a>
                                     </li>
                                 </ul>
                             </div>

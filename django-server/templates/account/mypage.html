@@ -2,7 +2,7 @@
 {% load static %}
 {% block contents %}
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">내정보 수정 /</span> 내정보</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">계정 수정</span></h4>
 
     <div class="row">
         <div class="col-md-12">
@@ -20,12 +20,12 @@
             <div class="card mb-4">
                 <form method="POST" action="{% url 'accounts:mypage' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                    <h5 class="card-header">Profile Details</h5>
+                    <h5 class="card-header">프로필 세부사항</h5>
                     <!-- Account -->
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                             <img
-                                src="{{ user.avatar.url }}"
+                                src="{% static 'frontdoor/img/profile.png' %}"
                                 alt="이미지 없음"
                                 class="d-block rounded"
                                 height="100"
@@ -43,7 +43,7 @@
                                     <span class="d-none d-sm-block">초기화</span>
                                 </button>
 
-                                <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                                <p class="text-muted mb-0">JPG, GIF 또는 PNG. 최대 크기 800K</p>
                             </div>
                             <script src="{% static '/accounts/js/read-image.js' %}"></script>
                         </div>

@@ -23,7 +23,6 @@
       width: 180px;
     }
     .emoji:nth-child(odd) {
-      
     }
     .title-container {
       text-align: center; /* Center the title */
@@ -36,6 +35,43 @@
       color: #333;
       margin-bottom: 50px;
     }
+    .emoji-wrapper {
+      position: relative;
+      display: inline-block; /* Adjust as necessary */
+    }
+    
+    .speech-bubble {
+      height:auto;
+      position: absolute;
+      top: calc(100% - 40px); /* Position above the emoji */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      font-weight: bold;
+      border: 3px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      display: none; /* Hide initially */
+      z-index: 10; /* Ensure it's above other elements */
+      transition: all 0.3s ease;
+      min-width: 100px; /* Minimum width */
+      width: auto; /* Width adjusts to content */
+      white-space: nowrap; /* Keep text in a single line */
+      overflow: visible;
+    }
+    
+    .emoji-wrapper:hover .speech-bubble {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .speech-bubble {
+          max-width: 100%; /* Full width on small screens */
+          white-space: normal; /* Allow wrapping on small screens */
+      }  
+  }
+  
   </style>
 
   <header class="masthead">
@@ -80,12 +116,37 @@
   <div class="emoji-container">
     <!-- Add your emojis here using <img> tags -->
     <img src="{% static 'frontdoor/img/robot2.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/Jinsoo.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/Yeongjin.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/Seungho.png' %}" class="emoji" />
-    <img src="{% static 'frontdoor/img/Jinwoo.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/Woncheol.png' %}" alt="Emoji" class="emoji" />
-    <img src="{% static 'frontdoor/img/Hyeongseop.png' %}" class="emoji" />
+    <div class="emoji-wrapper">
+      <img src="{% static 'frontdoor/img/Jinsoo.png' %}" alt="Emoji" class="emoji" />
+      <span class="speech-bubble">저는 우리 조 귀염둥이 안진수입니다!</span>
+      
+    </div>
+
+    <div class="emoji-wrapper">
+      <img src="{% static 'frontdoor/img/Yeongjin.png' %}" alt="Emoji" class="emoji" />
+      <span class="speech-bubble">연준러버 김영진입니다!</span>
+      
+    </div>
+    <div class="emoji-wrapper">
+      <img src="{% static 'frontdoor/img/Seungho.png' %}" alt="Emoji" class="emoji" />
+      <span class="speech-bubble">삼성SDS 신입사원 유승호입니다!</span>
+      
+    </div>
+    <div class="emoji-wrapper">
+      <img src="{% static 'frontdoor/img/Jinwoo.png' %}" alt="Emoji" class="emoji" />
+      <span class="speech-bubble">에이블 조각미남 김진우입니다!</span>
+      
+    </div>
+    <div class="emoji-wrapper">
+      <img src="{% static 'frontdoor/img/Woncheol.png' %}" alt="Emoji" class="emoji" />
+      <span class="speech-bubble">코딩박사 정원철입니다!</span>
+      
+    </div>
+    <div class="emoji-wrapper">
+      <img src="{% static 'frontdoor/img/Hyeongseop.png' %}" alt="Emoji" class="emoji" />
+      <span class="speech-bubble">리무~~</span>
+      
+    </div>
     <img src="{% static 'frontdoor/img/babyRobot__5.png' %}" alt="Emoji" class="emoji" />
     <img src="{% static 'frontdoor/img/robot4.png' %}" alt="Emoji" class="emoji" />
     <img src="{% static 'frontdoor/img/babyRobot__1.png' %}" alt="Emoji" class="emoji" />
@@ -96,3 +157,4 @@
     <!-- Add more <img> tags for each emoji you have -->
   </div>
 {% endblock %}
+
